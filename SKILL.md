@@ -94,16 +94,26 @@ Exit code 3 or `status=stopped` = hard stop. Report reason. Never continue from 
 Read `grimoire/intake/image_analysis.md` before this stage.
 
 ```bash
-# 1. Probe image metadata
+# 0. Pre-Flight Quality Gate (Assess suitability, detect border clipping & generate prompt if bad)
+python3 forge/stage1_intake/assess_quality.py character.png
+# Or: python3 forge/cli.py check character.png
+
+# 1. (Optional) Enhance character resolution, ink lines & clarity
+python3 forge/stage1_intake/enhance.py character.png \
+  --out source/enhanced.png \
+  --scale 2.0 \
+  --clarity 1.3
+
+# 2. Probe image metadata
 python3 forge/stage1_intake/probe_image.py character.png
 
-# 2. Detect art style
+# 3. Detect art style
 python3 forge/stage1_intake/detect_style.py character.png --out analysis/style.json
 
-# 3. Detect views (front/side/back/turnaround)
+# 4. Detect views (front/side/back/turnaround)
 python3 forge/stage1_intake/detect_views.py character.png --out analysis/views.json
 
-# 4. Remove background
+# 5. Remove background (with auto-defringing to eliminate white alpha halos)
 python3 forge/stage1_intake/remove_background.py character.png \
   --out source/foreground.png \
   --mask source/mask.png
@@ -152,11 +162,19 @@ python3 forge/stage3_build/reconstruct_occlusion.py \
   --layers layers/ \
   --out layers/
 
-# Generate animation frames (AI stage)
+# Generate animation frames (Procedural Kinematics or AI stage)
 python3 forge/stage3_build/generate_frames.py \
-  --reference source/original.png \
+  --reference source/foreground.png \
   --spec asset.json \
-  --animations idle,walk,attack \
+  --provider procedural \
+  --animations idle,walk,jump,attack,hurt \
+  --out animations/
+
+# Or run direct procedural generator:
+python3 forge/stage3_build/procedural_animator.py \
+  --source source/foreground.png \
+  --spec layers/layer-spec.json \
+  --animations idle,walk,jump,attack,hurt \
   --out animations/
 ```
 
@@ -224,20 +242,42 @@ python3 forge/stage5_atlas/generate_spritesheet.py \
 Read the relevant `grimoire/export/<engine>_guide.md`.
 
 ```bash
-# Export to specific engine
+# Export to specific engine (godot, unity, phaser, pixijs, viewer)
 python3 forge/stage6_export/export.py \
   --asset asset.json \
   --atlases atlases/ \
   --engine godot \
   --out exports/godot/
 
-# All engines
+# Interactive Web QA Viewer (Canvas 2D + Web Audio Synthesizer)
+python3 forge/stage6_export/export.py \
+  --asset asset.json \
+  --atlases atlases/ \
+  --engine viewer \
+  --out exports/viewer/
+
+# All engines (includes Web QA viewer)
 python3 forge/stage6_export/export.py \
   --asset asset.json \
   --atlases atlases/ \
   --engine all \
   --out exports/
 ```
+
+---
+
+## 5 Production Pillars of 2D Asset Engineering
+
+1. **Zero-Halo Alpha De-Matting & Defringing Protocol**:
+   Never trust naive alpha masks. Anti-aliasing against white/bright backgrounds causes unsightly white halo borders. Always run dual-contour luminance checking and edge tone-shifting (`forge/_shared/image_utils.py:defringe_alpha`).
+2. **Exact Inverse-Affine Coordinate Calculus**:
+   PIL `Image.transform(AFFINE)` maps output pixels to input coordinates. Always compute the exact inverse affine matrix around pivots (`forge/_shared/transforms.py:get_inverse_affine_matrix`). Never use forward rotation matrices.
+3. **Non-Linear Continuous Shear Deformation**:
+   Characters with contiguous bodies, robes, or capes will break apart if severed into rigid rectangular boxes. Use continuous vertical shear deformation (`apply_continuous_shear`) to produce fluid walking cycles without anatomical tearing.
+4. **Decoupled Weapon Articulation & Crescent Slash VFX**:
+   Handheld weapons must never be baked into torso/cloak back-holsters. Separate the blade layer and articulate it through dynamic swing arcs (-55° anticipation $\to$ -20° lunging strike $\to$ +32° follow-through) composited with glowing crescent slash VFX (`procedural_animator.py`).
+5. **Turnkey Interactive Web QA Viewer**:
+   Every asset export must be immediately verifiable via a standalone, zero-dependency HTML5 Canvas web viewer with Web Audio API procedural sound synthesis (whoosh, jump, footsteps, hit), hitbox overlays, and skeletal rig visualizers (`forge/stage6_export/viewer_exporter.py`).
 
 ---
 

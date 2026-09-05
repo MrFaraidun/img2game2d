@@ -367,6 +367,85 @@ class TestCache:
         assert not cache.is_cached("test.step", h)
 
 
+class TestV110Enhancements:
+    def test_defringe_alpha(self):
+        from _shared.image_utils import defringe_alpha
+        from PIL import Image
+        import numpy as np
+        # Create an image with a white fringe at the boundary
+        img = Image.new("RGBA", (50, 50), (0, 0, 0, 0))
+        arr = np.array(img)
+        # Inner solid circle (dark tone)
+        arr[15:35, 15:35] = [20, 20, 30, 255]
+        # Outer fringe boundary (semi-transparent white)
+        arr[10:15, 10:40] = [250, 250, 250, 120]
+        test_img = Image.fromarray(arr)
+        cleaned = defringe_alpha(test_img)
+        cleaned_arr = np.array(cleaned)
+        # The white fringe pixels should be shifted away from pure white
+        fringe_r = cleaned_arr[12, 25, 0]
+        assert fringe_r < 100, f"Expected fringe R to be tone-shifted, got {fringe_r}"
+
+    def test_enhance_image(self, test_image):
+        from _shared.image_utils import enhance_image, load_image
+        img = load_image(test_image)
+        enhanced = enhance_image(img, scale=2.0, clarity_strength=1.2)
+        assert enhanced.width == img.width * 2
+        assert enhanced.height == img.height * 2
+
+    def test_inverse_affine_math(self):
+        from _shared.transforms import get_inverse_affine_matrix
+        import math
+        matrix = get_inverse_affine_matrix(cx=25.0, cy=25.0, angle_rad=math.pi / 2, dx=10.0, dy=0.0)
+        assert len(matrix) == 6
+        # Test identity transform produces identity diagonal
+        id_matrix = get_inverse_affine_matrix(cx=25.0, cy=25.0, angle_rad=0.0, dx=0.0, dy=0.0, sx=1.0, sy=1.0)
+        assert round(id_matrix[0], 2) == 1.0
+        assert round(id_matrix[4], 2) == 1.0
+
+    def test_continuous_shear(self, test_image):
+        from _shared.transforms import apply_continuous_shear
+        from PIL import Image
+        img = Image.open(test_image).convert("RGBA")
+        sheared = apply_continuous_shear(img, hip_y=img.height * 0.5, stride_pixels=15.0)
+        assert sheared.size == img.size
+
+    def test_procedural_animator(self, test_image, tmp_path):
+        from stage3_build.procedural_animator import ProceduralAnimator
+        animator = ProceduralAnimator(test_image)
+        results = animator.build_all(["idle", "attack"], str(tmp_path / "anims"))
+        assert "idle" in results
+        assert "attack" in results
+        assert len(results["idle"]) > 0
+        assert len(results["attack"]) > 0
+        for p in results["attack"]:
+            assert Path(p).exists()
+
+    def test_viewer_exporter(self, populated_asset, tmp_path, test_image):
+        from stage3_build.procedural_animator import ProceduralAnimator
+        from stage6_export.viewer_exporter import export_viewer
+        import json
+        animator = ProceduralAnimator(test_image)
+        anim_dir = tmp_path / "animations"
+        animator.build_all(["idle", "attack"], str(anim_dir))
+        viewer_dir = tmp_path / "viewer"
+        asset_file = tmp_path / "asset.json"
+        asset_file.write_text(json.dumps(populated_asset), encoding="utf-8")
+        res = export_viewer(str(asset_file), str(anim_dir), str(viewer_dir))
+        assert Path(res["viewer_html"]).exists()
+        assert Path(res["viewer_css"]).exists()
+        assert Path(res["viewer_js"]).exists()
+
+    def test_assess_quality(self, test_image):
+        from stage1_intake.assess_quality import assess_image_quality
+        res = assess_image_quality(test_image)
+        assert "quality_score" in res
+        assert "verdict" in res
+        assert "suggested_prompt" in res
+        assert "positive" in res["suggested_prompt"]
+        assert "midjourney" in res["suggested_prompt"]
+
+
 if __name__ == "__main__":
     print("Running img2game2d test suite (standalone mode)...")
     import inspect
@@ -384,6 +463,7 @@ if __name__ == "__main__":
         TestAtlas(),
         TestExporters(),
         TestCache(),
+        TestV110Enhancements(),
     ]
 
     total_run = 0

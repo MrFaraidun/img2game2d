@@ -100,3 +100,46 @@ Before marking Stage 2 complete, verify:
 - [ ] Leg pivots are at top (hip/knee)
 - [ ] Weapon pivot is near the grip, not the blade tip
 - [ ] No layer has `pivot = (0,0)` unless it's a corner-anchored element
+
+---
+
+## ⚠️ Critical: Inverse Affine Coordinate Mapping in PIL
+
+When generating frames with Python Pillow (`Image.transform(size, Image.AFFINE, data)`), PIL uses **inverse mapping** (output $(x, y) \to$ input $(u, v)$):
+$$u = a x + b y + c$$
+$$v = d x + e y + f$$
+
+Using forward transformation matrices directly will invert angles, cause drifting pivots, and **break character limbs into disconnected floating chunks**.
+
+The mathematically exact inverse affine 6-tuple around pivot $(c_x, c_y)$ with rotation $\theta$, translation $(\Delta x, \Delta y)$, and scale $(s_x, s_y)$ is:
+
+```python
+import math
+
+cos_a = math.cos(angle_rad)
+sin_a = math.sin(angle_rad)
+inv_sx = 1.0 / max(sx, 1e-5)
+inv_sy = 1.0 / max(sy, 1e-5)
+
+a = cos_a * inv_sx
+b = sin_a * inv_sx
+c = cx - (cos_a * (cx + dx) + sin_a * (cy + dy)) * inv_sx
+
+d = -sin_a * inv_sy
+e = cos_a * inv_sy
+f = cy - (-sin_a * (cx + dx) + cos_a * (cy + dy)) * inv_sy
+
+matrix = (a, b, c, d, e, f)
+transformed = layer.transform(layer.size, Image.AFFINE, matrix, resample=Image.BILINEAR)
+```
+
+## Non-Linear Continuous Deformation for Organic Bodies & Cloaks
+
+For characters with contiguous bodies, flowing robes, or capes, **never slice them into rigid rectangular boxes** for walking cycles. Instead, use non-linear continuous shear:
+
+```python
+weight = np.clip((yy - hip_y) / span, 0.0, 1.0) ** 1.2
+shift_x = weight * stride_pixels
+```
+This smoothly deflects the lower body and cloth without tearing seams or creating transparent voids.
+

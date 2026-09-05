@@ -38,6 +38,11 @@ Follow these analysis steps in strict sequence:
    - Recommend suitable animation clips based on anatomy (e.g., `idle`, `walk`, `run`, `attack`, `hurt`, `death`).
    - Set baseline frame rates and loop modes.
 
+7. **Pre-Flight Quality Gate & AI Re-Prompting**:
+   - Evaluate if the image is suitable for clean 2D rigging.
+   - Check for clipped feet/head/arms, blurry outlines, or complex background scenery.
+   - If the image is poor or flawed, provide a complete, copy-pasteable AI generator prompt for Midjourney/DALL-E to generate a pristine replacement.
+
 ## Required Output Format
 Emit ONLY valid JSON conforming to the following structure (to be saved as `analysis/analysis.json`):
 

@@ -145,3 +145,104 @@ def compute_color_similarity(img_a: "Image.Image", img_b: "Image.Image") -> floa
 def next_power_of_two(n: int) -> int:
     import math
     return 2 ** math.ceil(math.log2(max(n, 1)))
+
+
+def defringe_alpha(
+    img: "Image.Image",
+    edge_tone: Tuple[int, int, int] = (14, 14, 20),
+    luminance_threshold: int = 180,
+    erode_bleed: bool = True,
+) -> "Image.Image":
+    """
+    Remove white/light background matting halos around alpha boundaries.
+    Detects high-luminance anti-aliased edge pixels along the boundary and shifts
+    them toward the dark outline tone, with optional 1-pixel outer erosion.
+    """
+    require_pil()
+    require_numpy()
+
+    rgba = ensure_rgba(img)
+    arr = np.array(rgba).copy()
+    alpha = arr[:, :, 3]
+
+    # Boundary zone: anti-aliased transition pixels
+    boundary_mask = (alpha > 5) & (alpha < 240)
+
+    if np.any(boundary_mask):
+        # Calculate pixel luminance (standard Rec. 601)
+        r, g, b = arr[:, :, 0], arr[:, :, 1], arr[:, :, 2]
+        lum = (0.299 * r + 0.587 * g + 0.114 * b).astype(np.float32)
+
+        # Pixels that are both on the alpha boundary AND light/whitish
+        fringe_mask = boundary_mask & (lum > luminance_threshold)
+
+        # Tone shift: replace fringed RGB with edge outline tone while preserving smooth alpha
+        arr[fringe_mask, 0] = edge_tone[0]
+        arr[fringe_mask, 1] = edge_tone[1]
+        arr[fringe_mask, 2] = edge_tone[2]
+
+    # Optional 1-pixel alpha erosion for severe halo bleed
+    if erode_bleed:
+        from PIL import ImageFilter
+        alpha_img = Image.fromarray(alpha)
+        # MinFilter erodes alpha contour by 1 pixel
+        eroded_alpha = np.array(alpha_img.filter(ImageFilter.MinFilter(3)))
+        # Only erode very soft fringes
+        arr[:, :, 3] = np.where(boundary_mask & (alpha < 80), eroded_alpha, arr[:, :, 3])
+
+    return Image.fromarray(arr)
+
+
+def enhance_image(
+    img: "Image.Image",
+    scale: float = 2.0,
+    clarity_strength: float = 1.3,
+    denoise: bool = True,
+    seal_outlines: bool = True,
+) -> "Image.Image":
+    """
+    Enhance character sprite resolution, edge sharpness, and outline clarity.
+    Applies high-order Lanczos super-sampling, contrast-adaptive sharpening,
+    and optional dark outline sealing.
+    """
+    require_pil()
+    require_numpy()
+
+    rgba = ensure_rgba(img)
+    orig_w, orig_h = rgba.size
+    target_w = max(1, int(orig_w * scale))
+    target_h = max(1, int(orig_h * scale))
+
+    # 1. Super-sample with high-order Lanczos filter
+    upscaled = rgba.resize((target_w, target_h), Image.LANCZOS)
+
+    # 2. Separate RGB and Alpha channels for independent enhancement
+    r, g, b, a = upscaled.split()
+    rgb = Image.merge("RGB", (r, g, b))
+
+    # Optional gentle median filter to remove diffusion noise / JPEG blockiness
+    if denoise:
+        rgb = rgb.filter(ImageFilter.MedianFilter(size=3))
+
+    # 3. Smart Unsharp Masking for crisp inking lines without ringing
+    radius = 1.5
+    percent = int(120 * clarity_strength)
+    threshold = 3
+    sharpened = rgb.filter(ImageFilter.UnsharpMask(radius=radius, percent=percent, threshold=threshold))
+
+    # 4. Cel-edge dark line sealing (deepens ink outlines and eliminates blurry edges)
+    if seal_outlines:
+        arr_rgb = np.array(sharpened).astype(np.float32)
+        lum = 0.299 * arr_rgb[:, :, 0] + 0.587 * arr_rgb[:, :, 1] + 0.114 * arr_rgb[:, :, 2]
+        # Dark lines (lum < 60) get boosted contrast / deepening
+        dark_mask = (lum < 75)[:, :, np.newaxis]
+        arr_rgb = np.where(dark_mask, arr_rgb * 0.82, arr_rgb)
+        sharpened = Image.fromarray(np.clip(arr_rgb, 0, 255).astype(np.uint8))
+
+    # Recombine with alpha
+    res_r, res_g, res_b = sharpened.split()
+    enhanced = Image.merge("RGBA", (res_r, res_g, res_b, a))
+
+    # Clean any residual fringes
+    return defringe_alpha(enhanced)
+

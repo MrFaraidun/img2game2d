@@ -5,6 +5,31 @@ All notable changes to `img2game2d` will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.1.0] - 2026-09-06
+
+### Added
+- **Intake Super-Resolution & Clarity Enhancement**:
+  - `enhance.py`: High-order Lanczos super-sampling (2x/4x), contrast-adaptive sharpening (CAS), and dark outline sealing.
+  - `cli.py enhance`: Standalone CLI subcommand and `--enhance` build flag.
+- **Zero-Halo Alpha De-Matting & Defringing Protocol**:
+  - `_shared/image_utils.py:defringe_alpha`: Dual-contour luminance edge detection and dark tone shifting with alpha contour erosion to eliminate white halo borders.
+  - Integrated directly into `remove_background.py` and pipeline intake.
+- **Exact Inverse-Affine Coordinate Calculus**:
+  - `_shared/transforms.py:get_inverse_affine_matrix`: Closed-form inverse affine 6-tuple for PIL `Image.transform(AFFINE)` preventing inverted rotations, coordinate drift, and anatomical detachment.
+  - `_shared/transforms.py:apply_continuous_shear`: Non-linear vertical shear deformation for cloaks, robes, and legs, preventing characters from breaking into disconnected rectangular pieces during walk cycles.
+  - `_shared/transforms.py:inpaint_contact_seam`: Joint contact hole sealing.
+- **Procedural Kinematics & Weapon Articulation**:
+  - `stage3_build/procedural_animator.py`: Deterministic procedural animation generator with multi-stage attack arcs (-55° anticipation $\to$ -20° strike $\to$ +32° follow-through).
+  - Dynamic procedural crescent slash VFX with glow core.
+  - Decoupled weapon logic ensuring swinging blades are never rigidly anchored to back holsters.
+- **Turnkey Interactive Web QA Viewer**:
+  - `stage6_export/viewer_exporter.py`: Standalone zero-dependency HTML5 Canvas web viewer.
+  - Real-time animation scrubber and FPS slider (1–60 FPS).
+  - Web Audio API procedural sound synthesizer (whoosh, jump, footsteps, hit effects in pure code).
+  - Visual QA overlays: Hitbox collision boxes, skeletal rig bones/pivots, and onion skinning.
+  - Multi-engine code snippet exporter (Godot 4, Unity 2D, Phaser 3, PixiJS).
+  - `grimoire/export/viewer_guide.md`: Complete operational guide.
+
 ## [1.0.0] - 2026-09-05
 
 ### Added

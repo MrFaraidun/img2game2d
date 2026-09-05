@@ -26,7 +26,10 @@ sys.path.insert(0, str(Path(__file__).parent.parent))
 from _shared.schema_utils import load_json
 
 
-ENGINES = ["godot", "unity", "phaser", "pixijs"]
+import json
+import tempfile
+
+ENGINES = ["godot", "unity", "phaser", "pixijs", "viewer"]
 
 
 def export(asset: dict, atlases_dir: str, engine: str, out_dir: str) -> dict:
@@ -50,6 +53,19 @@ def export(asset: dict, atlases_dir: str, engine: str, out_dir: str) -> dict:
     elif engine == "pixijs":
         from stage6_export.pixijs_exporter import PixiJSExporter
         return PixiJSExporter().export(asset, atlases_dir, out_dir)
+    elif engine == "viewer":
+        from stage6_export.viewer_exporter import export_viewer
+        atl_p = Path(atlases_dir)
+        anim_dir = atl_p.parent / "animations"
+        if not anim_dir.exists():
+            anim_dir = atl_p
+        if isinstance(asset, dict):
+            with tempfile.NamedTemporaryFile(mode="w", suffix=".json", delete=False) as tmp:
+                json.dump(asset, tmp)
+                asset_path = tmp.name
+        else:
+            asset_path = str(asset)
+        return export_viewer(asset_path, str(anim_dir), out_dir)
     else:
         raise ValueError(f"Unknown engine: {engine}")
 

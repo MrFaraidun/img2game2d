@@ -93,6 +93,35 @@ class StubGenerator(FrameGenerator):
         return frame  # Return image object, caller saves
 
 
+class ProceduralGenerator(FrameGenerator):
+    """
+    Procedural keyframed generator using exact inverse-affine transforms,
+    continuous lower-body shear deformation, and dynamic crescent slash VFX.
+    """
+
+    def __init__(self):
+        self._animators = {}
+
+    def generate(self, reference_path, animation_name, frame_index, frame_count, asset_spec, prompt_hint) -> str | None:
+        if reference_path not in self._animators:
+            from stage3_build.procedural_animator import ProceduralAnimator
+            self._animators[reference_path] = ProceduralAnimator(reference_path)
+
+        animator = self._animators[reference_path]
+        generators = {
+            "idle": animator.generate_idle,
+            "walk": animator.generate_walk,
+            "jump": animator.generate_jump,
+            "attack": animator.generate_attack,
+            "hurt": animator.generate_hurt,
+        }
+        gen = generators.get(animation_name, animator.generate_idle)
+        frames = gen(frame_count)
+        if 0 <= frame_index < len(frames):
+            return frames[frame_index]
+        return None
+
+
 class OpenAIGenerator(FrameGenerator):
     """OpenAI DALL-E based frame generator (requires OPENAI_API_KEY)."""
 
@@ -182,11 +211,13 @@ def generate_animation_frames(
     generator: FrameGenerator
     if provider == "openai":
         generator = OpenAIGenerator()
+    elif provider == "procedural":
+        generator = ProceduralGenerator()
     elif provider == "stub":
         generator = StubGenerator()
     else:
-        print(f"Unknown provider: {provider}, falling back to stub", file=sys.stderr)
-        generator = StubGenerator()
+        # Default to procedural for rich animations
+        generator = ProceduralGenerator()
 
     animations_spec = spec.get("animations", {})
     results: dict = {}

@@ -106,8 +106,27 @@ If you are unsure about any field, add it to the `uncertainty` array:
 ```
 Do NOT silently guess. Always flag uncertainty.
 
+### 8. Super-Resolution Enhancement & Clarity Boost
+If the source artwork is low resolution (< 512px), noisy, or blurry:
+```bash
+python3 forge/stage1_intake/enhance.py source/original.png \
+  --out source/enhanced.png \
+  --scale 2.0 \
+  --clarity 1.3
+```
+- Applies high-order Lanczos super-sampling
+- Sharpens ink outlines without ringing artifacts
+- Deepens dark line art to eliminate compression blur
+
+### 9. Zero-Halo Alpha De-Matting & Defringing Protocol
+Images cut out from white or bright backgrounds often contain 1–2 pixels of semi-transparent white fringes that look like a glowing white border or background in-game:
+- **Dual-contour luminance test**: pixels on alpha border with luminance > 180 are identified as fringe
+- **Tone-shift & erosion**: shifted to the dark outline tone and slightly eroded
+- Run automatically by `remove_background.py` or manually via `defringe_alpha`
+
 ---
 
 ## After Analysis
 Save output to `analysis/analysis.json`.  
 Then run: `python3 forge/state.py mark intake.analyze --evidence analysis/analysis.json`
+

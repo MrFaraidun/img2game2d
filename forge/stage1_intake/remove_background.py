@@ -51,23 +51,27 @@ def remove_background(
     img = Image.open(image_path)
     Path(out_path).parent.mkdir(parents=True, exist_ok=True)
 
+    from _shared.image_utils import defringe_alpha
+
     # Strategy 1: Already has clean transparency
     if img.mode == "RGBA":
         arr = np.array(img)
         alpha = arr[:, :, 3]
         transparent_ratio = (alpha < 10).mean()
         if transparent_ratio > 0.05:
-            # Alpha channel looks meaningful — use it
-            img.save(out_path, "PNG")
+            # Alpha channel looks meaningful — defringe and use it
+            cleaned = defringe_alpha(img)
+            cleaned.save(out_path, "PNG")
             if mask_path:
-                mask_img = Image.fromarray(alpha)
+                mask_img = Image.fromarray(np.array(cleaned)[:, :, 3])
                 mask_img.save(mask_path, "PNG")
             return {
                 "method_used": "existing_alpha",
                 "confidence": 0.95,
                 "output": out_path,
                 "mask": mask_path,
-                "note": "Image already has transparency — used existing alpha channel.",
+                "defringed": True,
+                "note": "Image already has transparency — used existing alpha channel with defringing.",
             }
 
     img_rgba = img.convert("RGBA")
