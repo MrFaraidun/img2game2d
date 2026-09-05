@@ -1,0 +1,23 @@
+{
+  "name": "attack",
+  "fps": 14,
+  "loop": false,
+  "frames": [
+    "000.png",
+    "001.png",
+    "002.png",
+    "003.png",
+    "004.png",
+    "005.png"
+  ],
+  "frame_count": 6,
+  "duration_ms": 428.6,
+  "events": [
+    {
+      "frame": 3,
+      "event": "hit_impact",
+      "data": { "damage_multiplier": 1.5 }
+    }
+  ],
+  "atlas_ref": "attack.png"
+}

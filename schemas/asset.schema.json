@@ -1,0 +1,134 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://img2game2d/schemas/asset.schema.json",
+  "title": "Asset",
+  "description": "Top-level game asset specification produced by img2game2d",
+  "type": "object",
+  "required": ["asset_id", "asset_type", "visual_style", "source_image", "layers", "animations"],
+  "properties": {
+    "asset_id": {
+      "type": "string",
+      "description": "Unique identifier for this asset (slug)"
+    },
+    "name": {
+      "type": "string",
+      "description": "Human-readable asset name"
+    },
+    "asset_type": {
+      "type": "string",
+      "enum": ["character", "object", "effect"],
+      "description": "Top-level asset classification"
+    },
+    "character_type": {
+      "type": "string",
+      "enum": ["humanoid", "creature", "monster", "robot", "animal", "npc", "player", "enemy", "boss"],
+      "description": "Character sub-type (character assets only)"
+    },
+    "object_type": {
+      "type": "string",
+      "enum": ["weapon", "item", "prop", "chest", "door", "vehicle", "environment", "collectible"],
+      "description": "Object sub-type (object assets only)"
+    },
+    "effect_type": {
+      "type": "string",
+      "enum": ["slash", "hit", "explosion", "smoke", "fire", "magic", "dust", "particle", "other"],
+      "description": "Effect sub-type (effect assets only)"
+    },
+    "visual_style": {
+      "type": "string",
+      "enum": ["pixel_art", "hand_drawn", "anime", "cartoon", "comic", "vector", "painted", "3d_rendered", "low_poly", "stylized", "realistic", "preserve"],
+      "description": "Detected or target visual style"
+    },
+    "source_image": {
+      "type": "string",
+      "description": "Path to source image"
+    },
+    "views_detected": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": ["front", "back", "left", "right", "front-left", "front-right", "back-left", "back-right", "side", "three-quarter", "top", "bottom"]
+      },
+      "description": "Views present in the source image"
+    },
+    "resolution": {
+      "type": "object",
+      "properties": {
+        "width": { "type": "integer", "minimum": 32 },
+        "height": { "type": "integer", "minimum": 32 }
+      },
+      "required": ["width", "height"]
+    },
+    "bounding_box": {
+      "type": "object",
+      "properties": {
+        "x": { "type": "number" },
+        "y": { "type": "number" },
+        "width": { "type": "number" },
+        "height": { "type": "number" }
+      },
+      "required": ["x", "y", "width", "height"]
+    },
+    "silhouette_score": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 1,
+      "description": "Detected silhouette confidence"
+    },
+    "symmetry": {
+      "type": "string",
+      "enum": ["symmetric", "asymmetric", "near-symmetric", "unknown"]
+    },
+    "proportions": {
+      "type": "object",
+      "description": "Head/body proportion ratios",
+      "additionalProperties": { "type": "number" }
+    },
+    "colors": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "hex": { "type": "string", "pattern": "^#[0-9A-Fa-f]{6}$" },
+          "role": { "type": "string" },
+          "frequency": { "type": "number", "minimum": 0, "maximum": 1 }
+        },
+        "required": ["hex", "role"]
+      },
+      "description": "Dominant color palette"
+    },
+    "layers": {
+      "type": "array",
+      "items": { "$ref": "layer.schema.json" },
+      "description": "Layer decomposition"
+    },
+    "rig": {
+      "$ref": "rig.schema.json",
+      "description": "Optional skeletal rig"
+    },
+    "animations": {
+      "type": "object",
+      "additionalProperties": { "$ref": "animation.schema.json" },
+      "description": "Animation clip definitions keyed by name"
+    },
+    "validation": {
+      "type": "object",
+      "properties": {
+        "passed": { "type": "boolean" },
+        "silhouette": { "type": "number", "minimum": 0, "maximum": 1 },
+        "color_consistency": { "type": "number", "minimum": 0, "maximum": 1 },
+        "frame_alignment": { "type": "number", "minimum": 0, "maximum": 1 },
+        "part_consistency": { "type": "number", "minimum": 0, "maximum": 1 }
+      }
+    },
+    "metadata": {
+      "type": "object",
+      "description": "Generation metadata for reproducibility",
+      "properties": {
+        "created_at": { "type": "string", "format": "date-time" },
+        "img2game2d_version": { "type": "string" },
+        "pipeline_hash": { "type": "string" }
+      }
+    }
+  }
+}

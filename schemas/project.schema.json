@@ -1,0 +1,101 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://img2game2d/schemas/project.schema.json",
+  "title": "Project",
+  "description": "img2game2d project configuration (img2game2d.yaml / img2game2d.json)",
+  "type": "object",
+  "required": ["project", "input", "asset"],
+  "properties": {
+    "project": {
+      "type": "object",
+      "required": ["name"],
+      "properties": {
+        "name": { "type": "string" },
+        "output_dir": { "type": "string", "default": "game-asset" }
+      }
+    },
+    "input": {
+      "type": "object",
+      "required": ["image"],
+      "properties": {
+        "image": { "type": "string" }
+      }
+    },
+    "asset": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": ["character", "object", "effect", "auto"],
+          "default": "auto"
+        },
+        "style": {
+          "type": "string",
+          "enum": ["preserve", "pixel_art", "hand_drawn", "vector", "anime", "custom"],
+          "default": "preserve"
+        }
+      }
+    },
+    "resolution": {
+      "type": "object",
+      "properties": {
+        "width": { "type": "integer", "enum": [32, 48, 64, 96, 128, 256, 512, 1024] },
+        "height": { "type": "integer", "enum": [32, 48, 64, 96, 128, 256, 512, 1024] }
+      }
+    },
+    "animation": {
+      "type": "object",
+      "properties": {
+        "default_fps": { "type": "integer", "default": 12 },
+        "strategy": {
+          "type": "string",
+          "enum": ["frame", "skeletal", "auto"],
+          "default": "auto"
+        },
+        "clips": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "List of animation names to generate"
+        }
+      }
+    },
+    "atlas": {
+      "type": "object",
+      "properties": {
+        "padding": { "type": "integer", "default": 2 },
+        "extrusion": { "type": "integer", "default": 0 },
+        "max_width": { "type": "integer", "default": 2048 },
+        "max_height": { "type": "integer", "default": 2048 },
+        "power_of_two": { "type": "boolean", "default": true },
+        "texture_format": {
+          "type": "string",
+          "enum": ["PNG", "WEBP"],
+          "default": "PNG"
+        }
+      }
+    },
+    "export": {
+      "type": "object",
+      "properties": {
+        "engines": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": ["godot", "unity", "phaser", "pixijs"]
+          },
+          "default": ["godot"]
+        }
+      }
+    },
+    "validation": {
+      "type": "object",
+      "properties": {
+        "enabled": { "type": "boolean", "default": true },
+        "silhouette_min": { "type": "number", "minimum": 0, "maximum": 1, "default": 0.85 },
+        "color_consistency_min": { "type": "number", "minimum": 0, "maximum": 1, "default": 0.90 },
+        "frame_continuity_min": { "type": "number", "minimum": 0, "maximum": 1, "default": 0.88 },
+        "part_consistency_min": { "type": "number", "minimum": 0, "maximum": 1, "default": 0.90 }
+      }
+    }
+  }
+}

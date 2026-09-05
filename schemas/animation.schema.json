@@ -1,0 +1,37 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://img2game2d/schemas/animation.schema.json",
+  "title": "Animation",
+  "description": "Animation clip definition",
+  "type": "object",
+  "required": ["name", "fps", "loop", "frames"],
+  "properties": {
+    "name": { "type": "string" },
+    "fps": { "type": "integer", "minimum": 1, "maximum": 60 },
+    "loop": { "type": "boolean" },
+    "frames": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Ordered list of frame filenames"
+    },
+    "frame_count": { "type": "integer", "minimum": 0 },
+    "duration_ms": { "type": "number", "description": "Total clip duration in milliseconds" },
+    "events": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["frame", "event"],
+        "properties": {
+          "frame": { "type": "integer" },
+          "event": { "type": "string" },
+          "data": {}
+        }
+      },
+      "description": "Frame-triggered events (e.g. hit, footstep, spawn)"
+    },
+    "atlas_ref": {
+      "type": "string",
+      "description": "Name of the atlas file containing these frames"
+    }
+  }
+}

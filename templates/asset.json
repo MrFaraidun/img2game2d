@@ -1,0 +1,109 @@
+{
+  "asset_id": "knight",
+  "name": "Knight",
+  "asset_type": "character",
+  "character_type": "humanoid",
+  "visual_style": "pixel_art",
+  "source_image": "source/original.png",
+  "views_detected": ["front"],
+  "resolution": {
+    "width": 512,
+    "height": 512
+  },
+  "bounding_box": {
+    "x": 64,
+    "y": 32,
+    "width": 384,
+    "height": 448
+  },
+  "silhouette_score": 0.96,
+  "symmetry": "near-symmetric",
+  "proportions": {
+    "head_to_body_ratio": 0.28
+  },
+  "colors": [
+    { "hex": "#1a1a2e", "role": "armor_dark", "frequency": 0.40 },
+    { "hex": "#e0e0e0", "role": "steel", "frequency": 0.30 },
+    { "hex": "#c0a050", "role": "gold_trim", "frequency": 0.15 },
+    { "hex": "#a02020", "role": "cloth_red", "frequency": 0.15 }
+  ],
+  "layers": [
+    {
+      "id": "head",
+      "name": "Head",
+      "type": "head",
+      "z_index": 70,
+      "parent": "torso",
+      "pivot": { "x": 0.5, "y": 1.0 },
+      "bounding_box": { "x": 192, "y": 32, "width": 128, "height": 128 }
+    },
+    {
+      "id": "torso",
+      "name": "Torso",
+      "type": "torso",
+      "z_index": 40,
+      "parent": "root",
+      "pivot": { "x": 0.5, "y": 0.5 },
+      "bounding_box": { "x": 160, "y": 160, "width": 192, "height": 160 }
+    },
+    {
+      "id": "left_arm",
+      "name": "Left Arm",
+      "type": "arm",
+      "z_index": 20,
+      "parent": "torso",
+      "pivot": { "x": 1.0, "y": 0.1 },
+      "bounding_box": { "x": 96, "y": 160, "width": 64, "height": 160 }
+    },
+    {
+      "id": "right_arm",
+      "name": "Right Arm",
+      "type": "arm",
+      "z_index": 80,
+      "parent": "torso",
+      "pivot": { "x": 0.0, "y": 0.1 },
+      "bounding_box": { "x": 352, "y": 160, "width": 64, "height": 160 }
+    },
+    {
+      "id": "left_leg",
+      "name": "Left Leg",
+      "type": "leg",
+      "z_index": 30,
+      "parent": "torso",
+      "pivot": { "x": 0.5, "y": 0.0 },
+      "bounding_box": { "x": 176, "y": 320, "width": 64, "height": 160 }
+    },
+    {
+      "id": "right_leg",
+      "name": "Right Leg",
+      "type": "leg",
+      "z_index": 30,
+      "parent": "torso",
+      "pivot": { "x": 0.5, "y": 0.0 },
+      "bounding_box": { "x": 272, "y": 320, "width": 64, "height": 160 }
+    }
+  ],
+  "animations": {
+    "idle": {
+      "name": "idle",
+      "fps": 8,
+      "loop": true,
+      "frames": ["000.png", "001.png", "002.png", "003.png"],
+      "frame_count": 4
+    },
+    "walk": {
+      "name": "walk",
+      "fps": 12,
+      "loop": true,
+      "frames": [
+        "000.png", "001.png", "002.png", "003.png",
+        "004.png", "005.png", "006.png", "007.png"
+      ],
+      "frame_count": 8
+    }
+  },
+  "metadata": {
+    "created_at": "2026-09-05T00:00:00Z",
+    "img2game2d_version": "1.0.0"
+  }
+}

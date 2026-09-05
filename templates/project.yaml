@@ -1,0 +1,47 @@
+# img2game2d Project Configuration
+project:
+  name: "knight_hero"
+  output_dir: "game-asset"
+
+input:
+  image: "source/original.png"
+
+asset:
+  type: "character" # character | object | effect | auto
+  style: "preserve" # preserve | pixel_art | hand_drawn | vector | anime | custom
+
+resolution:
+  width: 512
+  height: 512
+
+animation:
+  default_fps: 12
+  strategy: "auto" # frame | skeletal | auto
+  clips:
+    - "idle"
+    - "walk"
+    - "attack"
+    - "hurt"
+    - "death"
+
+atlas:
+  padding: 2
+  extrusion: 0
+  max_width: 2048
+  max_height: 2048
+  power_of_two: true
+  texture_format: "PNG"
+
+export:
+  engines:
+    - "godot"
+    - "unity"
+    - "phaser"
+    - "pixijs"
+
+validation:
+  enabled: true
+  silhouette_min: 0.85
+  color_consistency_min: 0.90
+  frame_continuity_min: 0.88
+  part_consistency_min: 0.90
