@@ -59,7 +59,7 @@ Concept / Action Sheet
 
 ---
 
-## ⚡ Key Capabilities (v1.1.0)
+## ⚡ Key Capabilities (v1.0.0 Launch)
 
 1. **Super-Resolution & Clarity Enhancement (`enhance.py`)**:
    - Lanczos 2x/4x super-sampling for low-res pixel or hand-drawn concepts.

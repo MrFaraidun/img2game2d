@@ -2,7 +2,7 @@
 name: img2game2d
 description: Convert character/object concept images, reference sheets, sketches, turnarounds, and existing 2D artwork into structured, game-ready 2D assets. Use for sprite sheets, skeletal rigs, animation clips, sprite atlases, and engine exports (Godot, Unity, Phaser, PixiJS).
 license: Apache-2.0
-version: 1.1.0
+version: 1.0.0
 ---
 
 # img2game2d — Image to 2D Game Asset

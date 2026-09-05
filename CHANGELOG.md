@@ -5,7 +5,7 @@ All notable changes to `img2game2d` will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [1.1.0] - 2026-09-06
+## [1.0.0] - 2026-09-06 — Official Launch Release
 
 - **Showcase & Live Production Footages (`examples/hollow_knight`)**:
   - Complete end-to-end game asset demonstration created from a single 2D character concept.
