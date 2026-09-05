@@ -7,7 +7,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [1.1.0] - 2026-09-06
 
-### Added
+- **Action Sheet Slicer & Multi-Pose Animation Intake**:
+  - `detect_actions.py`: Auto-detects 3 to 6 action figures (idle, walk, jump, attack, hurt) from single-canvas character action sheets.
+  - Slices, normalizes dimensions (512x512), and aligns ground planes so characters don't jitter vertically.
+  - `cli.py slice-actions`: Standalone panel extraction subcommand and `build --action-sheet` flag.
+  - `grimoire/intake/action_sheets.md`: Complete guide and best-practice AI prompt templates.
+- **Pre-Flight Quality Gate & AI Prompt Synthesis**:
+  - `assess_quality.py`: Evaluates image resolution, border clipping, and background contrast with diagnostic verdicts.
+  - Automatically synthesizes positive/negative prompts and Midjourney `/imagine` commands for both Single Neutral Pose and 5-Pose Action Sheets.
+  - `cli.py check`: Immediate diagnostic CLI tool.
 - **Intake Super-Resolution & Clarity Enhancement**:
   - `enhance.py`: High-order Lanczos super-sampling (2x/4x), contrast-adaptive sharpening (CAS), and dark outline sealing.
   - `cli.py enhance`: Standalone CLI subcommand and `--enhance` build flag.

@@ -445,6 +445,32 @@ class TestV110Enhancements:
         assert "positive" in res["suggested_prompt"]
         assert "midjourney" in res["suggested_prompt"]
 
+    def test_detect_and_slice_actions(self, tmp_path):
+        from stage1_intake.detect_actions import detect_and_slice_actions
+        from PIL import Image
+        import numpy as np
+
+        # Create a mock action sheet with 3 separated poses horizontally
+        sheet = Image.new("RGBA", (300, 100), (0, 0, 0, 0))
+        arr = np.array(sheet)
+        # Pose 1 (x: 20..60)
+        arr[20:80, 20:60] = [200, 50, 50, 255]
+        # Pose 2 (x: 120..160)
+        arr[20:80, 120:160] = [50, 200, 50, 255]
+        # Pose 3 (x: 220..260)
+        arr[20:80, 220:260] = [50, 50, 200, 255]
+
+        sheet_img = Image.fromarray(arr)
+        sheet_path = tmp_path / "action_sheet.png"
+        sheet_img.save(str(sheet_path))
+
+        out_dir = tmp_path / "poses"
+        res = detect_and_slice_actions(str(sheet_path), str(out_dir))
+        assert res["total_actions_detected"] == 3
+        assert len(res["extracted_files"]) == 3
+        for path in res["extracted_files"].values():
+            assert Path(path).exists()
+
 
 if __name__ == "__main__":
     print("Running img2game2d test suite (standalone mode)...")

@@ -28,6 +28,7 @@ from stage1_intake.detect_views import detect_views
 from stage1_intake.remove_background import remove_background
 from stage1_intake.enhance import run_enhance
 from stage1_intake.assess_quality import assess_image_quality
+from stage1_intake.detect_actions import detect_and_slice_actions
 from stage2_spec.new_asset_spec import build_asset_spec
 from stage2_spec.validate_asset_spec import validate_asset
 from stage2_spec.layer_decompose import decompose_layers
@@ -41,6 +42,15 @@ from stage4_review.append_review import append_review
 from stage5_atlas.pack_atlas import pack_atlas
 from stage6_export.export import export as run_export
 from stage6_export.viewer_exporter import export_viewer
+
+
+def cmd_slice_actions(args: argparse.Namespace) -> None:
+    print(f"=== Slicing Action Sheet: {args.sheet} ===")
+    labels = [l.strip() for l in args.labels.split(",")] if getattr(args, "labels", None) else None
+    res = detect_and_slice_actions(args.sheet, args.out, action_labels=labels, normalize_size=args.size)
+    print(f"\n✓ Extracted {res['total_actions_detected']} action poses to {args.out}/:")
+    for a in res["actions"]:
+        print(f"  • {a['action']:<10} -> {a['file']}")
 
 
 def cmd_check(args: argparse.Namespace) -> None:
@@ -258,10 +268,19 @@ def main() -> None:
     p_analyze.add_argument("--out-dir", default=None, help="Output directory for analysis JSONs")
     p_analyze.set_defaults(func=cmd_analyze)
 
+    # slice-actions
+    p_slice = subparsers.add_parser("slice-actions", help="Detect and slice multi-pose action sheet into poses")
+    p_slice.add_argument("sheet", help="Path to action sheet image")
+    p_slice.add_argument("--out", "-o", default="poses", help="Output directory for poses")
+    p_slice.add_argument("--labels", help="Comma-separated labels (e.g. idle,walk,jump,attack,hurt)")
+    p_slice.add_argument("--size", type=int, default=512, help="Normalized canvas size (default: 512)")
+    p_slice.set_defaults(func=cmd_slice_actions)
+
     # build
     p_build = subparsers.add_parser("build", help="Run end-to-end asset generation pipeline")
     p_build.add_argument("image", help="Path to input image")
     p_build.add_argument("--enhance", action="store_true", help="Enhance resolution and clarity before building")
+    p_build.add_argument("--action-sheet", action="store_true", help="Input is a multi-pose action sheet (idle,walk,jump,attack,hurt)")
     p_build.add_argument("--force", action="store_true", help="Bypass pre-flight quality check and force build")
     p_build.add_argument("--type", default="character", choices=["character", "object", "effect"])
     p_build.add_argument("--engine", default="all", choices=["godot", "unity", "phaser", "pixijs", "viewer", "all"])

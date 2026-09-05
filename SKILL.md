@@ -26,6 +26,7 @@ Agent-agnostic: works under Claude Code, Codex, or OpenCode.
 
 Activate this skill when the user:
 - Provides a concept art / character sheet / reference image and wants game assets
+- Provides a multi-pose Action Sheet (e.g. 5 poses: idle, walk, jump, attack, hurt on one canvas)
 - Needs sprite sheets, animation frames, sprite atlases
 - Needs Godot `.tscn`, Unity prefab stubs, Phaser/PixiJS atlas JSON
 - Wants a skeletal rig JSON from a 2D character reference
@@ -35,6 +36,10 @@ Activate this skill when the user:
 ## When NOT To Use Certain Stages
 
 ```
+If input is an action sheet (5 poses: idle, walk, jump, attack, hurt):
+    run detect_actions.py first (or build --action-sheet).
+    Extracts ground-truth artist poses directly into animation clips.
+
 If input is already a clean sprite sheet:
     skip Stage 3 (layer extraction) and Stage 2 decomposition.
     Proceed directly to Stage 5 (atlas packing).
@@ -113,7 +118,10 @@ python3 forge/stage1_intake/detect_style.py character.png --out analysis/style.j
 # 4. Detect views (front/side/back/turnaround)
 python3 forge/stage1_intake/detect_views.py character.png --out analysis/views.json
 
-# 5. Remove background (with auto-defringing to eliminate white alpha halos)
+# 5. Detect & slice action poses (if providing a 5-pose action sheet)
+python3 forge/stage1_intake/detect_actions.py action_sheet.png --out source/poses/
+
+# 6. Remove background (with auto-defringing to eliminate white alpha halos)
 python3 forge/stage1_intake/remove_background.py character.png \
   --out source/foreground.png \
   --mask source/mask.png

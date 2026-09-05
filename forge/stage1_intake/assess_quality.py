@@ -61,10 +61,23 @@ def generate_recommended_prompt(
 
     midjourney_command = f"/imagine prompt: {positive_prompt} --no {negative_prompt} --ar 1:1 --stylize 250 --v 6.1"
 
+    action_sheet_prompt = (
+        f"Full-body {detected_style} 2D {subject_desc} action sprite sheet, showing 5 sequential poses of the EXACT SAME character on a single horizontal canvas arranged left-to-right: "
+        f"1. [idle] standing ready in combat stance, "
+        f"2. [walk] walking stride pose with legs extended, "
+        f"3. [jump] tucked mid-air jumping pose with cloak floating upward, "
+        f"4. [attack] explosive weapon slash strike with glowing crescent arc, "
+        f"5. [hurt] damage recoil knockback pose. "
+        f"Consistent character costume, exact same proportions and colors{color_hint}, crisp clean cel-shaded vector ink outlines, "
+        f"isolated on a seamless flat solid neutral light gray background (#e0e0e0), professional 2D video game sprite sheet, 8k."
+    )
+
     return {
         "positive": positive_prompt,
         "negative": negative_prompt,
         "midjourney": midjourney_command,
+        "action_sheet_prompt": action_sheet_prompt,
+        "action_sheet_midjourney": f"/imagine prompt: {action_sheet_prompt} --no {negative_prompt} --ar 16:9 --stylize 250 --v 6.1",
     }
 
 
@@ -235,15 +248,19 @@ def main() -> None:
             print(f"  → {r}")
 
     if verdict == "POOR_REJECT" or len(result["flaws"]) > 0:
-        print("\n" + "-" * 60)
-        print(" NEW AI PROMPT FOR GENERATING A PRISTINE REFERENCE ")
-        print("-" * 60)
-        print("Positive Prompt:")
-        print(f"  {result['suggested_prompt']['positive']}\n")
+        print("\n" + "=" * 60)
+        print(" NEW AI PROMPTS FOR GENERATING PRISTINE ASSETS ")
+        print("=" * 60)
+        print("--- Option A: Single Neutral A-Pose ---")
+        print(f"Prompt:     {result['suggested_prompt']['positive']}")
+        print(f"Midjourney: {result['suggested_prompt']['midjourney']}\n")
+
+        print("--- Option B: 5-Pose Action Sheet (Idle, Walk, Jump, Attack, Hurt) ---")
+        print(f"Prompt:     {result['suggested_prompt']['action_sheet_prompt']}")
+        print(f"Midjourney: {result['suggested_prompt']['action_sheet_midjourney']}\n")
+
         print("Negative Prompt:")
-        print(f"  {result['suggested_prompt']['negative']}\n")
-        print("Midjourney Command:")
-        print(f"  {result['suggested_prompt']['midjourney']}")
+        print(f"  {result['suggested_prompt']['negative']}")
         print("=" * 60 + "\n")
 
 
