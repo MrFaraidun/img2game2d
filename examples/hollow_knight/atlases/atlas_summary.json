@@ -1,0 +1,42 @@
+[
+  {
+    "clip": "idle",
+    "atlas_path": "work/hollow_knight/atlases/idle.png",
+    "json_path": "work/hollow_knight/atlases/idle.json",
+    "frame_count": 4,
+    "fps": 8,
+    "loop": true
+  },
+  {
+    "clip": "walk",
+    "atlas_path": "work/hollow_knight/atlases/walk.png",
+    "json_path": "work/hollow_knight/atlases/walk.json",
+    "frame_count": 8,
+    "fps": 12,
+    "loop": true
+  },
+  {
+    "clip": "attack",
+    "atlas_path": "work/hollow_knight/atlases/attack.png",
+    "json_path": "work/hollow_knight/atlases/attack.json",
+    "frame_count": 6,
+    "fps": 14,
+    "loop": false
+  },
+  {
+    "clip": "jump",
+    "atlas_path": "work/hollow_knight/atlases/jump.png",
+    "json_path": "work/hollow_knight/atlases/jump.json",
+    "frame_count": 6,
+    "fps": 10,
+    "loop": false
+  },
+  {
+    "clip": "hurt",
+    "atlas_path": "work/hollow_knight/atlases/hurt.png",
+    "json_path": "work/hollow_knight/atlases/hurt.json",
+    "frame_count": 4,
+    "fps": 10,
+    "loop": false
+  }
+]

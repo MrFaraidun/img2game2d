@@ -1,0 +1,160 @@
+{
+  "meta": {
+    "app": "img2game2d",
+    "clip": "walk",
+    "image": "walk.png",
+    "size": {
+      "w": 2048,
+      "h": 2048
+    },
+    "fps": 12,
+    "frame_count": 8,
+    "loop": true
+  },
+  "frames": [
+    {
+      "filename": "walk_00.png",
+      "frame": {
+        "x": 2,
+        "y": 2,
+        "w": 512,
+        "h": 512
+      },
+      "sourceSize": {
+        "w": 512,
+        "h": 512
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "duration": 83.33333333333333
+    },
+    {
+      "filename": "walk_01.png",
+      "frame": {
+        "x": 518,
+        "y": 2,
+        "w": 512,
+        "h": 512
+      },
+      "sourceSize": {
+        "w": 512,
+        "h": 512
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "duration": 83.33333333333333
+    },
+    {
+      "filename": "walk_02.png",
+      "frame": {
+        "x": 1034,
+        "y": 2,
+        "w": 512,
+        "h": 512
+      },
+      "sourceSize": {
+        "w": 512,
+        "h": 512
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "duration": 83.33333333333333
+    },
+    {
+      "filename": "walk_03.png",
+      "frame": {
+        "x": 1550,
+        "y": 2,
+        "w": 512,
+        "h": 512
+      },
+      "sourceSize": {
+        "w": 512,
+        "h": 512
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "duration": 83.33333333333333
+    },
+    {
+      "filename": "walk_04.png",
+      "frame": {
+        "x": 2,
+        "y": 518,
+        "w": 512,
+        "h": 512
+      },
+      "sourceSize": {
+        "w": 512,
+        "h": 512
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "duration": 83.33333333333333
+    },
+    {
+      "filename": "walk_05.png",
+      "frame": {
+        "x": 518,
+        "y": 518,
+        "w": 512,
+        "h": 512
+      },
+      "sourceSize": {
+        "w": 512,
+        "h": 512
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "duration": 83.33333333333333
+    },
+    {
+      "filename": "walk_06.png",
+      "frame": {
+        "x": 1034,
+        "y": 518,
+        "w": 512,
+        "h": 512
+      },
+      "sourceSize": {
+        "w": 512,
+        "h": 512
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "duration": 83.33333333333333
+    },
+    {
+      "filename": "walk_07.png",
+      "frame": {
+        "x": 1550,
+        "y": 518,
+        "w": 512,
+        "h": 512
+      },
+      "sourceSize": {
+        "w": 512,
+        "h": 512
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "duration": 83.33333333333333
+    }
+  ]
+}

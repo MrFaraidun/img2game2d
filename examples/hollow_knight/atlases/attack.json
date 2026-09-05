@@ -1,0 +1,124 @@
+{
+  "meta": {
+    "app": "img2game2d",
+    "clip": "attack",
+    "image": "attack.png",
+    "size": {
+      "w": 2048,
+      "h": 2048
+    },
+    "fps": 14,
+    "frame_count": 6,
+    "loop": false
+  },
+  "frames": [
+    {
+      "filename": "attack_00.png",
+      "frame": {
+        "x": 2,
+        "y": 2,
+        "w": 512,
+        "h": 512
+      },
+      "sourceSize": {
+        "w": 512,
+        "h": 512
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "duration": 71.42857142857143
+    },
+    {
+      "filename": "attack_01.png",
+      "frame": {
+        "x": 518,
+        "y": 2,
+        "w": 512,
+        "h": 512
+      },
+      "sourceSize": {
+        "w": 512,
+        "h": 512
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "duration": 71.42857142857143
+    },
+    {
+      "filename": "attack_02.png",
+      "frame": {
+        "x": 1034,
+        "y": 2,
+        "w": 512,
+        "h": 512
+      },
+      "sourceSize": {
+        "w": 512,
+        "h": 512
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "duration": 71.42857142857143
+    },
+    {
+      "filename": "attack_03.png",
+      "frame": {
+        "x": 1550,
+        "y": 2,
+        "w": 512,
+        "h": 512
+      },
+      "sourceSize": {
+        "w": 512,
+        "h": 512
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "duration": 71.42857142857143
+    },
+    {
+      "filename": "attack_04.png",
+      "frame": {
+        "x": 2,
+        "y": 518,
+        "w": 512,
+        "h": 512
+      },
+      "sourceSize": {
+        "w": 512,
+        "h": 512
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "duration": 71.42857142857143
+    },
+    {
+      "filename": "attack_05.png",
+      "frame": {
+        "x": 518,
+        "y": 518,
+        "w": 512,
+        "h": 512
+      },
+      "sourceSize": {
+        "w": 512,
+        "h": 512
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "duration": 71.42857142857143
+    }
+  ]
+}

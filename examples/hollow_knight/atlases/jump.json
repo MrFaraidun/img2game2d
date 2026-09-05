@@ -1,0 +1,124 @@
+{
+  "meta": {
+    "app": "img2game2d",
+    "clip": "jump",
+    "image": "jump.png",
+    "size": {
+      "w": 2048,
+      "h": 2048
+    },
+    "fps": 10,
+    "frame_count": 6,
+    "loop": false
+  },
+  "frames": [
+    {
+      "filename": "jump_00.png",
+      "frame": {
+        "x": 2,
+        "y": 2,
+        "w": 512,
+        "h": 512
+      },
+      "sourceSize": {
+        "w": 512,
+        "h": 512
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "duration": 100.0
+    },
+    {
+      "filename": "jump_01.png",
+      "frame": {
+        "x": 518,
+        "y": 2,
+        "w": 512,
+        "h": 512
+      },
+      "sourceSize": {
+        "w": 512,
+        "h": 512
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "duration": 100.0
+    },
+    {
+      "filename": "jump_02.png",
+      "frame": {
+        "x": 1034,
+        "y": 2,
+        "w": 512,
+        "h": 512
+      },
+      "sourceSize": {
+        "w": 512,
+        "h": 512
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "duration": 100.0
+    },
+    {
+      "filename": "jump_03.png",
+      "frame": {
+        "x": 1550,
+        "y": 2,
+        "w": 512,
+        "h": 512
+      },
+      "sourceSize": {
+        "w": 512,
+        "h": 512
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "duration": 100.0
+    },
+    {
+      "filename": "jump_04.png",
+      "frame": {
+        "x": 2,
+        "y": 518,
+        "w": 512,
+        "h": 512
+      },
+      "sourceSize": {
+        "w": 512,
+        "h": 512
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "duration": 100.0
+    },
+    {
+      "filename": "jump_05.png",
+      "frame": {
+        "x": 518,
+        "y": 518,
+        "w": 512,
+        "h": 512
+      },
+      "sourceSize": {
+        "w": 512,
+        "h": 512
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "duration": 100.0
+    }
+  ]
+}

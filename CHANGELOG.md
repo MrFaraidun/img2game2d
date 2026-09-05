@@ -7,6 +7,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [1.1.0] - 2026-09-06
 
+- **Showcase & Live Production Footages (`examples/hollow_knight`)**:
+  - Complete end-to-end game asset demonstration created from a single 2D character concept.
+  - High-fidelity animated footages (`idle.gif`, `walk.gif`, `jump.gif`, `attack.gif`, `hurt.gif`, and 24-frame synchronized `showcase_banner.gif`).
+  - Includes raw reference, surgical anatomy layers, skeletal rig, packed sprite atlases, engine controller scripts (Godot 4, Unity, PixiJS), and interactive HTML5 web viewer.
+  - Architectural pipeline diagram (`pipeline_breakdown.png`).
 - **Action Sheet Slicer & Multi-Pose Animation Intake**:
   - `detect_actions.py`: Auto-detects 3 to 6 action figures (idle, walk, jump, attack, hurt) from single-canvas character action sheets.
   - Slices, normalizes dimensions (512x512), and aligns ground planes so characters don't jitter vertically.

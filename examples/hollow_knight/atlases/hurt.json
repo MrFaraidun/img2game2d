@@ -1,0 +1,88 @@
+{
+  "meta": {
+    "app": "img2game2d",
+    "clip": "hurt",
+    "image": "hurt.png",
+    "size": {
+      "w": 2048,
+      "h": 2048
+    },
+    "fps": 10,
+    "frame_count": 4,
+    "loop": false
+  },
+  "frames": [
+    {
+      "filename": "hurt_00.png",
+      "frame": {
+        "x": 2,
+        "y": 2,
+        "w": 512,
+        "h": 512
+      },
+      "sourceSize": {
+        "w": 512,
+        "h": 512
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "duration": 100.0
+    },
+    {
+      "filename": "hurt_01.png",
+      "frame": {
+        "x": 518,
+        "y": 2,
+        "w": 512,
+        "h": 512
+      },
+      "sourceSize": {
+        "w": 512,
+        "h": 512
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "duration": 100.0
+    },
+    {
+      "filename": "hurt_02.png",
+      "frame": {
+        "x": 1034,
+        "y": 2,
+        "w": 512,
+        "h": 512
+      },
+      "sourceSize": {
+        "w": 512,
+        "h": 512
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "duration": 100.0
+    },
+    {
+      "filename": "hurt_03.png",
+      "frame": {
+        "x": 1550,
+        "y": 2,
+        "w": 512,
+        "h": 512
+      },
+      "sourceSize": {
+        "w": 512,
+        "h": 512
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "duration": 100.0
+    }
+  ]
+}

@@ -1,0 +1,180 @@
+{
+  "asset_id": "hollow_knight",
+  "root": "bone_torso",
+  "bone_count": 7,
+  "bones": [
+    {
+      "id": "bone_leg_left",
+      "name": "Left Leg",
+      "parent": "bone_torso",
+      "layer_id": "leg_left",
+      "pivot": {
+        "x": 464.0,
+        "y": 435.0
+      },
+      "length": 95.0,
+      "rotation": 0.0,
+      "scale": {
+        "x": 1.0,
+        "y": 1.0
+      },
+      "attachments": [
+        "leg_left"
+      ],
+      "constraints": [
+        {
+          "type": "rotation_limit",
+          "min": -45,
+          "max": 90
+        }
+      ]
+    },
+    {
+      "id": "bone_leg_right",
+      "name": "Right Leg",
+      "parent": "bone_torso",
+      "layer_id": "leg_right",
+      "pivot": {
+        "x": 512.0,
+        "y": 435.0
+      },
+      "length": 85.0,
+      "rotation": 0.0,
+      "scale": {
+        "x": 1.0,
+        "y": 1.0
+      },
+      "attachments": [
+        "leg_right"
+      ],
+      "constraints": [
+        {
+          "type": "rotation_limit",
+          "min": -45,
+          "max": 90
+        }
+      ]
+    },
+    {
+      "id": "bone_torso",
+      "name": "Torso Body",
+      "parent": null,
+      "layer_id": "torso",
+      "pivot": {
+        "x": 490.0,
+        "y": 390.0
+      },
+      "length": 128.0,
+      "rotation": 0.0,
+      "scale": {
+        "x": 1.0,
+        "y": 1.0
+      },
+      "attachments": [
+        "torso"
+      ],
+      "constraints": []
+    },
+    {
+      "id": "bone_cloak",
+      "name": "Grey Cloak",
+      "parent": "bone_torso",
+      "layer_id": "cloak",
+      "pivot": {
+        "x": 485.0,
+        "y": 296.5
+      },
+      "length": 107.5,
+      "rotation": 0.0,
+      "scale": {
+        "x": 1.0,
+        "y": 1.0
+      },
+      "attachments": [
+        "cloak"
+      ],
+      "attachment_point": "shoulder",
+      "constraints": [
+        {
+          "type": "rotation_limit",
+          "min": -20,
+          "max": 20
+        }
+      ]
+    },
+    {
+      "id": "bone_head",
+      "name": "Mask and Horns",
+      "parent": "bone_torso",
+      "layer_id": "head",
+      "pivot": {
+        "x": 477.5,
+        "y": 291.0
+      },
+      "length": 224.0,
+      "rotation": 0.0,
+      "scale": {
+        "x": 1.0,
+        "y": 1.0
+      },
+      "attachments": [
+        "head"
+      ],
+      "attachment_point": "neck",
+      "constraints": [
+        {
+          "type": "rotation_limit",
+          "min": -45,
+          "max": 45
+        }
+      ]
+    },
+    {
+      "id": "bone_arm_right",
+      "name": "Right Hand",
+      "parent": "bone_torso",
+      "layer_id": "arm_right",
+      "pivot": {
+        "x": 526.0,
+        "y": 392.5
+      },
+      "length": 27.5,
+      "rotation": 0.0,
+      "scale": {
+        "x": 1.0,
+        "y": 1.0
+      },
+      "attachments": [
+        "arm_right"
+      ],
+      "constraints": [
+        {
+          "type": "rotation_limit",
+          "min": -180,
+          "max": 180
+        }
+      ]
+    },
+    {
+      "id": "bone_weapon",
+      "name": "Nail Sword",
+      "parent": "bone_arm_right",
+      "layer_id": "weapon",
+      "pivot": {
+        "x": 472.5,
+        "y": 421.5
+      },
+      "length": 220.5,
+      "rotation": 0.0,
+      "scale": {
+        "x": 1.0,
+        "y": 1.0
+      },
+      "attachments": [
+        "weapon"
+      ],
+      "attachment_point": "grip",
+      "constraints": []
+    }
+  ]
+}
