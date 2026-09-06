@@ -1,0 +1,34 @@
+{
+  "gameObjectName": "TheArchitect",
+  "spriteAtlas": "the_architect_atlas.png",
+  "pixelsPerUnit": 100,
+  "pivot": {
+    "x": 0.5,
+    "y": 0.1015625
+  },
+  "boxCollider2D": {
+    "offset": [
+      -30,
+      190
+    ],
+    "size": [
+      60,
+      180
+    ]
+  },
+  "animatorController": {
+    "parameters": [
+      "Speed",
+      "IsJumping",
+      "IsAttacking",
+      "IsDefending"
+    ],
+    "clips": [
+      "idle",
+      "run",
+      "jump",
+      "attack",
+      "defend"
+    ]
+  }
+}

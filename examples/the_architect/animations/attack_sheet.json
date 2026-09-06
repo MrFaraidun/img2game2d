@@ -1,0 +1,13 @@
+{
+  "character": "the_architect",
+  "animation": "attack",
+  "frame_count": 5,
+  "frame_width": 576,
+  "frame_height": 512,
+  "fps": 12,
+  "loop": false,
+  "pivot": {
+    "x": 288,
+    "y": 460
+  }
+}

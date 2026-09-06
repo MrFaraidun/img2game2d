@@ -9,15 +9,42 @@
 
 ---
 
-## 🎬 Live Production Showcase: Hollow Knight
+## 🎬 Live Production Showcases
 
+### 1. The Architect — Cyberblade Duelist
+Generated end-to-end from a 2816×1536 multi-pose concept sheet with zero-halo alpha de-matting and ground pivot anchoring ($Y=460$):
+
+![The Architect Showcase Banner](examples/the_architect/animations/showcase_banner.gif)
+
+| Cycle | Preview | Frames | Target FPS | Mechanics & Physics |
+| :--- | :---: | :---: | :---: | :--- |
+| **Idle** | <img src="examples/the_architect/animations/idle.gif" width="160" alt="Idle"/> | 4 frames | 6 FPS | Resting combat stance with subtle cyber-core breathing pulse. |
+| **Run** | <img src="examples/the_architect/animations/run.gif" width="160" alt="Run"/> | 8 frames | 8 FPS | Heavy-forward velocity locomotion stride with locked ground baseline. |
+| **Jump** | <img src="examples/the_architect/animations/jump.gif" width="160" alt="Jump"/> | 3 frames | 6 FPS | Ballistic launch, apex suspension, and compressed landing shock absorption. |
+| **Attack** | <img src="examples/the_architect/animations/attack.gif" width="160" alt="Attack"/> | 5 frames | 8 FPS | Kinetic cyberblade strike sequence with forward energy displacement. |
+| **Defend** | <img src="examples/the_architect/animations/defend.gif" width="160" alt="Defend"/> | 4 frames | 6 FPS | Defensive parry stance with braced electromagnetic shielding. |
+
+👉 *Explore full assets and engine exports in [`examples/the_architect/`](examples/the_architect/).*
+
+### 2. The Guardian — Armored Enforcer
+Heavy combatant character sheet with thick plate armor, neon accents, and zero edge artifacts:
+
+![The Guardian Showcase Banner](examples/the_guardian/animations/showcase_banner.gif)
+
+| Cycle | Preview | Frames | Target FPS | Mechanics & Physics |
+| :--- | :---: | :---: | :---: | :--- |
+| **Idle** | <img src="examples/the_guardian/animations/idle.gif" width="160" alt="Idle"/> | 4 frames | 6 FPS | Heavy resting posture with slow core-reactor vent illumination. |
+| **Run** | <img src="examples/the_guardian/animations/run.gif" width="160" alt="Run"/> | 8 frames | 8 FPS | Heavy armor momentum stride with ground shake cadence. |
+| **Jump** | <img src="examples/the_guardian/animations/jump.gif" width="160" alt="Jump"/> | 3 frames | 6 FPS | Thruster-assisted ascent and heavy seismic landing impact. |
+| **Attack** | <img src="examples/the_guardian/animations/attack.gif" width="160" alt="Attack"/> | 4 frames | 8 FPS | Devastating power-strike with full-body momentum follow-through. |
+| **Defend** | <img src="examples/the_guardian/animations/defend.gif" width="160" alt="Defend"/> | 4 frames | 6 FPS | Iron fortress bunker shield stance with frontal energy barrier. |
+
+👉 *Explore full assets and engine exports in [`examples/the_guardian/`](examples/the_guardian/).*
+
+### 3. Hollow Knight — Cloaked Wanderer
 Generated end-to-end from a single 2D character concept:
 
 ![Live Production Footages — 5 Synchronized Cycles](examples/hollow_knight/animations/showcase_banner.gif)
-
-### 🕹️ Animation Cycles Gallery
-
-Every frame is procedurally articulated using closed-form inverse-affine transformation matrices, sub-pixel pivot anchoring, and multi-pass procedural visual effects:
 
 | Cycle | Footage Preview | Frames | Mechanics & Physics |
 | :--- | :---: | :---: | :--- |

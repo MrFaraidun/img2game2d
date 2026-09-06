@@ -1,0 +1,13 @@
+{
+  "character": "the_architect",
+  "animation": "idle",
+  "frame_count": 4,
+  "frame_width": 576,
+  "frame_height": 512,
+  "fps": 6,
+  "loop": true,
+  "pivot": {
+    "x": 288,
+    "y": 460
+  }
+}

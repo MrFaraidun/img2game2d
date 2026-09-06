@@ -5,6 +5,19 @@ All notable changes to `img2game2d` will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.1.0] - 2026-09-06 — Production Character Showcases & Zero-Halo Engine
+
+- **New Live Production Showcases**:
+  - **The Architect (`examples/the_architect/`)**: Cyberblade Duelist with 24 frames across 5 action cycles (Idle, Run, Jump, Attack, Defend), 4K ($2048 \times 2048$) and FHD ($1024 \times 1024$) power-of-two texture atlases, and multi-engine exports (Godot 4.x, Unity 2022+, Phaser 3).
+  - **The Guardian (`examples/the_guardian/`)**: Armored Enforcer with heavy plate armor, zero edge halos, full collision hurtboxes, ground pivot alignment ($Y=460$), and complete engine packages.
+- **Production Dual-Engine QA Viewer (`examples/viewer/`)**:
+  - Standalone interactive HTML5 Canvas inspector with real-time character hot-swapping, animation playback controls, speed slider, timeline scrubber, and dynamic canvas scaling.
+  - Procedural Web Audio API sound synthesizer producing customized audio cues for attacks, shield deployment, heavy steps, and landing impact.
+  - Real-time diagnostic overlays: combat hurtbox, ground pivot crosshair ($X=288, Y=460$), ground reference baseline, and raw frame metadata JSON inspector.
+- **Zero-Halo Dual-Contour Alpha De-Matting (`forge/stage1_intake/dematting.py`)**:
+  - Dual-contour luminance thresholding eliminating JPEG Gibbs ringing overshoot and bright border halos around dark lineart.
+  - Inward alpha dilation and color bleed extension ensuring pixel-perfect alpha blending on arbitrary dark or bright game backgrounds.
+
 ## [1.0.0] - 2026-09-06 — Official Launch Release
 
 - **Showcase & Live Production Footages (`examples/hollow_knight`)**:

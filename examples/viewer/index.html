@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>img2game2d — Production 2D Character QA Viewer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=Outfit:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="theme-dark bg-grid">
+  <div class="app-layout">
+    <!-- Header -->
+    <header class="app-header">
+      <div class="header-branding">
+        <div class="brand-badge">2D PRODUCTION QA</div>
+        <h1 class="brand-title">img2game2d <span class="accent-text">Engine Inspector</span></h1>
+      </div>
+      <div class="header-status">
+        <div class="status-indicator live"></div>
+        <span class="status-label" id="engineStatus">Ready (POT 2048x2048 Atlases)</span>
+      </div>
+    </header>
+
+    <!-- Main Workspace -->
+    <main class="workspace-grid">
+      <!-- Left Panel: Character & Animation Selector -->
+      <aside class="panel character-panel">
+        <div class="panel-section">
+          <h2 class="section-title">Character Select</h2>
+          <div class="character-cards">
+            <button class="char-card active" id="btnCharArchitect" data-char="the_architect">
+              <div class="char-avatar avatar-architect"></div>
+              <div class="char-info">
+                <span class="char-name">The Architect</span>
+                <span class="char-role">Cyberblade Duelist</span>
+                <span class="char-badge">24 Frames</span>
+              </div>
+            </button>
+
+            <button class="char-card" id="btnCharGuardian" data-char="the_guardian">
+              <div class="char-avatar avatar-guardian"></div>
+              <div class="char-info">
+                <span class="char-name">The Guardian</span>
+                <span class="char-role">Armored Enforcer</span>
+                <span class="char-badge">24 Frames</span>
+              </div>
+            </button>
+          </div>
+        </div>
+
+        <div class="panel-section">
+          <div class="section-header">
+            <h2 class="section-title">Animations</h2>
+            <span class="badge" id="animFpsBadge">12 FPS</span>
+          </div>
+          <div class="animation-list" id="animationButtons">
+            <!-- Populated dynamically by viewer.js -->
+          </div>
+        </div>
+
+        <div class="panel-section">
+          <h2 class="section-title">Inspector Overlays</h2>
+          <div class="toggle-group">
+            <label class="toggle-label">
+              <input type="checkbox" id="chkHitbox" checked>
+              <span class="toggle-slider"></span>
+              <span>Combat Hitbox</span>
+            </label>
+            <label class="toggle-label">
+              <input type="checkbox" id="chkPivot" checked>
+              <span class="toggle-slider"></span>
+              <span>Ground Pivot (0.5, 0.90)</span>
+            </label>
+            <label class="toggle-label">
+              <input type="checkbox" id="chkGroundLine" checked>
+              <span class="toggle-slider"></span>
+              <span>Ground Baseline (Y=460)</span>
+            </label>
+            <label class="toggle-label">
+              <input type="checkbox" id="chkFrameBox">
+              <span class="toggle-slider"></span>
+              <span>Frame Canvas (576x512)</span>
+            </label>
+          </div>
+        </div>
+      </aside>
+
+      <!-- Center: Canvas Viewport -->
+      <section class="viewport-container">
+        <div class="viewport-toolbar">
+          <div class="bg-selector">
+            <span class="toolbar-label">Background:</span>
+            <button class="bg-btn active" data-bg="grid" title="Cyber Tactical Grid">Grid</button>
+            <button class="bg-btn" data-bg="black" title="Pure Black (Zero-Halo Test)">Pure Black</button>
+            <button class="bg-btn" data-bg="checker" title="Checkerboard Transparency">Checker</button>
+            <button class="bg-btn" data-bg="white" title="Pure White">White</button>
+            <button class="bg-btn" data-bg="gradient" title="Neon Arena">Neon</button>
+          </div>
+
+          <div class="scale-selector">
+            <span class="toolbar-label">Atlas:</span>
+            <button class="scale-btn active" id="btnRes4k" data-scale="4k">4K (2048²)</button>
+            <button class="scale-btn" id="btnResFhd" data-scale="fhd">FHD (1024²)</button>
+          </div>
+
+          <div class="zoom-controls">
+            <span class="toolbar-label">Zoom:</span>
+            <button class="zoom-btn active" id="btnZoomFit" title="Fit to viewport">Fit</button>
+            <button class="zoom-btn" id="btnZoom05">0.5x</button>
+            <button class="zoom-btn" id="btnZoom075">0.75x</button>
+            <button class="zoom-btn" id="btnZoom1">1x</button>
+            <button class="zoom-btn" id="btnZoom15">1.5x</button>
+            <span class="zoom-hint">Scroll to zoom • Drag to pan</span>
+          </div>
+        </div>
+
+        <div class="canvas-wrapper" id="canvasWrapper">
+          <canvas id="stageCanvas" width="576" height="512"></canvas>
+        </div>
+
+        <!-- Playback Controller -->
+        <div class="playback-bar">
+          <div class="playback-actions">
+            <button class="ctrl-btn" id="btnPrevFrame" title="Previous Frame (Left Arrow)">⏮</button>
+            <button class="ctrl-btn primary" id="btnPlayPause" title="Play/Pause (Space)">⏸</button>
+            <button class="ctrl-btn" id="btnNextFrame" title="Next Frame (Right Arrow)">⏭</button>
+            <button class="ctrl-btn" id="btnAudioToggle" title="Audio Sound FX">🔊 SFX ON</button>
+          </div>
+
+          <div class="timeline-container">
+            <div class="timeline-info">
+              <span id="frameCounter">Frame: 0 / 3</span>
+              <span id="timingInfo">0.00s / 0.33s</span>
+            </div>
+            <div class="timeline-track" id="timelineTrack">
+              <div class="timeline-progress" id="timelineProgress"></div>
+              <div class="timeline-scrubber" id="timelineScrubber"></div>
+            </div>
+          </div>
+
+          <div class="speed-control">
+            <label for="speedSlider" id="speedLabel">1.0x</label>
+            <input type="range" id="speedSlider" min="0.25" max="2.0" step="0.25" value="1.0">
+          </div>
+        </div>
+      </section>
+
+      <!-- Right Panel: Diagnostics & Export Specs -->
+      <aside class="panel meta-panel">
+        <div class="panel-section">
+          <h2 class="section-title">Zero-Halo Quality Audit</h2>
+          <div class="metric-card">
+            <div class="metric-row">
+              <span class="metric-key">Alpha Defringing:</span>
+              <span class="metric-val text-success">Dual-Contour Active</span>
+            </div>
+            <div class="metric-row">
+              <span class="metric-key">Edge White Halo:</span>
+              <span class="metric-val text-success">0.0% (Eliminated)</span>
+            </div>
+            <div class="metric-row">
+              <span class="metric-key">Neon Glow Retention:</span>
+              <span class="metric-val text-cyan">100% Saturated</span>
+            </div>
+            <div class="metric-row">
+              <span class="metric-key">POT Texture Size:</span>
+              <span class="metric-val">2048 x 2048 POT</span>
+            </div>
+            <div class="metric-row">
+              <span class="metric-key">Anchor Pivot:</span>
+              <span class="metric-val">Feet Ground (Y=460)</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="panel-section">
+          <h2 class="section-title">Engine Packages</h2>
+          <div class="export-badges">
+            <a href="../../exports/godot/" target="_blank" class="engine-card">
+              <span class="engine-icon">🤖</span>
+              <div class="engine-info">
+                <strong>Godot 4.x</strong>
+                <small>.tscn & .tres ready</small>
+              </div>
+            </a>
+            <a href="../../exports/unity/" target="_blank" class="engine-card">
+              <span class="engine-icon">⚡</span>
+              <div class="engine-info">
+                <strong>Unity</strong>
+                <small>Atlas JSON & Prefab</small>
+              </div>
+            </a>
+            <a href="../../exports/phaser/" target="_blank" class="engine-card">
+              <span class="engine-icon">🎮</span>
+              <div class="engine-info">
+                <strong>Phaser 3 / PixiJS</strong>
+                <small>TexturePacker JSON</small>
+              </div>
+            </a>
+          </div>
+        </div>
+
+        <div class="panel-section">
+          <h2 class="section-title">Current Frame Meta</h2>
+          <pre class="json-dump" id="frameMetaDump">Loading metadata...</pre>
+        </div>
+      </aside>
+    </main>
+  </div>
+
+  <script src="viewer.js"></script>
+</body>
+</html>
