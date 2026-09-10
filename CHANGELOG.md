@@ -5,6 +5,22 @@ All notable changes to `img2game2d` will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.0.0] - 2026-09-10 — Framework Release & Finnova Bento Web Studio
+
+- **Framework Scaffolding Engine (`forge/scaffold.py`, `forge/cli.py`)**:
+  - `img2game2d init [name]`: Interactive terminal scaffolder generating configured 2D game asset workspaces with declarative `img2game2d.config.json`.
+  - `img2game2d dev`: Spawns the live Finnova-style Web Studio with live hot-reloading.
+  - `img2game2d build`: Zero-configuration headless builds across all game engines.
+  - Added standalone `bin/create-img2game2d` for instant CLI execution.
+- **Finnova-Inspired Dual-Tone Web Studio (`examples/viewer/`, `exports/viewer/`)**:
+  - Complete visual redesign with KPI stat bento cards, pill navigation, and deep indigo workbench (`#121526`).
+  - **Interactive 2D Torchlight**: Mouse-driven real-time point light dynamically illuminating surface reliefs via generated normal maps (`_normal.png`).
+  - **Real-Time Bloom Emission**: Screen-blended neon glow for cyberblades, plasma shields, and eyes (`_emission.png`).
+  - Finnova playback console with speed pills, timeline scrubbing, and synthesized audio.
+- **Test Suite Expansion (`forge/tests/test_all.py`)**:
+  - Added `TestV200Framework` validating scaffolding, declarative config, and directory tree creation.
+  - Full suite expanded to 36/36 tests with 100% passing rate.
+
 ## [1.5.0] - 2026-09-10 — Spine 2D Native Runtime & 2D Dynamic Lighting Engine
 
 - **Spine 2D Exporter (`forge/stage6_export/spine_exporter.py`)**:

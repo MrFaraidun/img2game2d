@@ -1,8 +1,8 @@
 # img2game2d — Image-to-2D-Game-Asset Pipeline & Agent Skill
 
 [![Python 3.9+](https://img.shields.io/badge/python-3.9+-blue.svg)](https://www.python.org/)
-[![Version](https://img.shields.io/badge/version-v1.5.0-blue.svg)](CHANGELOG.md)
-[![Tests](https://img.shields.io/badge/tests-35%2F35%20passing%20(100%25)-brightgreen.svg)](forge/tests/test_all.py)
+[![Version](https://img.shields.io/badge/version-v2.0.0-blue.svg)](CHANGELOG.md)
+[![Tests](https://img.shields.io/badge/tests-36%2F36%20passing%20(100%25)-brightgreen.svg)](forge/tests/test_all.py)
 [![Engines](https://img.shields.io/badge/engines-Godot%204%20%7C%20Unity%20%7C%20Spine%202D%20%7C%20Phaser%20%7C%20PixiJS-orange.svg)](#supported-game-engines)
 [![License](https://img.shields.io/badge/license-Apache--2.0-green.svg)](LICENSE)
 
@@ -85,40 +85,43 @@ Concept / Action Sheet
 [Stage 6: Multi-Engine Export]    ── Godot 4 / Unity / Spine 2D / Phaser 3 / PixiJS / Web QA Viewer
 ```
 
----
+## ⚡ Key Capabilities (v2.0.0 Framework & Studio Release)
 
-## ⚡ Key Capabilities (v1.5.0)
+1. **Framework CLI Engine (`scaffold.py` & `cli.py`)**:
+   - `img2game2d init [name]`: Interactive terminal scaffolder generating configured 2D game asset workspaces.
+   - `img2game2d dev`: Spawns the live Finnova-style Web Studio with live hot-reloading.
+   - `img2game2d build`: Zero-configuration headless builds across all game engines.
+   - Declarative configuration spec via `img2game2d.config.json`.
 
-1. **Super-Resolution & Clarity Enhancement (`enhance.py`)**:
+2. **Finnova-Inspired Dual-Tone Web Studio (`viewer/`)**:
+   - Complete visual redesign with KPI stat bento cards, pill navigation, and deep indigo workbench (`#121526`).
+   - **Interactive 2D Torchlight**: Mouse-driven real-time point light that dynamically illuminates surface reliefs using generated normal maps (`_normal.png`).
+   - **Real-Time Bloom Emission**: Screen-blended neon glow for cyberblades, plasma shields, and eyes (`_emission.png`).
+   - Finnova playback console with speed pills, timeline scrubbing, and synthesized audio.
+
+3. **Spine 2D Native Exporter (`spine_exporter.py`)**:
+   - Generates official Spine 2D `skeleton.json` and LibGDX `.atlas` definitions with bone hierarchy and slot frame keyframes.
+   - Drag-and-drop compatible with `spine-unity`, `spine-godot`, `spine-ue4`, and Web runtimes.
+
+4. **2D Dynamic Lighting Maps (`generate_lighting_maps.py`)**:
+   - Generates tangent-space Normal Maps (`_normal.png`) for dynamic 2D point/spot lights in Godot 4 and Unity URP 2D.
+   - Generates bloom Emission Maps (`_emission.png`) for glowing weapons, magic shields, and visors.
+
+5. **Super-Resolution & Clarity Enhancement (`enhance.py`)**:
    - Lanczos 2x/4x super-sampling for low-res pixel or hand-drawn concepts.
    - Contrast-Adaptive Sharpening (CAS) eliminating AI diffusion blur without ringing artifacts.
    - Morphological boundary sealing to preserve pitch-black cartoon line work.
 
-2. **Zero-Halo Defringing (`remove_background.py`)**:
+6. **Zero-Halo Defringing (`remove_background.py`)**:
    - Alpha-gradient preservation and color bleed extension preventing ugly dark borders on game backgrounds.
 
-3. **Exact Inverse-Affine Matrix Transform Math (`transforms.py`)**:
+7. **Exact Inverse-Affine Matrix Transform Math (`transforms.py`)**:
    - Solves PIL's inverse pixel mapping equation ($x = ax' + by' + c$) to prevent rotation inversion or mesh tearing.
    - Continuous horizontal shearing for flowing cloaks, skirts, and dresses.
 
-4. **Multi-Pose Action Sheet Slicer (`detect_actions.py`)**:
+8. **Multi-Pose Action Sheet Slicer (`detect_actions.py`)**:
    - Automatically detects, slices, and normalizes horizontal character action sheets (3–6 poses) into 512×512 sprites.
    - Solves AI character drift by allowing users to generate a single wide sheet of all poses at once.
-
-5. **Spine 2D Native Exporter (`spine_exporter.py`)**:
-   - Generates official Spine 2D `skeleton.json` and LibGDX `.atlas` definitions with bone hierarchy and slot frame keyframes.
-   - Drag-and-drop compatible with `spine-unity`, `spine-godot`, `spine-ue4`, and Web runtimes.
-
-6. **2D Dynamic Lighting Maps (`generate_lighting_maps.py`)**:
-   - Generates tangent-space Normal Maps (`_normal.png`) for dynamic 2D point/spot lights in Godot 4 and Unity URP 2D.
-   - Generates bloom Emission Maps (`_emission.png`) for glowing weapons, magic shields, and visors.
-
-7. **Pre-Flight Quality Gate & Prompt Synthesizer (`assess_quality.py`)**:
-   - Evaluates input images for edge clipping, contrast, and resolution.
-   - Automatically synthesizes tailored positive/negative prompts and Midjourney `/imagine` commands for both single-pose and action sheets.
-
-8. **Interactive HTML5 Canvas QA Viewer (`viewer_exporter.py`)**:
-   - Built-in visual player with playback scrubbing, hitbox and skeleton overlays, and procedural sound synthesis (Web Audio API).
 
 ---
 

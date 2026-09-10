@@ -493,6 +493,20 @@ class TestV110Enhancements:
             assert Path(path).exists()
 
 
+class TestV200Framework:
+    def test_scaffold_project(self, tmp_path):
+        from scaffold import scaffold_project
+        dest = tmp_path / "scaffold_test"
+        res = scaffold_project(dest, "test-game", ["godot", "spine"])
+        assert res["status"] == "success"
+        assert Path(res["config"]).exists()
+        cfg = json.loads(Path(res["config"]).read_text())
+        assert cfg["version"] == "2.0.0"
+        assert cfg["project"]["name"] == "test-game"
+        assert "spine" in cfg["project"]["targetEngines"]
+        assert (dest / "exports" / "spine").exists()
+
+
 if __name__ == "__main__":
     print("Running img2game2d test suite (standalone mode)...")
     import inspect
@@ -511,6 +525,7 @@ if __name__ == "__main__":
         TestExporters(),
         TestCache(),
         TestV110Enhancements(),
+        TestV200Framework(),
     ]
 
     total_run = 0

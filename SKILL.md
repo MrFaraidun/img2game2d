@@ -2,7 +2,7 @@
 name: img2game2d
 description: Convert character/object concept images, reference sheets, sketches, turnarounds, and existing 2D artwork into structured, game-ready 2D assets. Use for sprite sheets, skeletal rigs, animation clips, sprite atlases, dynamic 2D lighting maps (normal/emission), and engine exports (Godot, Unity, Spine 2D, Phaser, PixiJS).
 license: Apache-2.0
-version: 1.5.0
+version: 2.0.0
 ---
 
 # img2game2d — Image to 2D Game Asset
@@ -64,6 +64,22 @@ If asset is an effect (slash, hit, explosion):
 If user provides pre-separated layers:
     skip Stage 2 decomposition.
     Proceed to Stage 3 with provided layers.
+```
+
+## Framework CLI Commands (v2.0)
+
+```bash
+# 1. Scaffold a new game asset project (interactive wizard)
+img2game2d init my-game --engines godot,spine,unity
+
+# 2. Launch Finnova-style Web Studio with live hot-reloading
+img2game2d dev --port 8080
+
+# 3. Generate dynamic 2D lighting maps (Normal + Emission)
+img2game2d lighting character_atlas.png --strength 2.5
+
+# 4. Run end-to-end multi-engine build
+img2game2d build source/character.png --engine all --out game-asset/
 ```
 
 ---

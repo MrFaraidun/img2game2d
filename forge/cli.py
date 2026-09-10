@@ -44,6 +44,43 @@ from stage6_export.export import export as run_export
 from stage6_export.viewer_exporter import export_viewer
 
 
+def cmd_init(args: argparse.Namespace) -> None:
+    from scaffold import scaffold_project
+    dest = Path(args.dir) if args.dir else Path.cwd() / args.name
+    engines_list = [e.strip() for e in args.engines.split(",")] if args.engines else None
+    print(f"\n🚀 Scaffolding img2game2d v2.0 Framework project in {dest}...")
+    res = scaffold_project(dest, project_name=args.name, engines=engines_list)
+    print(f"✓ Created: {res['config']}")
+    print(f"✓ Project initialized successfully!")
+    print(f"\nNext steps:\n  cd {res['path']}\n  img2game2d dev\n")
+
+
+def cmd_dev(args: argparse.Namespace) -> None:
+    import http.server
+    import socketserver
+    port = args.port or 8080
+    target_dir = Path(args.dir or "exports/viewer").resolve()
+    if not target_dir.exists():
+        target_dir = FORGE_DIR.parent / "examples" / "viewer"
+    print(f"\n🚀 img2game2d v2.0 Web Studio running at: http://localhost:{port}")
+    print(f"📁 Serving assets from: {target_dir}")
+    print(f"Press Ctrl+C to stop studio server.\n")
+    os.chdir(str(target_dir))
+    handler = http.server.SimpleHTTPRequestHandler
+    with socketserver.TCPServer(("", port), handler) as httpd:
+        try:
+            httpd.serve_forever()
+        except KeyboardInterrupt:
+            print("\nStudio server stopped.")
+
+
+def cmd_lighting(args: argparse.Namespace) -> None:
+    from stage5_atlas.generate_lighting_maps import generate_lighting_maps
+    res = generate_lighting_maps(args.image, args.out or Path(args.image).parent, strength=args.strength)
+    print(f"✓ Normal map saved:   {res['normal']}")
+    print(f"✓ Emission map saved: {res['emission']}")
+
+
 def cmd_slice_actions(args: argparse.Namespace) -> None:
     print(f"=== Slicing Action Sheet: {args.sheet} ===")
     labels = [l.strip() for l in args.labels.split(",")] if getattr(args, "labels", None) else None
@@ -249,6 +286,26 @@ def main() -> None:
     parser = argparse.ArgumentParser(prog="img2game2d", description="2D Game Asset Generation Pipeline")
     subparsers = parser.add_subparsers(dest="command", required=True)
 
+    # init (Framework Scaffolder)
+    p_init = subparsers.add_parser("init", help="Scaffold a new img2game2d v2.0 framework project")
+    p_init.add_argument("name", nargs="?", default="my-game-project", help="Project directory name")
+    p_init.add_argument("--engines", default=None, help="Comma-separated target engines (e.g. godot,spine,unity)")
+    p_init.add_argument("--dir", default=None, help="Target directory (defaults to current dir / name)")
+    p_init.set_defaults(func=cmd_init)
+
+    # dev (Web Studio Live Server)
+    p_dev = subparsers.add_parser("dev", help="Start the interactive Finnova-style Web Studio server")
+    p_dev.add_argument("--port", "-p", type=int, default=8080, help="Server port (default: 8080)")
+    p_dev.add_argument("--dir", default=None, help="Directory to serve (default: exports/viewer)")
+    p_dev.set_defaults(func=cmd_dev)
+
+    # lighting (Normal & Emission Map Generator)
+    p_lighting = subparsers.add_parser("lighting", help="Generate 2D normal and bloom emission maps")
+    p_lighting.add_argument("image", help="Path to input sprite or atlas image")
+    p_lighting.add_argument("--out", "-o", default=None, help="Output directory")
+    p_lighting.add_argument("--strength", "-s", type=float, default=2.5, help="Normal bevel strength (default: 2.5)")
+    p_lighting.set_defaults(func=cmd_lighting)
+
     # check
     p_check = subparsers.add_parser("check", help="Assess image quality, border clipping, and generate AI prompt if flawed")
     p_check.add_argument("image", help="Path to input image")
@@ -283,7 +340,7 @@ def main() -> None:
     p_build.add_argument("--action-sheet", action="store_true", help="Input is a multi-pose action sheet (idle,walk,jump,attack,hurt)")
     p_build.add_argument("--force", action="store_true", help="Bypass pre-flight quality check and force build")
     p_build.add_argument("--type", default="character", choices=["character", "object", "effect"])
-    p_build.add_argument("--engine", default="all", choices=["godot", "unity", "phaser", "pixijs", "viewer", "all"])
+    p_build.add_argument("--engine", default="all", choices=["godot", "unity", "spine", "phaser", "pixijs", "viewer", "all"])
     p_build.add_argument("--animations", default="idle,walk,attack", help="Comma-separated animations")
     p_build.add_argument("--provider", default="procedural", choices=["procedural", "stub", "openai", "local"])
     p_build.add_argument("--out", default="game-asset", help="Output directory")
