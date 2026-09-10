@@ -66,8 +66,18 @@ def cmd_dev(args: argparse.Namespace) -> None:
     print(f"📁 Serving assets from: {target_dir}")
     print(f"Press Ctrl+C to stop studio server.\n")
     os.chdir(str(target_dir))
-    handler = http.server.SimpleHTTPRequestHandler
-    with socketserver.TCPServer(("", port), handler) as httpd:
+
+    class NoCacheHTTPRequestHandler(http.server.SimpleHTTPRequestHandler):
+        def end_headers(self) -> None:
+            self.send_header("Cache-Control", "no-store, no-cache, must-revalidate, max-age=0")
+            self.send_header("Pragma", "no-cache")
+            self.send_header("Expires", "0")
+            super().end_headers()
+
+    class ReusableTCPServer(socketserver.TCPServer):
+        allow_reuse_address = True
+
+    with ReusableTCPServer(("", port), NoCacheHTTPRequestHandler) as httpd:
         try:
             httpd.serve_forever()
         except KeyboardInterrupt:
