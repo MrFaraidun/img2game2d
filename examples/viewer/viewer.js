@@ -684,9 +684,9 @@ function updateExportModalFiles() {
   const godotList = document.getElementById('godotFileList');
   if (godotList) {
     godotList.innerHTML = `
-      <a href="/exports/godot/${char}/CharacterBody2D.tscn" download class="file-chip">🎮 CharacterBody2D.tscn</a>
-      <a href="/exports/godot/${char}/SpriteFrames.tres" download class="file-chip">🎬 SpriteFrames.tres</a>
-      <a href="/exports/godot/${char}/LightingMaterial.tres" download class="file-chip">💡 LightingMaterial.tres</a>
+      <a href="/exports/godot/${char}/${char}.tscn" download class="file-chip">🎮 ${char}.tscn</a>
+      <a href="/exports/godot/${char}/${char}_frames.tres" download class="file-chip">🎬 ${char}_frames.tres</a>
+      <a href="/exports/godot/${char}/${char}_atlas.png" download class="file-chip">🖼️ ${char}_atlas.png</a>
     `;
   }
 
@@ -695,8 +695,8 @@ function updateExportModalFiles() {
   if (unityList) {
     unityList.innerHTML = `
       <a href="/exports/unity/${char}/${char}_atlas.png" download class="file-chip">⚡ ${char}_atlas.png</a>
-      <a href="/exports/unity/${char}/${char}.prefab" download class="file-chip">📦 ${char}.prefab</a>
-      <a href="/exports/unity/${char}_sprites/" target="_blank" class="file-chip">📂 Sliced Sprites (24)</a>
+      <a href="/exports/unity/${char}/unity_prefab_spec.json" download class="file-chip">📦 unity_prefab_spec.json</a>
+      <a href="/exports/unity/${char}_sprites/" target="_blank" class="file-chip">📂 Sliced Sprites</a>
     `;
   }
 
