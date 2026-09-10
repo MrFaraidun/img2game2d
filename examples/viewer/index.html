@@ -336,40 +336,40 @@
               <span class="dock-version">v2.0 Framework Outputs</span>
             </div>
             <div class="dock-cards">
-              <a href="../../exports/spine/" target="_blank" class="dock-item">
+              <a href="/exports/spine/" target="_blank" class="dock-item">
                 <div class="dock-icon spine">🦴</div>
                 <div class="dock-info">
                   <div class="dock-name">Spine 2D Runtime</div>
                   <div class="dock-desc">skeleton.json + .atlas + lighting</div>
                 </div>
-                <span class="dock-arrow">→</span>
+                <span class="dock-arrow">↗</span>
               </a>
 
-              <a href="../../exports/godot/" target="_blank" class="dock-item">
+              <a href="/exports/godot/" target="_blank" class="dock-item">
                 <div class="dock-icon godot">🤖</div>
                 <div class="dock-info">
                   <div class="dock-name">Godot 4.x Engine</div>
                   <div class="dock-desc">CharacterBody2D .tscn & .tres</div>
                 </div>
-                <span class="dock-arrow">→</span>
+                <span class="dock-arrow">↗</span>
               </a>
 
-              <a href="../../exports/unity/" target="_blank" class="dock-item">
+              <a href="/exports/unity/" target="_blank" class="dock-item">
                 <div class="dock-icon unity">⚡</div>
                 <div class="dock-info">
                   <div class="dock-name">Unity 2022+ URP</div>
                   <div class="dock-desc">Multiple Sprite Atlas & Prefab</div>
                 </div>
-                <span class="dock-arrow">→</span>
+                <span class="dock-arrow">↗</span>
               </a>
 
-              <a href="../../exports/phaser/" target="_blank" class="dock-item">
+              <a href="/exports/phaser/" target="_blank" class="dock-item">
                 <div class="dock-icon phaser">🎮</div>
                 <div class="dock-info">
                   <div class="dock-name">Phaser 3 / PixiJS</div>
                   <div class="dock-desc">TexturePacker JSON Hash</div>
                 </div>
-                <span class="dock-arrow">→</span>
+                <span class="dock-arrow">↗</span>
               </a>
             </div>
           </div>
@@ -381,6 +381,76 @@
 
   </div>
 
-  <script src="viewer.js?v=2.0.1"></script>
+  <!-- Finnova Export Hub Modal -->
+  <div class="export-modal-backdrop" id="exportModalBackdrop">
+    <div class="export-modal-box">
+      <div class="modal-header">
+        <div class="modal-title-group">
+          <span class="modal-pill">FRAMEWORK EXPORTS</span>
+          <h3 class="modal-title">Ready-to-Use Production Packages</h3>
+          <p class="modal-subtitle">Active Character: <strong id="modalActiveChar">The Architect</strong> (v2.0 Native Runtimes)</p>
+        </div>
+        <button class="modal-close-btn" id="btnCloseModal" title="Close">✕</button>
+      </div>
+
+      <div class="modal-body">
+        <div class="modal-engine-grid">
+          <!-- Spine 2D Card -->
+          <div class="engine-export-card">
+            <div class="card-top">
+              <span class="engine-badge spine">🦴 Spine 2D</span>
+              <a href="/exports/spine/" target="_blank" class="engine-open-link">Browse Folder ↗</a>
+            </div>
+            <p class="engine-summary">Native skeleton.json, libGDX .atlas, Tangent Normal & Bloom Emission maps.</p>
+            <div class="file-action-list" id="spineFileList"></div>
+            <div class="cli-hint-box">
+              <code>img2game2d export --engine spine</code>
+            </div>
+          </div>
+
+          <!-- Godot 4.x Card -->
+          <div class="engine-export-card">
+            <div class="card-top">
+              <span class="engine-badge godot">🤖 Godot 4.x</span>
+              <a href="/exports/godot/" target="_blank" class="engine-open-link">Browse Folder ↗</a>
+            </div>
+            <p class="engine-summary">CharacterBody2D .tscn scene tree, SpriteFrames .tres, and normal map lighting material.</p>
+            <div class="file-action-list" id="godotFileList"></div>
+            <div class="cli-hint-box">
+              <code>img2game2d export --engine godot</code>
+            </div>
+          </div>
+
+          <!-- Unity 2022+ Card -->
+          <div class="engine-export-card">
+            <div class="card-top">
+              <span class="engine-badge unity">⚡ Unity URP</span>
+              <a href="/exports/unity/" target="_blank" class="engine-open-link">Browse Folder ↗</a>
+            </div>
+            <p class="engine-summary">Multi-Sprite Atlas, individual sprite slices, and prefab configurations.</p>
+            <div class="file-action-list" id="unityFileList"></div>
+            <div class="cli-hint-box">
+              <code>img2game2d export --engine unity</code>
+            </div>
+          </div>
+
+          <!-- Phaser 3 / PixiJS Card -->
+          <div class="engine-export-card">
+            <div class="card-top">
+              <span class="engine-badge phaser">🎮 Phaser / Pixi</span>
+              <a href="/exports/phaser/" target="_blank" class="engine-open-link">Browse Folder ↗</a>
+            </div>
+            <p class="engine-summary">TexturePacker JSON Hash (Standard & FHD) compatible with Phaser 3 & PixiJS.</p>
+            <div class="file-action-list" id="phaserFileList"></div>
+            <div class="cli-hint-box">
+              <code>img2game2d export --engine phaser</code>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="viewer.js?v=2.0.2"></script>
 </body>
 </html>

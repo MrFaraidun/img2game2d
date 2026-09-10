@@ -229,7 +229,7 @@ async function setCharacter(charId) {
   if (!anims.includes(state.activeAnim)) {
     state.activeAnim = anims[0];
   }
-
+  updateExportModalFiles();
   setAnimation(state.activeAnim);
 }
 
@@ -658,10 +658,82 @@ document.getElementById('chkPivot').onchange = (e) => { state.showPivot = e.targ
 document.getElementById('chkGroundLine').onchange = (e) => { state.showGroundLine = e.target.checked; drawStage(); };
 document.getElementById('chkFrameBox').onchange = (e) => { state.showFrameBox = e.target.checked; drawStage(); };
 
-// Export button triggers quick download / alert
-document.getElementById('btnExportAll').onclick = () => {
-  window.open('../../exports/spine/', '_blank');
-};
+// Export Modal Controller
+const exportModalBackdrop = document.getElementById('exportModalBackdrop');
+const btnCloseModal = document.getElementById('btnCloseModal');
+const modalActiveChar = document.getElementById('modalActiveChar');
+
+function updateExportModalFiles() {
+  const char = state.activeChar || 'the_architect';
+  const charTitle = char === 'the_architect' ? 'The Architect' : 'The Guardian';
+  if (modalActiveChar) modalActiveChar.textContent = charTitle;
+
+  // Spine
+  const spineList = document.getElementById('spineFileList');
+  if (spineList) {
+    spineList.innerHTML = `
+      <a href="/exports/spine/${char}/${char}_skeleton.json" download class="file-chip">📄 ${char}_skeleton.json</a>
+      <a href="/exports/spine/${char}/${char}.atlas" download class="file-chip">📜 ${char}.atlas</a>
+      <a href="/exports/spine/${char}/${char}_atlas.png" download class="file-chip">🖼️ ${char}_atlas.png</a>
+      <a href="/exports/spine/${char}/${char}_atlas_normal.png" download class="file-chip">🔮 normal.png</a>
+      <a href="/exports/spine/${char}/${char}_atlas_emission.png" download class="file-chip">✨ emission.png</a>
+    `;
+  }
+
+  // Godot
+  const godotList = document.getElementById('godotFileList');
+  if (godotList) {
+    godotList.innerHTML = `
+      <a href="/exports/godot/${char}/CharacterBody2D.tscn" download class="file-chip">🎮 CharacterBody2D.tscn</a>
+      <a href="/exports/godot/${char}/SpriteFrames.tres" download class="file-chip">🎬 SpriteFrames.tres</a>
+      <a href="/exports/godot/${char}/LightingMaterial.tres" download class="file-chip">💡 LightingMaterial.tres</a>
+    `;
+  }
+
+  // Unity
+  const unityList = document.getElementById('unityFileList');
+  if (unityList) {
+    unityList.innerHTML = `
+      <a href="/exports/unity/${char}/${char}_atlas.png" download class="file-chip">⚡ ${char}_atlas.png</a>
+      <a href="/exports/unity/${char}/${char}.prefab" download class="file-chip">📦 ${char}.prefab</a>
+      <a href="/exports/unity/${char}_sprites/" target="_blank" class="file-chip">📂 Sliced Sprites (24)</a>
+    `;
+  }
+
+  // Phaser
+  const phaserList = document.getElementById('phaserFileList');
+  if (phaserList) {
+    phaserList.innerHTML = `
+      <a href="/exports/phaser/${char}_atlas.json" download class="file-chip">📊 ${char}_atlas.json</a>
+      <a href="/exports/phaser/${char}_atlas.png" download class="file-chip">🖼️ ${char}_atlas.png</a>
+      <a href="/exports/phaser/${char}_atlas_fhd.json" download class="file-chip">🖥️ ${char}_atlas_fhd.json</a>
+    `;
+  }
+}
+
+function openExportModal() {
+  updateExportModalFiles();
+  if (exportModalBackdrop) exportModalBackdrop.classList.add('active');
+}
+
+function closeExportModal() {
+  if (exportModalBackdrop) exportModalBackdrop.classList.remove('active');
+}
+
+const btnExportAll = document.getElementById('btnExportAll');
+if (btnExportAll) {
+  btnExportAll.onclick = openExportModal;
+}
+
+if (btnCloseModal) {
+  btnCloseModal.onclick = closeExportModal;
+}
+
+if (exportModalBackdrop) {
+  exportModalBackdrop.onclick = (e) => {
+    if (e.target === exportModalBackdrop) closeExportModal();
+  };
+}
 
 // Keyboard Shortcuts
 window.addEventListener('keydown', (e) => {

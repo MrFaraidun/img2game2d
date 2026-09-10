@@ -67,12 +67,28 @@ def cmd_dev(args: argparse.Namespace) -> None:
     print(f"Press Ctrl+C to stop studio server.\n")
     os.chdir(str(target_dir))
 
+    # Ensure exports symlink exists inside viewer directory as static fallback
+    viewer_exports_link = target_dir / "exports"
+    if not viewer_exports_link.exists() and (target_dir.parent / "spine").exists():
+        try:
+            viewer_exports_link.symlink_to(target_dir.parent)
+        except Exception:
+            pass
+
     class NoCacheHTTPRequestHandler(http.server.SimpleHTTPRequestHandler):
         def end_headers(self) -> None:
             self.send_header("Cache-Control", "no-store, no-cache, must-revalidate, max-age=0")
             self.send_header("Pragma", "no-cache")
             self.send_header("Expires", "0")
             super().end_headers()
+
+        def translate_path(self, path: str) -> str:
+            clean_path = path.split('?', 1)[0].split('#', 1)[0]
+            if clean_path.startswith('/exports/'):
+                rel = clean_path[len('/exports/'):].lstrip('/')
+                parent_exports = target_dir.parent if target_dir.name == "viewer" else target_dir
+                return str((parent_exports / rel).resolve())
+            return super().translate_path(path)
 
     class ReusableTCPServer(socketserver.TCPServer):
         allow_reuse_address = True
