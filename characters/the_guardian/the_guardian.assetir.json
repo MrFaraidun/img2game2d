@@ -1,0 +1,1168 @@
+{
+  "schema_version": "3.0.0",
+  "asset": {
+    "id": "the_guardian",
+    "name": "The Guardian",
+    "source_hash": "sha256_the_guardian",
+    "tags": [
+      "Armored Enforcer"
+    ]
+  },
+  "source": {
+    "width": 576,
+    "height": 512,
+    "color_space": "sRGB",
+    "has_alpha": true,
+    "format": "PNG"
+  },
+  "canvas": {
+    "width": 576,
+    "height": 512,
+    "pivot_x": 288,
+    "ground_y": 460
+  },
+  "views": [],
+  "layers": [],
+  "frames": [
+    {
+      "id": "the_guardian_idle_00",
+      "animation": "idle",
+      "index": 0,
+      "duration_ms": 167,
+      "canvas_rect": {
+        "x": 171,
+        "y": 139,
+        "w": 234,
+        "h": 321
+      },
+      "atlas_rect": {
+        "x": 675,
+        "y": 364,
+        "w": 234,
+        "h": 321
+      },
+      "uv_rect": {
+        "u0": 0.32959,
+        "v0": 0.177734,
+        "u1": 0.443848,
+        "v1": 0.334473
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.8984
+      },
+      "ground_anchor": true,
+      "delta_y": 0
+    },
+    {
+      "id": "the_guardian_idle_01",
+      "animation": "idle",
+      "index": 1,
+      "duration_ms": 167,
+      "canvas_rect": {
+        "x": 168,
+        "y": 139,
+        "w": 240,
+        "h": 321
+      },
+      "atlas_rect": {
+        "x": 911,
+        "y": 364,
+        "w": 240,
+        "h": 321
+      },
+      "uv_rect": {
+        "u0": 0.444824,
+        "v0": 0.177734,
+        "u1": 0.562012,
+        "v1": 0.334473
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.8984
+      },
+      "ground_anchor": true,
+      "delta_y": 0
+    },
+    {
+      "id": "the_guardian_idle_02",
+      "animation": "idle",
+      "index": 2,
+      "duration_ms": 167,
+      "canvas_rect": {
+        "x": 168,
+        "y": 139,
+        "w": 240,
+        "h": 321
+      },
+      "atlas_rect": {
+        "x": 1153,
+        "y": 364,
+        "w": 240,
+        "h": 321
+      },
+      "uv_rect": {
+        "u0": 0.562988,
+        "v0": 0.177734,
+        "u1": 0.680176,
+        "v1": 0.334473
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.8984
+      },
+      "ground_anchor": true,
+      "delta_y": 0
+    },
+    {
+      "id": "the_guardian_idle_03",
+      "animation": "idle",
+      "index": 3,
+      "duration_ms": 167,
+      "canvas_rect": {
+        "x": 165,
+        "y": 140,
+        "w": 247,
+        "h": 320
+      },
+      "atlas_rect": {
+        "x": 1395,
+        "y": 364,
+        "w": 247,
+        "h": 320
+      },
+      "uv_rect": {
+        "u0": 0.681152,
+        "v0": 0.177734,
+        "u1": 0.801758,
+        "v1": 0.333984
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.8984
+      },
+      "ground_anchor": true,
+      "delta_y": 0
+    },
+    {
+      "id": "the_guardian_run_00",
+      "animation": "run",
+      "index": 0,
+      "duration_ms": 83,
+      "canvas_rect": {
+        "x": 136,
+        "y": 175,
+        "w": 304,
+        "h": 285
+      },
+      "atlas_rect": {
+        "x": 745,
+        "y": 699,
+        "w": 304,
+        "h": 285
+      },
+      "uv_rect": {
+        "u0": 0.36377,
+        "v0": 0.341309,
+        "u1": 0.512207,
+        "v1": 0.480469
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.8984
+      },
+      "ground_anchor": true,
+      "delta_y": 0
+    },
+    {
+      "id": "the_guardian_run_01",
+      "animation": "run",
+      "index": 1,
+      "duration_ms": 83,
+      "canvas_rect": {
+        "x": 136,
+        "y": 175,
+        "w": 305,
+        "h": 285
+      },
+      "atlas_rect": {
+        "x": 1051,
+        "y": 699,
+        "w": 305,
+        "h": 285
+      },
+      "uv_rect": {
+        "u0": 0.513184,
+        "v0": 0.341309,
+        "u1": 0.662109,
+        "v1": 0.480469
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.8984
+      },
+      "ground_anchor": true,
+      "delta_y": 0
+    },
+    {
+      "id": "the_guardian_run_02",
+      "animation": "run",
+      "index": 2,
+      "duration_ms": 83,
+      "canvas_rect": {
+        "x": 137,
+        "y": 176,
+        "w": 303,
+        "h": 284
+      },
+      "atlas_rect": {
+        "x": 1358,
+        "y": 699,
+        "w": 303,
+        "h": 284
+      },
+      "uv_rect": {
+        "u0": 0.663086,
+        "v0": 0.341309,
+        "u1": 0.811035,
+        "v1": 0.47998
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.8984
+      },
+      "ground_anchor": true,
+      "delta_y": 0
+    },
+    {
+      "id": "the_guardian_run_03",
+      "animation": "run",
+      "index": 3,
+      "duration_ms": 83,
+      "canvas_rect": {
+        "x": 135,
+        "y": 176,
+        "w": 307,
+        "h": 284
+      },
+      "atlas_rect": {
+        "x": 1663,
+        "y": 699,
+        "w": 307,
+        "h": 284
+      },
+      "uv_rect": {
+        "u0": 0.812012,
+        "v0": 0.341309,
+        "u1": 0.961914,
+        "v1": 0.47998
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.8984
+      },
+      "ground_anchor": true,
+      "delta_y": 0
+    },
+    {
+      "id": "the_guardian_run_04",
+      "animation": "run",
+      "index": 4,
+      "duration_ms": 83,
+      "canvas_rect": {
+        "x": 139,
+        "y": 176,
+        "w": 298,
+        "h": 284
+      },
+      "atlas_rect": {
+        "x": 2,
+        "y": 992,
+        "w": 298,
+        "h": 284
+      },
+      "uv_rect": {
+        "u0": 0.000977,
+        "v0": 0.484375,
+        "u1": 0.146484,
+        "v1": 0.623047
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.8984
+      },
+      "ground_anchor": true,
+      "delta_y": 0
+    },
+    {
+      "id": "the_guardian_run_05",
+      "animation": "run",
+      "index": 5,
+      "duration_ms": 83,
+      "canvas_rect": {
+        "x": 135,
+        "y": 178,
+        "w": 306,
+        "h": 282
+      },
+      "atlas_rect": {
+        "x": 912,
+        "y": 992,
+        "w": 306,
+        "h": 282
+      },
+      "uv_rect": {
+        "u0": 0.445312,
+        "v0": 0.484375,
+        "u1": 0.594727,
+        "v1": 0.62207
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.8984
+      },
+      "ground_anchor": true,
+      "delta_y": 0
+    },
+    {
+      "id": "the_guardian_run_06",
+      "animation": "run",
+      "index": 6,
+      "duration_ms": 83,
+      "canvas_rect": {
+        "x": 136,
+        "y": 176,
+        "w": 304,
+        "h": 284
+      },
+      "atlas_rect": {
+        "x": 302,
+        "y": 992,
+        "w": 304,
+        "h": 284
+      },
+      "uv_rect": {
+        "u0": 0.147461,
+        "v0": 0.484375,
+        "u1": 0.295898,
+        "v1": 0.623047
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.8984
+      },
+      "ground_anchor": true,
+      "delta_y": 0
+    },
+    {
+      "id": "the_guardian_run_07",
+      "animation": "run",
+      "index": 7,
+      "duration_ms": 83,
+      "canvas_rect": {
+        "x": 137,
+        "y": 177,
+        "w": 302,
+        "h": 283
+      },
+      "atlas_rect": {
+        "x": 608,
+        "y": 992,
+        "w": 302,
+        "h": 283
+      },
+      "uv_rect": {
+        "u0": 0.296875,
+        "v0": 0.484375,
+        "u1": 0.444336,
+        "v1": 0.622559
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.8984
+      },
+      "ground_anchor": true,
+      "delta_y": 0
+    },
+    {
+      "id": "the_guardian_jump_00",
+      "animation": "jump",
+      "index": 0,
+      "duration_ms": 143,
+      "canvas_rect": {
+        "x": 141,
+        "y": 92,
+        "w": 294,
+        "h": 323
+      },
+      "atlas_rect": {
+        "x": 379,
+        "y": 364,
+        "w": 294,
+        "h": 323
+      },
+      "uv_rect": {
+        "u0": 0.185059,
+        "v0": 0.177734,
+        "u1": 0.328613,
+        "v1": 0.335449
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.8984
+      },
+      "ground_anchor": false,
+      "delta_y": -45
+    },
+    {
+      "id": "the_guardian_jump_01",
+      "animation": "jump",
+      "index": 1,
+      "duration_ms": 143,
+      "canvas_rect": {
+        "x": 131,
+        "y": 91,
+        "w": 314,
+        "h": 319
+      },
+      "atlas_rect": {
+        "x": 1644,
+        "y": 364,
+        "w": 314,
+        "h": 319
+      },
+      "uv_rect": {
+        "u0": 0.802734,
+        "v0": 0.177734,
+        "u1": 0.956055,
+        "v1": 0.333496
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.8984
+      },
+      "ground_anchor": false,
+      "delta_y": -50
+    },
+    {
+      "id": "the_guardian_jump_02",
+      "animation": "jump",
+      "index": 2,
+      "duration_ms": 143,
+      "canvas_rect": {
+        "x": 69,
+        "y": 173,
+        "w": 438,
+        "h": 287
+      },
+      "atlas_rect": {
+        "x": 305,
+        "y": 699,
+        "w": 438,
+        "h": 287
+      },
+      "uv_rect": {
+        "u0": 0.148926,
+        "v0": 0.341309,
+        "u1": 0.362793,
+        "v1": 0.481445
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.8984
+      },
+      "ground_anchor": true,
+      "delta_y": 0
+    },
+    {
+      "id": "the_guardian_attack_00",
+      "animation": "attack",
+      "index": 0,
+      "duration_ms": 83,
+      "canvas_rect": {
+        "x": 113,
+        "y": 179,
+        "w": 350,
+        "h": 281
+      },
+      "atlas_rect": {
+        "x": 1220,
+        "y": 992,
+        "w": 350,
+        "h": 281
+      },
+      "uv_rect": {
+        "u0": 0.595703,
+        "v0": 0.484375,
+        "u1": 0.766602,
+        "v1": 0.621582
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.8984
+      },
+      "ground_anchor": true,
+      "delta_y": 0
+    },
+    {
+      "id": "the_guardian_attack_01",
+      "animation": "attack",
+      "index": 1,
+      "duration_ms": 83,
+      "canvas_rect": {
+        "x": 123,
+        "y": 108,
+        "w": 330,
+        "h": 352
+      },
+      "atlas_rect": {
+        "x": 757,
+        "y": 2,
+        "w": 330,
+        "h": 352
+      },
+      "uv_rect": {
+        "u0": 0.369629,
+        "v0": 0.000977,
+        "u1": 0.530762,
+        "v1": 0.172852
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.8984
+      },
+      "ground_anchor": true,
+      "delta_y": 0
+    },
+    {
+      "id": "the_guardian_attack_02",
+      "animation": "attack",
+      "index": 2,
+      "duration_ms": 83,
+      "canvas_rect": {
+        "x": 101,
+        "y": 127,
+        "w": 375,
+        "h": 333
+      },
+      "atlas_rect": {
+        "x": 2,
+        "y": 364,
+        "w": 375,
+        "h": 333
+      },
+      "uv_rect": {
+        "u0": 0.000977,
+        "v0": 0.177734,
+        "u1": 0.184082,
+        "v1": 0.340332
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.8984
+      },
+      "ground_anchor": true,
+      "delta_y": 0
+    },
+    {
+      "id": "the_guardian_attack_03",
+      "animation": "attack",
+      "index": 3,
+      "duration_ms": 83,
+      "canvas_rect": {
+        "x": 96,
+        "y": 192,
+        "w": 385,
+        "h": 268
+      },
+      "atlas_rect": {
+        "x": 1572,
+        "y": 992,
+        "w": 385,
+        "h": 268
+      },
+      "uv_rect": {
+        "u0": 0.767578,
+        "v0": 0.484375,
+        "u1": 0.955566,
+        "v1": 0.615234
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.8984
+      },
+      "ground_anchor": true,
+      "delta_y": 0
+    },
+    {
+      "id": "the_guardian_defend_00",
+      "animation": "defend",
+      "index": 0,
+      "duration_ms": 125,
+      "canvas_rect": {
+        "x": 97,
+        "y": 124,
+        "w": 383,
+        "h": 336
+      },
+      "atlas_rect": {
+        "x": 1475,
+        "y": 2,
+        "w": 383,
+        "h": 336
+      },
+      "uv_rect": {
+        "u0": 0.720215,
+        "v0": 0.000977,
+        "u1": 0.907227,
+        "v1": 0.165039
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.8984
+      },
+      "ground_anchor": true,
+      "delta_y": 0
+    },
+    {
+      "id": "the_guardian_defend_01",
+      "animation": "defend",
+      "index": 1,
+      "duration_ms": 125,
+      "canvas_rect": {
+        "x": 90,
+        "y": 103,
+        "w": 397,
+        "h": 357
+      },
+      "atlas_rect": {
+        "x": 358,
+        "y": 2,
+        "w": 397,
+        "h": 357
+      },
+      "uv_rect": {
+        "u0": 0.174805,
+        "v0": 0.000977,
+        "u1": 0.368652,
+        "v1": 0.175293
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.8984
+      },
+      "ground_anchor": true,
+      "delta_y": 0
+    },
+    {
+      "id": "the_guardian_defend_02",
+      "animation": "defend",
+      "index": 2,
+      "duration_ms": 125,
+      "canvas_rect": {
+        "x": 96,
+        "y": 122,
+        "w": 384,
+        "h": 338
+      },
+      "atlas_rect": {
+        "x": 1089,
+        "y": 2,
+        "w": 384,
+        "h": 338
+      },
+      "uv_rect": {
+        "u0": 0.531738,
+        "v0": 0.000977,
+        "u1": 0.719238,
+        "v1": 0.166016
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.8984
+      },
+      "ground_anchor": true,
+      "delta_y": 0
+    },
+    {
+      "id": "the_guardian_defend_03",
+      "animation": "defend",
+      "index": 3,
+      "duration_ms": 125,
+      "canvas_rect": {
+        "x": 111,
+        "y": 100,
+        "w": 354,
+        "h": 360
+      },
+      "atlas_rect": {
+        "x": 2,
+        "y": 2,
+        "w": 354,
+        "h": 360
+      },
+      "uv_rect": {
+        "u0": 0.000977,
+        "v0": 0.000977,
+        "u1": 0.173828,
+        "v1": 0.176758
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.8984
+      },
+      "ground_anchor": true,
+      "delta_y": 0
+    },
+    {
+      "id": "the_guardian_hurt_00",
+      "animation": "hurt",
+      "index": 0,
+      "duration_ms": 167,
+      "canvas_rect": {
+        "x": 138,
+        "y": 169,
+        "w": 301,
+        "h": 291
+      },
+      "atlas_rect": {
+        "x": 2,
+        "y": 699,
+        "w": 301,
+        "h": 291
+      },
+      "uv_rect": {
+        "u0": 0.000977,
+        "v0": 0.341309,
+        "u1": 0.147949,
+        "v1": 0.483398
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.8984
+      },
+      "ground_anchor": true,
+      "delta_y": 0
+    }
+  ],
+  "animations": [
+    {
+      "id": "the_guardian_idle",
+      "name": "idle",
+      "fps": 6,
+      "loop": true,
+      "frame_ids": [
+        "the_guardian_idle_00",
+        "the_guardian_idle_01",
+        "the_guardian_idle_02",
+        "the_guardian_idle_03"
+      ],
+      "curves": {}
+    },
+    {
+      "id": "the_guardian_run",
+      "name": "run",
+      "fps": 12,
+      "loop": true,
+      "frame_ids": [
+        "the_guardian_run_00",
+        "the_guardian_run_01",
+        "the_guardian_run_02",
+        "the_guardian_run_03",
+        "the_guardian_run_04",
+        "the_guardian_run_05",
+        "the_guardian_run_06",
+        "the_guardian_run_07"
+      ],
+      "curves": {}
+    },
+    {
+      "id": "the_guardian_jump",
+      "name": "jump",
+      "fps": 7,
+      "loop": false,
+      "frame_ids": [
+        "the_guardian_jump_00",
+        "the_guardian_jump_01",
+        "the_guardian_jump_02"
+      ],
+      "curves": {}
+    },
+    {
+      "id": "the_guardian_attack",
+      "name": "attack",
+      "fps": 12,
+      "loop": false,
+      "frame_ids": [
+        "the_guardian_attack_00",
+        "the_guardian_attack_01",
+        "the_guardian_attack_02",
+        "the_guardian_attack_03"
+      ],
+      "curves": {}
+    },
+    {
+      "id": "the_guardian_defend",
+      "name": "defend",
+      "fps": 8,
+      "loop": false,
+      "frame_ids": [
+        "the_guardian_defend_00",
+        "the_guardian_defend_01",
+        "the_guardian_defend_02",
+        "the_guardian_defend_03"
+      ],
+      "curves": {}
+    },
+    {
+      "id": "the_guardian_hurt",
+      "name": "hurt",
+      "fps": 6,
+      "loop": false,
+      "frame_ids": [
+        "the_guardian_hurt_00"
+      ],
+      "curves": {}
+    }
+  ],
+  "skeleton": {
+    "root_bone_id": "root",
+    "bones": [
+      {
+        "id": "root",
+        "name": "root",
+        "parent_id": null,
+        "length": 0.0,
+        "rest": {
+          "x": 0.0,
+          "y": 0.0,
+          "rotation_rad": 0.0,
+          "scale_x": 1.0,
+          "scale_y": 1.0
+        },
+        "color_hex": "00f0ff"
+      },
+      {
+        "id": "pelvis",
+        "name": "pelvis",
+        "parent_id": "root",
+        "length": 36.0,
+        "rest": {
+          "x": 0.0,
+          "y": 195.0,
+          "rotation_rad": 1.5707963249999999,
+          "scale_x": 1.0,
+          "scale_y": 1.0
+        },
+        "color_hex": "6366f1"
+      },
+      {
+        "id": "spine",
+        "name": "spine",
+        "parent_id": "pelvis",
+        "length": 45.0,
+        "rest": {
+          "x": 36.0,
+          "y": 0.0,
+          "rotation_rad": 0.0,
+          "scale_x": 1.0,
+          "scale_y": 1.0
+        },
+        "color_hex": "6366f1"
+      },
+      {
+        "id": "chest",
+        "name": "chest",
+        "parent_id": "spine",
+        "length": 45.0,
+        "rest": {
+          "x": 45.0,
+          "y": 0.0,
+          "rotation_rad": 0.0,
+          "scale_x": 1.0,
+          "scale_y": 1.0
+        },
+        "color_hex": "00f0ff"
+      },
+      {
+        "id": "neck",
+        "name": "neck",
+        "parent_id": "chest",
+        "length": 25.0,
+        "rest": {
+          "x": 45.0,
+          "y": 0.0,
+          "rotation_rad": 0.0,
+          "scale_x": 1.0,
+          "scale_y": 1.0
+        },
+        "color_hex": "6366f1"
+      },
+      {
+        "id": "head",
+        "name": "head",
+        "parent_id": "neck",
+        "length": 64.0,
+        "rest": {
+          "x": 25.0,
+          "y": 0.0,
+          "rotation_rad": 0.0,
+          "scale_x": 1.0,
+          "scale_y": 1.0
+        },
+        "color_hex": "00f0ff"
+      },
+      {
+        "id": "shoulder_l",
+        "name": "shoulder_l",
+        "parent_id": "chest",
+        "length": 40.0,
+        "rest": {
+          "x": 36.0,
+          "y": -28.0,
+          "rotation_rad": 2.268928025,
+          "scale_x": 1.0,
+          "scale_y": 1.0
+        },
+        "color_hex": "818cf8"
+      },
+      {
+        "id": "forearm_l",
+        "name": "forearm_l",
+        "parent_id": "shoulder_l",
+        "length": 40.0,
+        "rest": {
+          "x": 40.0,
+          "y": 0.0,
+          "rotation_rad": 0.0872664625,
+          "scale_x": 1.0,
+          "scale_y": 1.0
+        },
+        "color_hex": "818cf8"
+      },
+      {
+        "id": "hand_l",
+        "name": "hand_l",
+        "parent_id": "forearm_l",
+        "length": 22.0,
+        "rest": {
+          "x": 40.0,
+          "y": 0.0,
+          "rotation_rad": 0.174532925,
+          "scale_x": 1.0,
+          "scale_y": 1.0
+        },
+        "color_hex": "818cf8"
+      },
+      {
+        "id": "shield_l",
+        "name": "shield_l",
+        "parent_id": "forearm_l",
+        "length": 92.0,
+        "rest": {
+          "x": 40.0,
+          "y": 0.0,
+          "rotation_rad": -0.0872664625,
+          "scale_x": 1.0,
+          "scale_y": 1.0
+        },
+        "color_hex": "a855f7"
+      },
+      {
+        "id": "shoulder_r",
+        "name": "shoulder_r",
+        "parent_id": "chest",
+        "length": 40.0,
+        "rest": {
+          "x": 36.0,
+          "y": 28.0,
+          "rotation_rad": -2.7925268,
+          "scale_x": 1.0,
+          "scale_y": 1.0
+        },
+        "color_hex": "818cf8"
+      },
+      {
+        "id": "forearm_r",
+        "name": "forearm_r",
+        "parent_id": "shoulder_r",
+        "length": 40.0,
+        "rest": {
+          "x": 40.0,
+          "y": 0.0,
+          "rotation_rad": -0.174532925,
+          "scale_x": 1.0,
+          "scale_y": 1.0
+        },
+        "color_hex": "818cf8"
+      },
+      {
+        "id": "hand_r",
+        "name": "hand_r",
+        "parent_id": "forearm_r",
+        "length": 22.0,
+        "rest": {
+          "x": 40.0,
+          "y": 0.0,
+          "rotation_rad": -0.174532925,
+          "scale_x": 1.0,
+          "scale_y": 1.0
+        },
+        "color_hex": "818cf8"
+      },
+      {
+        "id": "heavy_hammer",
+        "name": "heavy_hammer",
+        "parent_id": "hand_r",
+        "length": 123.0,
+        "rest": {
+          "x": 22.0,
+          "y": 0.0,
+          "rotation_rad": 0.6981317,
+          "scale_x": 1.0,
+          "scale_y": 1.0
+        },
+        "color_hex": "a855f7"
+      },
+      {
+        "id": "thigh_l",
+        "name": "thigh_l",
+        "parent_id": "pelvis",
+        "length": 68.0,
+        "rest": {
+          "x": -5.0,
+          "y": -20.0,
+          "rotation_rad": 3.0717794800000005,
+          "scale_x": 1.0,
+          "scale_y": 1.0
+        },
+        "color_hex": "4f46e5"
+      },
+      {
+        "id": "shin_l",
+        "name": "shin_l",
+        "parent_id": "thigh_l",
+        "length": 68.0,
+        "rest": {
+          "x": 68.0,
+          "y": 0.0,
+          "rotation_rad": 0.06981317000000001,
+          "scale_x": 1.0,
+          "scale_y": 1.0
+        },
+        "color_hex": "4f46e5"
+      },
+      {
+        "id": "foot_l",
+        "name": "foot_l",
+        "parent_id": "shin_l",
+        "length": 26.0,
+        "rest": {
+          "x": 68.0,
+          "y": 0.0,
+          "rotation_rad": 1.4835298625000002,
+          "scale_x": 1.0,
+          "scale_y": 1.0
+        },
+        "color_hex": "4f46e5"
+      },
+      {
+        "id": "thigh_r",
+        "name": "thigh_r",
+        "parent_id": "pelvis",
+        "length": 68.0,
+        "rest": {
+          "x": -5.0,
+          "y": 20.0,
+          "rotation_rad": 3.036872895,
+          "scale_x": 1.0,
+          "scale_y": 1.0
+        },
+        "color_hex": "4f46e5"
+      },
+      {
+        "id": "shin_r",
+        "name": "shin_r",
+        "parent_id": "thigh_r",
+        "length": 68.0,
+        "rest": {
+          "x": 68.0,
+          "y": 0.0,
+          "rotation_rad": -0.06981317000000001,
+          "scale_x": 1.0,
+          "scale_y": 1.0
+        },
+        "color_hex": "4f46e5"
+      },
+      {
+        "id": "foot_r",
+        "name": "foot_r",
+        "parent_id": "shin_r",
+        "length": 26.0,
+        "rest": {
+          "x": 68.0,
+          "y": 0.0,
+          "rotation_rad": -1.4835298625000002,
+          "scale_x": 1.0,
+          "scale_y": 1.0
+        },
+        "color_hex": "4f46e5"
+      }
+    ],
+    "constraints": []
+  },
+  "meshes": [],
+  "colliders": [
+    {
+      "id": "the_guardian_hitbox",
+      "name": "hitbox_main",
+      "type": "hitbox",
+      "shape": "box",
+      "offset": {
+        "x": -35.0,
+        "y": -180.0
+      },
+      "size": {
+        "w": 70.0,
+        "h": 170.0
+      },
+      "radius": null,
+      "points": null,
+      "attached_bone_id": null
+    }
+  ],
+  "materials": {
+    "diffuse_map": "the_guardian_atlas.png",
+    "normal_map": "the_guardian_atlas_normal.png",
+    "emission_map": "the_guardian_atlas_emission.png",
+    "height_map": null,
+    "normal_strength": 2.5,
+    "bloom_emission": true,
+    "lum_threshold": 140.0,
+    "sat_threshold": 0.25
+  },
+  "atlas": {
+    "image_path": "the_guardian_atlas.png",
+    "width": 2048,
+    "height": 2048,
+    "padding": 2,
+    "power_of_two": true,
+    "occupancy_ratio": 0.5666,
+    "wasted_pixels": 1817900
+  },
+  "diagnostics": [],
+  "provenance": {
+    "generator": "img2game2d",
+    "version": "3.0.0",
+    "timestamp_utc": "2026-09-10T11:08:59.609148+00:00",
+    "pipeline_stages": [
+      "legacy_ingest",
+      "dematting",
+      "atlas_packing",
+      "asset_ir_conversion"
+    ],
+    "parameters": {
+      "source_char_id": "the_guardian"
+    }
+  }
+}

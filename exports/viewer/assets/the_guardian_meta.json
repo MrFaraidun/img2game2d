@@ -1,0 +1,87 @@
+{
+  "id": "the_guardian",
+  "name": "The Guardian",
+  "title": "Armored Enforcer",
+  "canvas_size": {
+    "width": 576,
+    "height": 512
+  },
+  "pivot": {
+    "x": 288,
+    "y": 460
+  },
+  "hitbox": {
+    "offset_x": -35,
+    "offset_y": -180,
+    "width": 70,
+    "height": 170
+  },
+  "animations": {
+    "idle": {
+      "fps": 6,
+      "loop": true,
+      "frame_count": 4,
+      "frames": [
+        "idle/000.png",
+        "idle/001.png",
+        "idle/002.png",
+        "idle/003.png"
+      ]
+    },
+    "run": {
+      "fps": 12,
+      "loop": true,
+      "frame_count": 8,
+      "frames": [
+        "run/000.png",
+        "run/001.png",
+        "run/002.png",
+        "run/003.png",
+        "run/004.png",
+        "run/005.png",
+        "run/006.png",
+        "run/007.png"
+      ]
+    },
+    "jump": {
+      "fps": 7,
+      "loop": false,
+      "frame_count": 3,
+      "frames": [
+        "jump/000.png",
+        "jump/001.png",
+        "jump/002.png"
+      ]
+    },
+    "attack": {
+      "fps": 12,
+      "loop": false,
+      "frame_count": 4,
+      "frames": [
+        "attack/000.png",
+        "attack/001.png",
+        "attack/002.png",
+        "attack/003.png"
+      ]
+    },
+    "defend": {
+      "fps": 8,
+      "loop": false,
+      "frame_count": 4,
+      "frames": [
+        "defend/000.png",
+        "defend/001.png",
+        "defend/002.png",
+        "defend/003.png"
+      ]
+    },
+    "hurt": {
+      "fps": 6,
+      "loop": false,
+      "frame_count": 1,
+      "frames": [
+        "hurt/000.png"
+      ]
+    }
+  }
+}

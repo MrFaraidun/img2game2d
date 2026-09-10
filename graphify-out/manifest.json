@@ -1,0 +1,542 @@
+{
+  "characters/the_architect/atlases/attack_sheet.json": {
+    "mtime": 1789024120.173341,
+    "seen": 1789038180.0244918,
+    "ast_hash": "83883e695a193a8286388a30fc9a63e8",
+    "semantic_hash": "83883e695a193a8286388a30fc9a63e8"
+  },
+  "characters/the_architect/atlases/defend_sheet.json": {
+    "mtime": 1789024120.2485907,
+    "seen": 1789038180.0244954,
+    "ast_hash": "8c717be426fc27ee8a349ef8157735cc",
+    "semantic_hash": "8c717be426fc27ee8a349ef8157735cc"
+  },
+  "characters/the_architect/atlases/idle_sheet.json": {
+    "mtime": 1789024120.3148699,
+    "seen": 1789038180.0244973,
+    "ast_hash": "3e1640630755859ada9f7d060c723820",
+    "semantic_hash": "3e1640630755859ada9f7d060c723820"
+  },
+  "characters/the_architect/atlases/jump_sheet.json": {
+    "mtime": 1789024120.3620033,
+    "seen": 1789038180.0244982,
+    "ast_hash": "06b29f242be10c57ec31df3258dec927",
+    "semantic_hash": "06b29f242be10c57ec31df3258dec927"
+  },
+  "characters/the_architect/atlases/run_sheet.json": {
+    "mtime": 1789024120.4779994,
+    "seen": 1789038180.024499,
+    "ast_hash": "9c6b3312718cab0742376fda8b6e586e",
+    "semantic_hash": "9c6b3312718cab0742376fda8b6e586e"
+  },
+  "characters/the_architect/atlases/the_architect_atlas.json": {
+    "mtime": 1789024120.0795195,
+    "seen": 1789038180.0244997,
+    "ast_hash": "730ed65c6b4dd59cc032f3e0c6a358ec",
+    "semantic_hash": "730ed65c6b4dd59cc032f3e0c6a358ec"
+  },
+  "characters/the_architect/atlases/the_architect_atlas_fhd.json": {
+    "mtime": 1788687203.975571,
+    "seen": 1789038180.0245004,
+    "ast_hash": "2816c78960bfa74a39e3eb782ceaf46c",
+    "semantic_hash": "2816c78960bfa74a39e3eb782ceaf46c"
+  },
+  "characters/the_architect/metadata/animations.json": {
+    "mtime": 1789024120.478204,
+    "seen": 1789038180.0245013,
+    "ast_hash": "399fa8449a229b9f826f90c537a1b12f",
+    "semantic_hash": "399fa8449a229b9f826f90c537a1b12f"
+  },
+  "characters/the_architect/metadata/character.json": {
+    "mtime": 1789024120.4781349,
+    "seen": 1789038180.024502,
+    "ast_hash": "4148a83432010858e5a9ebe394b00aad",
+    "semantic_hash": "4148a83432010858e5a9ebe394b00aad"
+  },
+  "characters/the_guardian/atlases/attack_sheet.json": {
+    "mtime": 1789024124.7902484,
+    "seen": 1789038180.0245028,
+    "ast_hash": "377416a4ead715eeffd16a91f9e861fc",
+    "semantic_hash": "377416a4ead715eeffd16a91f9e861fc"
+  },
+  "characters/the_guardian/atlases/defend_sheet.json": {
+    "mtime": 1789024124.8917964,
+    "seen": 1789038180.0245032,
+    "ast_hash": "43a27602cc8b1085a25b9fd1c217e131",
+    "semantic_hash": "43a27602cc8b1085a25b9fd1c217e131"
+  },
+  "characters/the_guardian/atlases/hurt_sheet.json": {
+    "mtime": 1789024124.9142885,
+    "seen": 1789038180.024504,
+    "ast_hash": "6510a8e3dee230b91031f9d45656d704",
+    "semantic_hash": "6510a8e3dee230b91031f9d45656d704"
+  },
+  "characters/the_guardian/atlases/idle_sheet.json": {
+    "mtime": 1789024124.9901855,
+    "seen": 1789038180.024505,
+    "ast_hash": "65f0f9ffd97ff7549700231b89e2f28c",
+    "semantic_hash": "65f0f9ffd97ff7549700231b89e2f28c"
+  },
+  "characters/the_guardian/atlases/jump_sheet.json": {
+    "mtime": 1789024125.0463462,
+    "seen": 1789038180.0245054,
+    "ast_hash": "d385198218dda053f9a0551c26059c9d",
+    "semantic_hash": "d385198218dda053f9a0551c26059c9d"
+  },
+  "characters/the_guardian/atlases/run_sheet.json": {
+    "mtime": 1789024125.1777446,
+    "seen": 1789038180.024506,
+    "ast_hash": "6135aea8697eea39a1e9ec95b60efb2e",
+    "semantic_hash": "6135aea8697eea39a1e9ec95b60efb2e"
+  },
+  "characters/the_guardian/atlases/the_guardian_atlas.json": {
+    "mtime": 1789024124.7077994,
+    "seen": 1789038180.0245066,
+    "ast_hash": "e7c5a9d305d8681aa6231d002ba25cee",
+    "semantic_hash": "e7c5a9d305d8681aa6231d002ba25cee"
+  },
+  "characters/the_guardian/atlases/the_guardian_atlas_fhd.json": {
+    "mtime": 1788687204.1935816,
+    "seen": 1789038180.024507,
+    "ast_hash": "8e5b6aa6bb0bc1b64ee9d5389ade225d",
+    "semantic_hash": "8e5b6aa6bb0bc1b64ee9d5389ade225d"
+  },
+  "characters/the_guardian/metadata/animations.json": {
+    "mtime": 1789024125.1779976,
+    "seen": 1789038180.024508,
+    "ast_hash": "517afcc56cbfe405762fadeb206053f1",
+    "semantic_hash": "517afcc56cbfe405762fadeb206053f1"
+  },
+  "characters/the_guardian/metadata/character.json": {
+    "mtime": 1789024125.177908,
+    "seen": 1789038180.0245087,
+    "ast_hash": "7b6a836b033619bfba20c473a65667ae",
+    "semantic_hash": "7b6a836b033619bfba20c473a65667ae"
+  },
+  "exports/godot/the_architect/the_architect_atlas_fhd.json": {
+    "mtime": 1788687203.975571,
+    "seen": 1789038180.0245092,
+    "ast_hash": "2816c78960bfa74a39e3eb782ceaf46c",
+    "semantic_hash": "2816c78960bfa74a39e3eb782ceaf46c"
+  },
+  "exports/godot/the_guardian/the_guardian_atlas_fhd.json": {
+    "mtime": 1788687204.1935816,
+    "seen": 1789038180.02451,
+    "ast_hash": "8e5b6aa6bb0bc1b64ee9d5389ade225d",
+    "semantic_hash": "8e5b6aa6bb0bc1b64ee9d5389ade225d"
+  },
+  "exports/phaser/the_architect_atlas.json": {
+    "mtime": 1789024120.0795195,
+    "seen": 1789038180.0245104,
+    "ast_hash": "730ed65c6b4dd59cc032f3e0c6a358ec",
+    "semantic_hash": "730ed65c6b4dd59cc032f3e0c6a358ec"
+  },
+  "exports/phaser/the_architect_atlas_fhd.json": {
+    "mtime": 1788687203.975571,
+    "seen": 1789038180.0245113,
+    "ast_hash": "2816c78960bfa74a39e3eb782ceaf46c",
+    "semantic_hash": "2816c78960bfa74a39e3eb782ceaf46c"
+  },
+  "exports/phaser/the_guardian_atlas.json": {
+    "mtime": 1789024124.7077994,
+    "seen": 1789038180.024512,
+    "ast_hash": "e7c5a9d305d8681aa6231d002ba25cee",
+    "semantic_hash": "e7c5a9d305d8681aa6231d002ba25cee"
+  },
+  "exports/phaser/the_guardian_atlas_fhd.json": {
+    "mtime": 1788687204.1935816,
+    "seen": 1789038180.0245125,
+    "ast_hash": "8e5b6aa6bb0bc1b64ee9d5389ade225d",
+    "semantic_hash": "8e5b6aa6bb0bc1b64ee9d5389ade225d"
+  },
+  "exports/spine/the_architect/the_architect_skeleton.json": {
+    "mtime": 1789036996.4216526,
+    "seen": 1789038180.0245132,
+    "ast_hash": "8b08e80a9119a17c8ad6e26493b99752",
+    "semantic_hash": "8b08e80a9119a17c8ad6e26493b99752"
+  },
+  "exports/spine/the_guardian/the_guardian_skeleton.json": {
+    "mtime": 1789036996.4248607,
+    "seen": 1789038180.0245137,
+    "ast_hash": "4de038da7c66bcf1afb4eec517ab3092",
+    "semantic_hash": "4de038da7c66bcf1afb4eec517ab3092"
+  },
+  "exports/unity/the_architect/the_architect_atlas.json": {
+    "mtime": 1789024120.0795195,
+    "seen": 1789038180.0245147,
+    "ast_hash": "730ed65c6b4dd59cc032f3e0c6a358ec",
+    "semantic_hash": "730ed65c6b4dd59cc032f3e0c6a358ec"
+  },
+  "exports/unity/the_architect/the_architect_atlas_fhd.json": {
+    "mtime": 1788687203.975571,
+    "seen": 1789038180.0245152,
+    "ast_hash": "2816c78960bfa74a39e3eb782ceaf46c",
+    "semantic_hash": "2816c78960bfa74a39e3eb782ceaf46c"
+  },
+  "exports/unity/the_architect/unity_prefab_spec.json": {
+    "mtime": 1789024127.1780374,
+    "seen": 1789038180.0245159,
+    "ast_hash": "66e621c7cc4f13f8a0c6a325c2c3139a",
+    "semantic_hash": "66e621c7cc4f13f8a0c6a325c2c3139a"
+  },
+  "exports/unity/the_guardian/the_guardian_atlas.json": {
+    "mtime": 1789024124.7077994,
+    "seen": 1789038180.0245166,
+    "ast_hash": "e7c5a9d305d8681aa6231d002ba25cee",
+    "semantic_hash": "e7c5a9d305d8681aa6231d002ba25cee"
+  },
+  "exports/unity/the_guardian/the_guardian_atlas_fhd.json": {
+    "mtime": 1788687204.1935816,
+    "seen": 1789038180.024517,
+    "ast_hash": "8e5b6aa6bb0bc1b64ee9d5389ade225d",
+    "semantic_hash": "8e5b6aa6bb0bc1b64ee9d5389ade225d"
+  },
+  "exports/unity/the_guardian/unity_prefab_spec.json": {
+    "mtime": 1789024127.179357,
+    "seen": 1789038180.0245175,
+    "ast_hash": "2bdde95b562ca61d614c12dad3d64848",
+    "semantic_hash": "2bdde95b562ca61d614c12dad3d64848"
+  },
+  "exports/viewer/assets/index-BjO_mgfa.js": {
+    "mtime": 1789037067.3860054,
+    "seen": 1789038180.0245185,
+    "ast_hash": "32b4457ea5a02bae0a52b34d390b46bd",
+    "semantic_hash": "32b4457ea5a02bae0a52b34d390b46bd"
+  },
+  "exports/viewer/assets/index-DASOYbuK.js": {
+    "mtime": 1789036701.3504596,
+    "seen": 1789038180.0245192,
+    "ast_hash": "b1fb712bb36b31e4b9452c4a00b27b3e",
+    "semantic_hash": "b1fb712bb36b31e4b9452c4a00b27b3e"
+  },
+  "exports/viewer/assets/index-vPSBVH-H.js": {
+    "mtime": 1789036561.145579,
+    "seen": 1789038180.02452,
+    "ast_hash": "b1fb712bb36b31e4b9452c4a00b27b3e",
+    "semantic_hash": "b1fb712bb36b31e4b9452c4a00b27b3e"
+  },
+  "exports/viewer/assets/the_architect_atlas.json": {
+    "mtime": 1789024120.0795195,
+    "seen": 1789038180.0245209,
+    "ast_hash": "730ed65c6b4dd59cc032f3e0c6a358ec",
+    "semantic_hash": "730ed65c6b4dd59cc032f3e0c6a358ec"
+  },
+  "exports/viewer/assets/the_architect_atlas_fhd.json": {
+    "mtime": 1788687203.975571,
+    "seen": 1789038180.0245218,
+    "ast_hash": "2816c78960bfa74a39e3eb782ceaf46c",
+    "semantic_hash": "2816c78960bfa74a39e3eb782ceaf46c"
+  },
+  "exports/viewer/assets/the_architect_meta.json": {
+    "mtime": 1789024120.4781349,
+    "seen": 1789038180.0245223,
+    "ast_hash": "4148a83432010858e5a9ebe394b00aad",
+    "semantic_hash": "4148a83432010858e5a9ebe394b00aad"
+  },
+  "exports/viewer/assets/the_guardian_atlas.json": {
+    "mtime": 1789024124.7077994,
+    "seen": 1789038180.024523,
+    "ast_hash": "e7c5a9d305d8681aa6231d002ba25cee",
+    "semantic_hash": "e7c5a9d305d8681aa6231d002ba25cee"
+  },
+  "exports/viewer/assets/the_guardian_atlas_fhd.json": {
+    "mtime": 1788687204.1935816,
+    "seen": 1789038180.0245235,
+    "ast_hash": "8e5b6aa6bb0bc1b64ee9d5389ade225d",
+    "semantic_hash": "8e5b6aa6bb0bc1b64ee9d5389ade225d"
+  },
+  "exports/viewer/assets/the_guardian_meta.json": {
+    "mtime": 1789024125.177908,
+    "seen": 1789038180.0245247,
+    "ast_hash": "7b6a836b033619bfba20c473a65667ae",
+    "semantic_hash": "7b6a836b033619bfba20c473a65667ae"
+  },
+  "exports/viewer/viewer.js": {
+    "mtime": 1789027928.3658755,
+    "seen": 1789038180.0245256,
+    "ast_hash": "2e827b50ce5b2c9d6780737f109be35e",
+    "semantic_hash": "2e827b50ce5b2c9d6780737f109be35e"
+  },
+  "forge/dematting.py": {
+    "mtime": 1788686178.3483286,
+    "seen": 1789038180.0245275,
+    "ast_hash": "adecf0fcf09777edf3880dae99b3ead8",
+    "semantic_hash": "adecf0fcf09777edf3880dae99b3ead8"
+  },
+  "forge/export_spine.py": {
+    "mtime": 1789036992.74191,
+    "seen": 1789038180.024528,
+    "ast_hash": "2b0ea3a552eaeb1cdf198127f74a6dd6",
+    "semantic_hash": "2b0ea3a552eaeb1cdf198127f74a6dd6"
+  },
+  "forge/lighting.py": {
+    "mtime": 1789023682.7319229,
+    "seen": 1789038180.024529,
+    "ast_hash": "4641dd302e1bfe44235f9aa46cc36baa",
+    "semantic_hash": "4641dd302e1bfe44235f9aa46cc36baa"
+  },
+  "forge/pipeline.py": {
+    "mtime": 1789023773.9384472,
+    "seen": 1789038180.0245297,
+    "ast_hash": "1c23e266288e2aac3c2d123edc9df348",
+    "semantic_hash": "1c23e266288e2aac3c2d123edc9df348"
+  },
+  "img2game2d.config.json": {
+    "mtime": 1789025990.8796074,
+    "seen": 1789038180.0245302,
+    "ast_hash": "c982536c6f8438da0c22517840117f37",
+    "semantic_hash": "c982536c6f8438da0c22517840117f37"
+  },
+  "studio/.oxlintrc.json": {
+    "mtime": 1789036176.787982,
+    "seen": 1789038180.0245306,
+    "ast_hash": "029f4905006c1fffd96bc863e2d98d3e",
+    "semantic_hash": "029f4905006c1fffd96bc863e2d98d3e"
+  },
+  "studio/package.json": {
+    "mtime": 1789036209.5942268,
+    "seen": 1789038180.0245314,
+    "ast_hash": "79191858fd7f3782a7493be4452690f3",
+    "semantic_hash": "79191858fd7f3782a7493be4452690f3"
+  },
+  "studio/src/App.tsx": {
+    "mtime": 1789036465.7067006,
+    "seen": 1789038180.024532,
+    "ast_hash": "76be9bf06e4701f220bcf8cb2898366a",
+    "semantic_hash": "76be9bf06e4701f220bcf8cb2898366a"
+  },
+  "studio/src/components/exports/ExportsWorkstation.tsx": {
+    "mtime": 1789036390.3512692,
+    "seen": 1789038180.0245326,
+    "ast_hash": "0cd752781adec864934beaabfb8f06ce",
+    "semantic_hash": "0cd752781adec864934beaabfb8f06ce"
+  },
+  "studio/src/components/layout/Header.tsx": {
+    "mtime": 1789036508.3168173,
+    "seen": 1789038180.024533,
+    "ast_hash": "01b701273e2270eedfbe445d51b8ba6c",
+    "semantic_hash": "01b701273e2270eedfbe445d51b8ba6c"
+  },
+  "studio/src/components/lighting/LightingWorkstation.tsx": {
+    "mtime": 1789036357.562955,
+    "seen": 1789038180.0245337,
+    "ast_hash": "704690ef9ae23d73b6028e43114e3937",
+    "semantic_hash": "704690ef9ae23d73b6028e43114e3937"
+  },
+  "studio/src/components/spine/SpineWorkstation.tsx": {
+    "mtime": 1789036372.2106483,
+    "seen": 1789038180.0245342,
+    "ast_hash": "afedbe9a0f667cba000371bdbab3e0fd",
+    "semantic_hash": "afedbe9a0f667cba000371bdbab3e0fd"
+  },
+  "studio/src/components/studio/StudioWorkstation.tsx": {
+    "mtime": 1789036338.8763463,
+    "seen": 1789038180.0245347,
+    "ast_hash": "ab0e9aaa4d88d06d1661c7b77a731d14",
+    "semantic_hash": "ab0e9aaa4d88d06d1661c7b77a731d14"
+  },
+  "studio/src/hooks/useCharacter.ts": {
+    "mtime": 1789036279.120603,
+    "seen": 1789038180.0245352,
+    "ast_hash": "a836db9d3ba3a713a2f038fd02b578a0",
+    "semantic_hash": "a836db9d3ba3a713a2f038fd02b578a0"
+  },
+  "studio/src/hooks/useNormalLighting.ts": {
+    "mtime": 1789036296.109776,
+    "seen": 1789038180.0245361,
+    "ast_hash": "bf848fc1bd7d15b5da1183f1bfd15455",
+    "semantic_hash": "bf848fc1bd7d15b5da1183f1bfd15455"
+  },
+  "studio/src/hooks/useSpineRig.ts": {
+    "mtime": 1789037057.563597,
+    "seen": 1789038180.0245366,
+    "ast_hash": "c8950a0beef3d852e97a4670c61be27f",
+    "semantic_hash": "c8950a0beef3d852e97a4670c61be27f"
+  },
+  "studio/src/lib/audio.ts": {
+    "mtime": 1789036245.6563103,
+    "seen": 1789038180.0245373,
+    "ast_hash": "47d585f5358fb263074ec6f7dc64e9bf",
+    "semantic_hash": "47d585f5358fb263074ec6f7dc64e9bf"
+  },
+  "studio/src/lib/codeGenerators.ts": {
+    "mtime": 1789036264.9789016,
+    "seen": 1789038180.0245378,
+    "ast_hash": "55367d45035fcac721aeff11dad1e8e3",
+    "semantic_hash": "55367d45035fcac721aeff11dad1e8e3"
+  },
+  "studio/src/main.tsx": {
+    "mtime": 1789036176.7886143,
+    "seen": 1789038180.0245383,
+    "ast_hash": "787e5a07efeb2bf6209d5937195f2f68",
+    "semantic_hash": "787e5a07efeb2bf6209d5937195f2f68"
+  },
+  "studio/src/types/index.ts": {
+    "mtime": 1789036228.7296689,
+    "seen": 1789038180.0245392,
+    "ast_hash": "0c5af9c24d3a0023c0b96a1798b3023a",
+    "semantic_hash": "0c5af9c24d3a0023c0b96a1798b3023a"
+  },
+  "studio/tsconfig.app.json": {
+    "mtime": 1789036513.1967163,
+    "seen": 1789038180.0245397,
+    "ast_hash": "908567f500ea92e52f9ac02b2d3ad0f9",
+    "semantic_hash": "908567f500ea92e52f9ac02b2d3ad0f9"
+  },
+  "studio/tsconfig.json": {
+    "mtime": 1789036176.7886763,
+    "seen": 1789038180.0245402,
+    "ast_hash": "a3d39fa780ebff65444de257f291ce6c",
+    "semantic_hash": "a3d39fa780ebff65444de257f291ce6c"
+  },
+  "studio/tsconfig.node.json": {
+    "mtime": 1789036176.788703,
+    "seen": 1789038180.024541,
+    "ast_hash": "f9cb81ddcea69ffdab672fc8c48dca66",
+    "semantic_hash": "f9cb81ddcea69ffdab672fc8c48dca66"
+  },
+  "studio/vite.config.ts": {
+    "mtime": 1789036532.9583077,
+    "seen": 1789038180.0245414,
+    "ast_hash": "c4dde8caadfcee14f7f281b246e8ae1e",
+    "semantic_hash": "c4dde8caadfcee14f7f281b246e8ae1e"
+  },
+  "characters/the_architect/the_architect.assetir.json": {
+    "mtime": 1789038539.4432845,
+    "seen": 1789038562.3926685,
+    "ast_hash": "19422a7754f6be9ce92d60d275ed072f",
+    "semantic_hash": "19422a7754f6be9ce92d60d275ed072f"
+  },
+  "characters/the_architect/the_architect.img2game2d.json": {
+    "mtime": 1789038539.444142,
+    "seen": 1789038562.3926697,
+    "ast_hash": "24d7ea5820f708c8801485748d61d442",
+    "semantic_hash": "24d7ea5820f708c8801485748d61d442"
+  },
+  "characters/the_guardian/the_guardian.assetir.json": {
+    "mtime": 1789038539.6092818,
+    "seen": 1789038562.3929124,
+    "ast_hash": "8ffe25bbfa72099c8dfb28068f375fc0",
+    "semantic_hash": "8ffe25bbfa72099c8dfb28068f375fc0"
+  },
+  "characters/the_guardian/the_guardian.img2game2d.json": {
+    "mtime": 1789038539.6102676,
+    "seen": 1789038562.392913,
+    "ast_hash": "fe122c310aebba286df367ea89c3de37",
+    "semantic_hash": "fe122c310aebba286df367ea89c3de37"
+  },
+  "cli.py": {
+    "mtime": 1789038446.820012,
+    "seen": 1789038562.3929138,
+    "ast_hash": "f80964be387b5447272e343024954035",
+    "semantic_hash": "f80964be387b5447272e343024954035"
+  },
+  "core/__init__.py": {
+    "mtime": 1789038319.1254792,
+    "seen": 1789038562.3929148,
+    "ast_hash": "21048bee8601b204f147fdd1e8ba652d",
+    "semantic_hash": "21048bee8601b204f147fdd1e8ba652d"
+  },
+  "core/asset_ir/__init__.py": {
+    "mtime": 1789038396.516979,
+    "seen": 1789038562.3929155,
+    "ast_hash": "d69131d7f175c238065468be4fed8c46",
+    "semantic_hash": "d69131d7f175c238065468be4fed8c46"
+  },
+  "core/asset_ir/converter.py": {
+    "mtime": 1789038471.6575363,
+    "seen": 1789038562.392916,
+    "ast_hash": "afe63ca83a82ecb04ee219b10d48b1cc",
+    "semantic_hash": "afe63ca83a82ecb04ee219b10d48b1cc"
+  },
+  "core/asset_ir/manifest.py": {
+    "mtime": 1789038377.2903395,
+    "seen": 1789038562.3929167,
+    "ast_hash": "85c33f48d1cb17aa3b8b4784509faae0",
+    "semantic_hash": "85c33f48d1cb17aa3b8b4784509faae0"
+  },
+  "core/asset_ir/schema.py": {
+    "mtime": 1789038357.0887408,
+    "seen": 1789038562.3929172,
+    "ast_hash": "6c3c22bc37bbaa8fcc8f4dd2de32d4f8",
+    "semantic_hash": "6c3c22bc37bbaa8fcc8f4dd2de32d4f8"
+  },
+  "core/asset_ir/transforms.py": {
+    "mtime": 1789038520.532602,
+    "seen": 1789038562.3929179,
+    "ast_hash": "934fa8a5ce5a269ea81368a3b75c69c8",
+    "semantic_hash": "934fa8a5ce5a269ea81368a3b75c69c8"
+  },
+  "core/asset_ir/types.py": {
+    "mtime": 1789038326.830329,
+    "seen": 1789038562.3929183,
+    "ast_hash": "848fa361f9cd8f2660257577502084c1",
+    "semantic_hash": "848fa361f9cd8f2660257577502084c1"
+  },
+  "core/asset_ir/validation.py": {
+    "mtime": 1789038347.2549317,
+    "seen": 1789038562.392919,
+    "ast_hash": "366c1727bebd24274b912fff2b2fb2c7",
+    "semantic_hash": "366c1727bebd24274b912fff2b2fb2c7"
+  },
+  "core/asset_ir/versioning.py": {
+    "mtime": 1789038371.8234556,
+    "seen": 1789038562.3929195,
+    "ast_hash": "e4247d2bff13ed9d776f767567d9392e",
+    "semantic_hash": "e4247d2bff13ed9d776f767567d9392e"
+  },
+  "forge/cli.py": {
+    "mtime": 1789038442.485095,
+    "seen": 1789038562.3934758,
+    "ast_hash": "4f1c2b81c2ce2f3abc8403171b2d6db2",
+    "semantic_hash": "4f1c2b81c2ce2f3abc8403171b2d6db2"
+  },
+  "studio/src/core/asset-ir/index.ts": {
+    "mtime": 1789038424.045449,
+    "seen": 1789038562.393773,
+    "ast_hash": "7c03bec4484fa9f9d7c52fa2dc469d69",
+    "semantic_hash": "7c03bec4484fa9f9d7c52fa2dc469d69"
+  },
+  "studio/src/core/asset-ir/transforms.ts": {
+    "mtime": 1789038525.4305086,
+    "seen": 1789038562.3937738,
+    "ast_hash": "d3bb5204577c2ec4e3b962c07d0c341d",
+    "semantic_hash": "d3bb5204577c2ec4e3b962c07d0c341d"
+  },
+  "studio/src/core/asset-ir/types.ts": {
+    "mtime": 1789038406.0737948,
+    "seen": 1789038562.3937745,
+    "ast_hash": "129730f7e6fb76534a36a8bb6d0e32f3",
+    "semantic_hash": "129730f7e6fb76534a36a8bb6d0e32f3"
+  },
+  "studio/src/core/asset-ir/validation.ts": {
+    "mtime": 1789038419.4005384,
+    "seen": 1789038562.3937755,
+    "ast_hash": "0ea6c34dc8edc3fa22aa00d00b8d5d38",
+    "semantic_hash": "0ea6c34dc8edc3fa22aa00d00b8d5d38"
+  },
+  "tests/__init__.py": {
+    "mtime": 1789038487.9492245,
+    "seen": 1789038562.3940241,
+    "ast_hash": "63b4e1bcc1e0fb612f9adbf8c3c5eafe",
+    "semantic_hash": "63b4e1bcc1e0fb612f9adbf8c3c5eafe"
+  },
+  "tests/test_asset_ir.py": {
+    "mtime": 1789038497.5680406,
+    "seen": 1789038562.3940253,
+    "ast_hash": "d1f1412d913e1470a186f57b0f81c90d",
+    "semantic_hash": "d1f1412d913e1470a186f57b0f81c90d"
+  },
+  "tests/test_converter.py": {
+    "mtime": 1789038511.323778,
+    "seen": 1789038562.394026,
+    "ast_hash": "abb4f0ab76e5ca4e03d83acab7026bf7",
+    "semantic_hash": "abb4f0ab76e5ca4e03d83acab7026bf7"
+  },
+  "tests/test_transforms.py": {
+    "mtime": 1789038505.1618958,
+    "seen": 1789038562.3940268,
+    "ast_hash": "eca1e2a0ee31e940b574d78a699dc8d4",
+    "semantic_hash": "eca1e2a0ee31e940b574d78a699dc8d4"
+  }
+}

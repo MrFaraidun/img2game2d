@@ -1,0 +1,1159 @@
+{
+  "schema_version": "3.0.0",
+  "asset": {
+    "id": "the_architect",
+    "name": "The Architect",
+    "source_hash": "sha256_the_architect",
+    "tags": [
+      "Cyberblade Duelist"
+    ]
+  },
+  "source": {
+    "width": 576,
+    "height": 512,
+    "color_space": "sRGB",
+    "has_alpha": true,
+    "format": "PNG"
+  },
+  "canvas": {
+    "width": 576,
+    "height": 512,
+    "pivot_x": 288,
+    "ground_y": 460
+  },
+  "views": [],
+  "layers": [],
+  "frames": [
+    {
+      "id": "the_architect_idle_00",
+      "animation": "idle",
+      "index": 0,
+      "duration_ms": 167,
+      "canvas_rect": {
+        "x": 186,
+        "y": 91,
+        "w": 204,
+        "h": 369
+      },
+      "atlas_rect": {
+        "x": 2,
+        "y": 2,
+        "w": 204,
+        "h": 369
+      },
+      "uv_rect": {
+        "u0": 0.000977,
+        "v0": 0.000977,
+        "u1": 0.100586,
+        "v1": 0.181152
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.8984
+      },
+      "ground_anchor": true,
+      "delta_y": 0
+    },
+    {
+      "id": "the_architect_idle_01",
+      "animation": "idle",
+      "index": 1,
+      "duration_ms": 167,
+      "canvas_rect": {
+        "x": 186,
+        "y": 91,
+        "w": 204,
+        "h": 369
+      },
+      "atlas_rect": {
+        "x": 208,
+        "y": 2,
+        "w": 204,
+        "h": 369
+      },
+      "uv_rect": {
+        "u0": 0.101562,
+        "v0": 0.000977,
+        "u1": 0.201172,
+        "v1": 0.181152
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.8984
+      },
+      "ground_anchor": true,
+      "delta_y": 0
+    },
+    {
+      "id": "the_architect_idle_02",
+      "animation": "idle",
+      "index": 2,
+      "duration_ms": 167,
+      "canvas_rect": {
+        "x": 186,
+        "y": 91,
+        "w": 204,
+        "h": 369
+      },
+      "atlas_rect": {
+        "x": 414,
+        "y": 2,
+        "w": 204,
+        "h": 369
+      },
+      "uv_rect": {
+        "u0": 0.202148,
+        "v0": 0.000977,
+        "u1": 0.301758,
+        "v1": 0.181152
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.8984
+      },
+      "ground_anchor": true,
+      "delta_y": 0
+    },
+    {
+      "id": "the_architect_idle_03",
+      "animation": "idle",
+      "index": 3,
+      "duration_ms": 167,
+      "canvas_rect": {
+        "x": 186,
+        "y": 91,
+        "w": 204,
+        "h": 369
+      },
+      "atlas_rect": {
+        "x": 620,
+        "y": 2,
+        "w": 204,
+        "h": 369
+      },
+      "uv_rect": {
+        "u0": 0.302734,
+        "v0": 0.000977,
+        "u1": 0.402344,
+        "v1": 0.181152
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.8984
+      },
+      "ground_anchor": true,
+      "delta_y": 0
+    },
+    {
+      "id": "the_architect_run_00",
+      "animation": "run",
+      "index": 0,
+      "duration_ms": 83,
+      "canvas_rect": {
+        "x": 151,
+        "y": 174,
+        "w": 274,
+        "h": 286
+      },
+      "atlas_rect": {
+        "x": 1225,
+        "y": 711,
+        "w": 274,
+        "h": 286
+      },
+      "uv_rect": {
+        "u0": 0.598145,
+        "v0": 0.347168,
+        "u1": 0.731934,
+        "v1": 0.486816
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.8984
+      },
+      "ground_anchor": true,
+      "delta_y": 0
+    },
+    {
+      "id": "the_architect_run_01",
+      "animation": "run",
+      "index": 1,
+      "duration_ms": 83,
+      "canvas_rect": {
+        "x": 155,
+        "y": 174,
+        "w": 266,
+        "h": 286
+      },
+      "atlas_rect": {
+        "x": 1501,
+        "y": 711,
+        "w": 266,
+        "h": 286
+      },
+      "uv_rect": {
+        "u0": 0.73291,
+        "v0": 0.347168,
+        "u1": 0.862793,
+        "v1": 0.486816
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.8984
+      },
+      "ground_anchor": true,
+      "delta_y": 0
+    },
+    {
+      "id": "the_architect_run_02",
+      "animation": "run",
+      "index": 2,
+      "duration_ms": 83,
+      "canvas_rect": {
+        "x": 155,
+        "y": 176,
+        "w": 266,
+        "h": 284
+      },
+      "atlas_rect": {
+        "x": 1769,
+        "y": 711,
+        "w": 266,
+        "h": 284
+      },
+      "uv_rect": {
+        "u0": 0.86377,
+        "v0": 0.347168,
+        "u1": 0.993652,
+        "v1": 0.48584
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.8984
+      },
+      "ground_anchor": true,
+      "delta_y": 0
+    },
+    {
+      "id": "the_architect_run_03",
+      "animation": "run",
+      "index": 3,
+      "duration_ms": 83,
+      "canvas_rect": {
+        "x": 144,
+        "y": 173,
+        "w": 288,
+        "h": 287
+      },
+      "atlas_rect": {
+        "x": 666,
+        "y": 711,
+        "w": 288,
+        "h": 287
+      },
+      "uv_rect": {
+        "u0": 0.325195,
+        "v0": 0.347168,
+        "u1": 0.46582,
+        "v1": 0.487305
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.8984
+      },
+      "ground_anchor": true,
+      "delta_y": 0
+    },
+    {
+      "id": "the_architect_run_04",
+      "animation": "run",
+      "index": 4,
+      "duration_ms": 83,
+      "canvas_rect": {
+        "x": 155,
+        "y": 173,
+        "w": 267,
+        "h": 287
+      },
+      "atlas_rect": {
+        "x": 956,
+        "y": 711,
+        "w": 267,
+        "h": 287
+      },
+      "uv_rect": {
+        "u0": 0.466797,
+        "v0": 0.347168,
+        "u1": 0.597168,
+        "v1": 0.487305
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.8984
+      },
+      "ground_anchor": true,
+      "delta_y": 0
+    },
+    {
+      "id": "the_architect_run_05",
+      "animation": "run",
+      "index": 5,
+      "duration_ms": 83,
+      "canvas_rect": {
+        "x": 161,
+        "y": 176,
+        "w": 255,
+        "h": 284
+      },
+      "atlas_rect": {
+        "x": 2,
+        "y": 1002,
+        "w": 255,
+        "h": 284
+      },
+      "uv_rect": {
+        "u0": 0.000977,
+        "v0": 0.489258,
+        "u1": 0.125488,
+        "v1": 0.62793
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.8984
+      },
+      "ground_anchor": true,
+      "delta_y": 0
+    },
+    {
+      "id": "the_architect_run_06",
+      "animation": "run",
+      "index": 6,
+      "duration_ms": 83,
+      "canvas_rect": {
+        "x": 151,
+        "y": 171,
+        "w": 274,
+        "h": 289
+      },
+      "atlas_rect": {
+        "x": 2,
+        "y": 711,
+        "w": 274,
+        "h": 289
+      },
+      "uv_rect": {
+        "u0": 0.000977,
+        "v0": 0.347168,
+        "u1": 0.134766,
+        "v1": 0.488281
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.8984
+      },
+      "ground_anchor": true,
+      "delta_y": 0
+    },
+    {
+      "id": "the_architect_run_07",
+      "animation": "run",
+      "index": 7,
+      "duration_ms": 83,
+      "canvas_rect": {
+        "x": 167,
+        "y": 176,
+        "w": 242,
+        "h": 284
+      },
+      "atlas_rect": {
+        "x": 259,
+        "y": 1002,
+        "w": 242,
+        "h": 284
+      },
+      "uv_rect": {
+        "u0": 0.126465,
+        "v0": 0.489258,
+        "u1": 0.244629,
+        "v1": 0.62793
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.8984
+      },
+      "ground_anchor": true,
+      "delta_y": 0
+    },
+    {
+      "id": "the_architect_jump_00",
+      "animation": "jump",
+      "index": 0,
+      "duration_ms": 143,
+      "canvas_rect": {
+        "x": 118,
+        "y": 80,
+        "w": 341,
+        "h": 325
+      },
+      "atlas_rect": {
+        "x": 409,
+        "y": 373,
+        "w": 341,
+        "h": 325
+      },
+      "uv_rect": {
+        "u0": 0.199707,
+        "v0": 0.182129,
+        "u1": 0.366211,
+        "v1": 0.34082
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.8984
+      },
+      "ground_anchor": false,
+      "delta_y": -55
+    },
+    {
+      "id": "the_architect_jump_01",
+      "animation": "jump",
+      "index": 1,
+      "duration_ms": 143,
+      "canvas_rect": {
+        "x": 178,
+        "y": 117,
+        "w": 220,
+        "h": 323
+      },
+      "atlas_rect": {
+        "x": 752,
+        "y": 373,
+        "w": 220,
+        "h": 323
+      },
+      "uv_rect": {
+        "u0": 0.367188,
+        "v0": 0.182129,
+        "u1": 0.474609,
+        "v1": 0.339844
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.8984
+      },
+      "ground_anchor": false,
+      "delta_y": -20
+    },
+    {
+      "id": "the_architect_jump_02",
+      "animation": "jump",
+      "index": 2,
+      "duration_ms": 143,
+      "canvas_rect": {
+        "x": 177,
+        "y": 207,
+        "w": 223,
+        "h": 253
+      },
+      "atlas_rect": {
+        "x": 1030,
+        "y": 1002,
+        "w": 223,
+        "h": 253
+      },
+      "uv_rect": {
+        "u0": 0.50293,
+        "v0": 0.489258,
+        "u1": 0.611816,
+        "v1": 0.612793
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.8984
+      },
+      "ground_anchor": true,
+      "delta_y": 0
+    },
+    {
+      "id": "the_architect_attack_00",
+      "animation": "attack",
+      "index": 0,
+      "duration_ms": 83,
+      "canvas_rect": {
+        "x": 28,
+        "y": 144,
+        "w": 520,
+        "h": 316
+      },
+      "atlas_rect": {
+        "x": 974,
+        "y": 373,
+        "w": 520,
+        "h": 316
+      },
+      "uv_rect": {
+        "u0": 0.475586,
+        "v0": 0.182129,
+        "u1": 0.729492,
+        "v1": 0.336426
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.8984
+      },
+      "ground_anchor": true,
+      "delta_y": 0
+    },
+    {
+      "id": "the_architect_attack_01",
+      "animation": "attack",
+      "index": 1,
+      "duration_ms": 83,
+      "canvas_rect": {
+        "x": 26,
+        "y": 177,
+        "w": 525,
+        "h": 283
+      },
+      "atlas_rect": {
+        "x": 503,
+        "y": 1002,
+        "w": 525,
+        "h": 283
+      },
+      "uv_rect": {
+        "u0": 0.245605,
+        "v0": 0.489258,
+        "u1": 0.501953,
+        "v1": 0.627441
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.8984
+      },
+      "ground_anchor": true,
+      "delta_y": 0
+    },
+    {
+      "id": "the_architect_attack_02",
+      "animation": "attack",
+      "index": 2,
+      "duration_ms": 83,
+      "canvas_rect": {
+        "x": 58,
+        "y": 113,
+        "w": 460,
+        "h": 347
+      },
+      "atlas_rect": {
+        "x": 826,
+        "y": 2,
+        "w": 460,
+        "h": 347
+      },
+      "uv_rect": {
+        "u0": 0.40332,
+        "v0": 0.000977,
+        "u1": 0.62793,
+        "v1": 0.17041
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.8984
+      },
+      "ground_anchor": true,
+      "delta_y": 0
+    },
+    {
+      "id": "the_architect_attack_03",
+      "animation": "attack",
+      "index": 3,
+      "duration_ms": 83,
+      "canvas_rect": {
+        "x": 28,
+        "y": 121,
+        "w": 520,
+        "h": 339
+      },
+      "atlas_rect": {
+        "x": 1288,
+        "y": 2,
+        "w": 520,
+        "h": 339
+      },
+      "uv_rect": {
+        "u0": 0.628906,
+        "v0": 0.000977,
+        "u1": 0.882812,
+        "v1": 0.166504
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.8984
+      },
+      "ground_anchor": true,
+      "delta_y": 0
+    },
+    {
+      "id": "the_architect_attack_04",
+      "animation": "attack",
+      "index": 4,
+      "duration_ms": 83,
+      "canvas_rect": {
+        "x": 86,
+        "y": 124,
+        "w": 405,
+        "h": 336
+      },
+      "atlas_rect": {
+        "x": 2,
+        "y": 373,
+        "w": 405,
+        "h": 336
+      },
+      "uv_rect": {
+        "u0": 0.000977,
+        "v0": 0.182129,
+        "u1": 0.19873,
+        "v1": 0.346191
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.8984
+      },
+      "ground_anchor": true,
+      "delta_y": 0
+    },
+    {
+      "id": "the_architect_defend_00",
+      "animation": "defend",
+      "index": 0,
+      "duration_ms": 125,
+      "canvas_rect": {
+        "x": 88,
+        "y": 168,
+        "w": 401,
+        "h": 292
+      },
+      "atlas_rect": {
+        "x": 1496,
+        "y": 373,
+        "w": 401,
+        "h": 292
+      },
+      "uv_rect": {
+        "u0": 0.730469,
+        "v0": 0.182129,
+        "u1": 0.92627,
+        "v1": 0.324707
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.8984
+      },
+      "ground_anchor": true,
+      "delta_y": 0
+    },
+    {
+      "id": "the_architect_defend_01",
+      "animation": "defend",
+      "index": 1,
+      "duration_ms": 125,
+      "canvas_rect": {
+        "x": 95,
+        "y": 172,
+        "w": 386,
+        "h": 288
+      },
+      "atlas_rect": {
+        "x": 278,
+        "y": 711,
+        "w": 386,
+        "h": 288
+      },
+      "uv_rect": {
+        "u0": 0.135742,
+        "v0": 0.347168,
+        "u1": 0.324219,
+        "v1": 0.487793
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.8984
+      },
+      "ground_anchor": true,
+      "delta_y": 0
+    },
+    {
+      "id": "the_architect_defend_02",
+      "animation": "defend",
+      "index": 2,
+      "duration_ms": 125,
+      "canvas_rect": {
+        "x": 124,
+        "y": 214,
+        "w": 329,
+        "h": 246
+      },
+      "atlas_rect": {
+        "x": 1557,
+        "y": 1002,
+        "w": 329,
+        "h": 246
+      },
+      "uv_rect": {
+        "u0": 0.760254,
+        "v0": 0.489258,
+        "u1": 0.920898,
+        "v1": 0.609375
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.8984
+      },
+      "ground_anchor": true,
+      "delta_y": 0
+    },
+    {
+      "id": "the_architect_defend_03",
+      "animation": "defend",
+      "index": 3,
+      "duration_ms": 125,
+      "canvas_rect": {
+        "x": 138,
+        "y": 210,
+        "w": 300,
+        "h": 250
+      },
+      "atlas_rect": {
+        "x": 1255,
+        "y": 1002,
+        "w": 300,
+        "h": 250
+      },
+      "uv_rect": {
+        "u0": 0.612793,
+        "v0": 0.489258,
+        "u1": 0.759277,
+        "v1": 0.611328
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.8984
+      },
+      "ground_anchor": true,
+      "delta_y": 0
+    }
+  ],
+  "animations": [
+    {
+      "id": "the_architect_idle",
+      "name": "idle",
+      "fps": 6,
+      "loop": true,
+      "frame_ids": [
+        "the_architect_idle_00",
+        "the_architect_idle_01",
+        "the_architect_idle_02",
+        "the_architect_idle_03"
+      ],
+      "curves": {}
+    },
+    {
+      "id": "the_architect_run",
+      "name": "run",
+      "fps": 12,
+      "loop": true,
+      "frame_ids": [
+        "the_architect_run_00",
+        "the_architect_run_01",
+        "the_architect_run_02",
+        "the_architect_run_03",
+        "the_architect_run_04",
+        "the_architect_run_05",
+        "the_architect_run_06",
+        "the_architect_run_07"
+      ],
+      "curves": {}
+    },
+    {
+      "id": "the_architect_jump",
+      "name": "jump",
+      "fps": 7,
+      "loop": false,
+      "frame_ids": [
+        "the_architect_jump_00",
+        "the_architect_jump_01",
+        "the_architect_jump_02"
+      ],
+      "curves": {}
+    },
+    {
+      "id": "the_architect_attack",
+      "name": "attack",
+      "fps": 12,
+      "loop": false,
+      "frame_ids": [
+        "the_architect_attack_00",
+        "the_architect_attack_01",
+        "the_architect_attack_02",
+        "the_architect_attack_03",
+        "the_architect_attack_04"
+      ],
+      "curves": {}
+    },
+    {
+      "id": "the_architect_defend",
+      "name": "defend",
+      "fps": 8,
+      "loop": false,
+      "frame_ids": [
+        "the_architect_defend_00",
+        "the_architect_defend_01",
+        "the_architect_defend_02",
+        "the_architect_defend_03"
+      ],
+      "curves": {}
+    }
+  ],
+  "skeleton": {
+    "root_bone_id": "root",
+    "bones": [
+      {
+        "id": "root",
+        "name": "root",
+        "parent_id": null,
+        "length": 0.0,
+        "rest": {
+          "x": 0.0,
+          "y": 0.0,
+          "rotation_rad": 0.0,
+          "scale_x": 1.0,
+          "scale_y": 1.0
+        },
+        "color_hex": "00f0ff"
+      },
+      {
+        "id": "pelvis",
+        "name": "pelvis",
+        "parent_id": "root",
+        "length": 36.0,
+        "rest": {
+          "x": 0.0,
+          "y": 195.0,
+          "rotation_rad": 1.5707963249999999,
+          "scale_x": 1.0,
+          "scale_y": 1.0
+        },
+        "color_hex": "6366f1"
+      },
+      {
+        "id": "spine",
+        "name": "spine",
+        "parent_id": "pelvis",
+        "length": 45.0,
+        "rest": {
+          "x": 36.0,
+          "y": 0.0,
+          "rotation_rad": 0.0,
+          "scale_x": 1.0,
+          "scale_y": 1.0
+        },
+        "color_hex": "6366f1"
+      },
+      {
+        "id": "chest",
+        "name": "chest",
+        "parent_id": "spine",
+        "length": 45.0,
+        "rest": {
+          "x": 45.0,
+          "y": 0.0,
+          "rotation_rad": 0.0,
+          "scale_x": 1.0,
+          "scale_y": 1.0
+        },
+        "color_hex": "00f0ff"
+      },
+      {
+        "id": "neck",
+        "name": "neck",
+        "parent_id": "chest",
+        "length": 25.0,
+        "rest": {
+          "x": 45.0,
+          "y": 0.0,
+          "rotation_rad": 0.0,
+          "scale_x": 1.0,
+          "scale_y": 1.0
+        },
+        "color_hex": "6366f1"
+      },
+      {
+        "id": "head",
+        "name": "head",
+        "parent_id": "neck",
+        "length": 64.0,
+        "rest": {
+          "x": 25.0,
+          "y": 0.0,
+          "rotation_rad": 0.0,
+          "scale_x": 1.0,
+          "scale_y": 1.0
+        },
+        "color_hex": "00f0ff"
+      },
+      {
+        "id": "shoulder_l",
+        "name": "shoulder_l",
+        "parent_id": "chest",
+        "length": 40.0,
+        "rest": {
+          "x": 36.0,
+          "y": -28.0,
+          "rotation_rad": 2.3561944875000003,
+          "scale_x": 1.0,
+          "scale_y": 1.0
+        },
+        "color_hex": "818cf8"
+      },
+      {
+        "id": "forearm_l",
+        "name": "forearm_l",
+        "parent_id": "shoulder_l",
+        "length": 40.0,
+        "rest": {
+          "x": 40.0,
+          "y": 0.0,
+          "rotation_rad": 0.174532925,
+          "scale_x": 1.0,
+          "scale_y": 1.0
+        },
+        "color_hex": "818cf8"
+      },
+      {
+        "id": "hand_l",
+        "name": "hand_l",
+        "parent_id": "forearm_l",
+        "length": 22.0,
+        "rest": {
+          "x": 40.0,
+          "y": 0.0,
+          "rotation_rad": 0.26179938750000004,
+          "scale_x": 1.0,
+          "scale_y": 1.0
+        },
+        "color_hex": "818cf8"
+      },
+      {
+        "id": "offhand_blade",
+        "name": "offhand_blade",
+        "parent_id": "hand_l",
+        "length": 61.0,
+        "rest": {
+          "x": 22.0,
+          "y": 0.0,
+          "rotation_rad": 0.174532925,
+          "scale_x": 1.0,
+          "scale_y": 1.0
+        },
+        "color_hex": "a855f7"
+      },
+      {
+        "id": "shoulder_r",
+        "name": "shoulder_r",
+        "parent_id": "chest",
+        "length": 40.0,
+        "rest": {
+          "x": 36.0,
+          "y": 28.0,
+          "rotation_rad": -2.7052603375000004,
+          "scale_x": 1.0,
+          "scale_y": 1.0
+        },
+        "color_hex": "818cf8"
+      },
+      {
+        "id": "forearm_r",
+        "name": "forearm_r",
+        "parent_id": "shoulder_r",
+        "length": 40.0,
+        "rest": {
+          "x": 40.0,
+          "y": 0.0,
+          "rotation_rad": -0.26179938750000004,
+          "scale_x": 1.0,
+          "scale_y": 1.0
+        },
+        "color_hex": "818cf8"
+      },
+      {
+        "id": "hand_r",
+        "name": "hand_r",
+        "parent_id": "forearm_r",
+        "length": 22.0,
+        "rest": {
+          "x": 40.0,
+          "y": 0.0,
+          "rotation_rad": -0.174532925,
+          "scale_x": 1.0,
+          "scale_y": 1.0
+        },
+        "color_hex": "818cf8"
+      },
+      {
+        "id": "cyberblade",
+        "name": "cyberblade",
+        "parent_id": "hand_r",
+        "length": 133.0,
+        "rest": {
+          "x": 22.0,
+          "y": 0.0,
+          "rotation_rad": 0.6108652375000001,
+          "scale_x": 1.0,
+          "scale_y": 1.0
+        },
+        "color_hex": "a855f7"
+      },
+      {
+        "id": "thigh_l",
+        "name": "thigh_l",
+        "parent_id": "pelvis",
+        "length": 68.0,
+        "rest": {
+          "x": -5.0,
+          "y": -20.0,
+          "rotation_rad": 3.0543261875000005,
+          "scale_x": 1.0,
+          "scale_y": 1.0
+        },
+        "color_hex": "4f46e5"
+      },
+      {
+        "id": "shin_l",
+        "name": "shin_l",
+        "parent_id": "thigh_l",
+        "length": 68.0,
+        "rest": {
+          "x": 68.0,
+          "y": 0.0,
+          "rotation_rad": 0.0872664625,
+          "scale_x": 1.0,
+          "scale_y": 1.0
+        },
+        "color_hex": "4f46e5"
+      },
+      {
+        "id": "foot_l",
+        "name": "foot_l",
+        "parent_id": "shin_l",
+        "length": 26.0,
+        "rest": {
+          "x": 68.0,
+          "y": 0.0,
+          "rotation_rad": 1.3962634,
+          "scale_x": 1.0,
+          "scale_y": 1.0
+        },
+        "color_hex": "4f46e5"
+      },
+      {
+        "id": "thigh_r",
+        "name": "thigh_r",
+        "parent_id": "pelvis",
+        "length": 68.0,
+        "rest": {
+          "x": -5.0,
+          "y": 20.0,
+          "rotation_rad": 3.0543261875000005,
+          "scale_x": 1.0,
+          "scale_y": 1.0
+        },
+        "color_hex": "4f46e5"
+      },
+      {
+        "id": "shin_r",
+        "name": "shin_r",
+        "parent_id": "thigh_r",
+        "length": 68.0,
+        "rest": {
+          "x": 68.0,
+          "y": 0.0,
+          "rotation_rad": -0.0872664625,
+          "scale_x": 1.0,
+          "scale_y": 1.0
+        },
+        "color_hex": "4f46e5"
+      },
+      {
+        "id": "foot_r",
+        "name": "foot_r",
+        "parent_id": "shin_r",
+        "length": 26.0,
+        "rest": {
+          "x": 68.0,
+          "y": 0.0,
+          "rotation_rad": -1.3962634,
+          "scale_x": 1.0,
+          "scale_y": 1.0
+        },
+        "color_hex": "4f46e5"
+      }
+    ],
+    "constraints": []
+  },
+  "meshes": [],
+  "colliders": [
+    {
+      "id": "the_architect_hitbox",
+      "name": "hitbox_main",
+      "type": "hitbox",
+      "shape": "box",
+      "offset": {
+        "x": -30.0,
+        "y": -190.0
+      },
+      "size": {
+        "w": 60.0,
+        "h": 180.0
+      },
+      "radius": null,
+      "points": null,
+      "attached_bone_id": null
+    }
+  ],
+  "materials": {
+    "diffuse_map": "the_architect_atlas.png",
+    "normal_map": "the_architect_atlas_normal.png",
+    "emission_map": "the_architect_atlas_emission.png",
+    "height_map": null,
+    "normal_strength": 2.5,
+    "bloom_emission": true,
+    "lum_threshold": 140.0,
+    "sat_threshold": 0.25
+  },
+  "atlas": {
+    "image_path": "the_architect_atlas.png",
+    "width": 2048,
+    "height": 2048,
+    "padding": 2,
+    "power_of_two": true,
+    "occupancy_ratio": 0.5527,
+    "wasted_pixels": 1876224
+  },
+  "diagnostics": [],
+  "provenance": {
+    "generator": "img2game2d",
+    "version": "3.0.0",
+    "timestamp_utc": "2026-09-10T11:08:59.443040+00:00",
+    "pipeline_stages": [
+      "legacy_ingest",
+      "dematting",
+      "atlas_packing",
+      "asset_ir_conversion"
+    ],
+    "parameters": {
+      "source_char_id": "the_architect"
+    }
+  }
+}

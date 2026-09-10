@@ -1,0 +1,53 @@
+{
+  "$schema": "https://raw.githubusercontent.com/MrFaraidun/img2game2d/main/schemas/config.schema.json",
+  "version": "2.0.0",
+  "project": {
+    "name": "3d-model-characters",
+    "description": "Production character assets for The Architect & The Guardian",
+    "targetEngines": [
+      "spine",
+      "godot",
+      "unity",
+      "phaser",
+      "pixijs"
+    ],
+    "canvas": {
+      "width": 576,
+      "height": 512,
+      "groundY": 460,
+      "pivotX": 288
+    }
+  },
+  "lighting": {
+    "enabled": true,
+    "normalStrength": 2.5,
+    "invertY": false,
+    "bloomEmission": true,
+    "lumThreshold": 140.0,
+    "satThreshold": 0.25
+  },
+  "atlas": {
+    "powerOfTwo": true,
+    "maxWidth": 2048,
+    "maxHeight": 2048,
+    "padding": 2
+  },
+  "animations": {
+    "fpsDefaults": {
+      "idle": 6,
+      "run": 12,
+      "jump": 7,
+      "attack": 12,
+      "defend": 8,
+      "hurt": 6
+    },
+    "loopDefaults": {
+      "idle": true,
+      "run": true,
+      "jump": false,
+      "attack": false,
+      "defend": false,
+      "hurt": false
+    }
+  }
+}

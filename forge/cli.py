@@ -1,387 +1,296 @@
 #!/usr/bin/env python3
 """
-img2game2d unified CLI.
-Subcommands:
-  - analyze <image>
-  - build <image> [--profile character|object|effect] [--engine godot|unity|phaser|pixijs|all]
-  - animate <image> --animations idle,walk,attack
-  - atlas <frames_dir> [--out atlases/]
-  - export <asset.json> --atlases <atlases_dir> [--engine godot|unity|phaser|pixijs|all]
+img2game2d Unified CLI & Backwards-Compatible Command Gateway.
+
+Provides:
+- Legacy command compatibility: dev, build, lighting, slice-actions
+- v3 Agent-first commands: inspect, validate, convert, export (with --json support)
 """
 from __future__ import annotations
 
 import argparse
 import json
 import os
+import subprocess
 import sys
 from pathlib import Path
+from typing import Any, Dict
 
-# Add forge directory to sys.path
 FORGE_DIR = Path(__file__).resolve().parent
-SKILL_ROOT = FORGE_DIR.parent
+PROJECT_ROOT = FORGE_DIR.parent
+sys.path.insert(0, str(PROJECT_ROOT))
 sys.path.insert(0, str(FORGE_DIR))
 
-from _shared.schema_utils import load_json, save_json
-from stage1_intake.probe_image import probe
-from stage1_intake.detect_style import detect_style
-from stage1_intake.detect_views import detect_views
-from stage1_intake.remove_background import remove_background
-from stage1_intake.enhance import run_enhance
-from stage1_intake.assess_quality import assess_image_quality
-from stage1_intake.detect_actions import detect_and_slice_actions
-from stage2_spec.new_asset_spec import build_asset_spec
-from stage2_spec.validate_asset_spec import validate_asset
-from stage2_spec.layer_decompose import decompose_layers
-from stage2_spec.build_rig import build_rig
-from stage3_build.orchestrate_build import orchestrate
-from stage4_review.validate_silhouette import validate_silhouette
-from stage4_review.validate_colors import validate_colors
-from stage4_review.validate_continuity import validate_continuity
-from stage4_review.make_comparison_sheet import make_comparison_sheet
-from stage4_review.append_review import append_review
-from stage5_atlas.pack_atlas import pack_atlas
-from stage6_export.export import export as run_export
-from stage6_export.viewer_exporter import export_viewer
+from core.asset_ir import (
+    AssetIR,
+    CURRENT_SCHEMA_VERSION,
+    ProjectManifest,
+    asset_ir_to_dict,
+    convert_legacy_character_to_asset_ir,
+    deserialize_asset_ir,
+    serialize_asset_ir,
+    validate_asset_ir,
+)
+import pipeline
+import lighting
 
 
-def cmd_init(args: argparse.Namespace) -> None:
-    from scaffold import scaffold_project
-    dest = Path(args.dir) if args.dir else Path.cwd() / args.name
-    engines_list = [e.strip() for e in args.engines.split(",")] if args.engines else None
-    print(f"\n🚀 Scaffolding img2game2d v2.0 Framework project in {dest}...")
-    res = scaffold_project(dest, project_name=args.name, engines=engines_list)
-    print(f"✓ Created: {res['config']}")
-    print(f"✓ Project initialized successfully!")
-    print(f"\nNext steps:\n  cd {res['path']}\n  img2game2d dev\n")
+def cmd_build(args: argparse.Namespace) -> int:
+    """Executes full asset extraction, normalization, atlas packing, and engine exports."""
+    print("▶ Running full asset compilation pipeline...")
+    results = pipeline.run_full_pipeline()
+    if getattr(args, "json", False):
+        print(json.dumps({"status": "success", "results": results}, default=str, indent=2))
+    return 0
 
 
-def cmd_dev(args: argparse.Namespace) -> None:
-    import http.server
-    import socketserver
-    port = args.port or 8080
-    target_dir = Path(args.dir or "exports/viewer").resolve()
-    if not target_dir.exists():
-        target_dir = FORGE_DIR.parent / "examples" / "viewer"
-    print(f"\n🚀 img2game2d v2.0 Web Studio running at: http://localhost:{port}")
-    print(f"📁 Serving assets from: {target_dir}")
-    print(f"Press Ctrl+C to stop studio server.\n")
-    os.chdir(str(target_dir))
-
-    # Ensure exports symlink exists inside viewer directory as static fallback
-    viewer_exports_link = target_dir / "exports"
-    if not viewer_exports_link.exists() and (target_dir.parent / "spine").exists():
-        try:
-            viewer_exports_link.symlink_to(target_dir.parent)
-        except Exception:
-            pass
-
-    class NoCacheHTTPRequestHandler(http.server.SimpleHTTPRequestHandler):
-        def end_headers(self) -> None:
-            self.send_header("Cache-Control", "no-store, no-cache, must-revalidate, max-age=0")
-            self.send_header("Pragma", "no-cache")
-            self.send_header("Expires", "0")
-            super().end_headers()
-
-        def translate_path(self, path: str) -> str:
-            clean_path = path.split('?', 1)[0].split('#', 1)[0]
-            if clean_path.startswith('/exports/'):
-                rel = clean_path[len('/exports/'):].lstrip('/')
-                parent_exports = target_dir.parent if target_dir.name == "viewer" else target_dir
-                return str((parent_exports / rel).resolve())
-            return super().translate_path(path)
-
-    class ReusableTCPServer(socketserver.TCPServer):
-        allow_reuse_address = True
-
-    with ReusableTCPServer(("", port), NoCacheHTTPRequestHandler) as httpd:
-        try:
-            httpd.serve_forever()
-        except KeyboardInterrupt:
-            print("\nStudio server stopped.")
+def cmd_lighting(args: argparse.Namespace) -> int:
+    """Generates 2D normal and emission lighting maps for character atlases."""
+    print("▶ Generating 2D dynamic lighting maps...")
+    pipeline.generate_all_lighting_maps()
+    if getattr(args, "json", False):
+        print(json.dumps({"status": "success", "operation": "lighting_maps_generated"}, indent=2))
+    return 0
 
 
-def cmd_lighting(args: argparse.Namespace) -> None:
-    from stage5_atlas.generate_lighting_maps import generate_lighting_maps
-    res = generate_lighting_maps(args.image, args.out or Path(args.image).parent, strength=args.strength)
-    print(f"✓ Normal map saved:   {res['normal']}")
-    print(f"✓ Emission map saved: {res['emission']}")
+def cmd_slice_actions(args: argparse.Namespace) -> int:
+    """Extracts and slices character action sheets."""
+    char_id = getattr(args, "character", None) or "all"
+    characters = ["the_architect", "the_guardian"] if char_id == "all" else [char_id]
+    results = {}
+    for c in characters:
+        print(f"▶ Slicing actions for {c}...")
+        results[c] = pipeline.process_character(c)
+    if getattr(args, "json", False):
+        print(json.dumps({"status": "success", "characters": results}, default=str, indent=2))
+    return 0
 
 
-def cmd_slice_actions(args: argparse.Namespace) -> None:
-    print(f"=== Slicing Action Sheet: {args.sheet} ===")
-    labels = [l.strip() for l in args.labels.split(",")] if getattr(args, "labels", None) else None
-    res = detect_and_slice_actions(args.sheet, args.out, action_labels=labels, normalize_size=args.size)
-    print(f"\n✓ Extracted {res['total_actions_detected']} action poses to {args.out}/:")
-    for a in res["actions"]:
-        print(f"  • {a['action']:<10} -> {a['file']}")
+def cmd_dev(args: argparse.Namespace) -> int:
+    """Launches the interactive Studio workstation development server."""
+    studio_dir = PROJECT_ROOT / "studio"
+    print(f"▶ Starting Studio dev server in {studio_dir}...")
+    try:
+        subprocess.run(["npm", "run", "dev"], cwd=studio_dir, check=True)
+        return 0
+    except KeyboardInterrupt:
+        print("\nStudio server terminated.")
+        return 0
+    except Exception as e:
+        print(f"Error starting studio: {e}", file=sys.stderr)
+        return 1
 
 
-def cmd_check(args: argparse.Namespace) -> None:
-    res = assess_image_quality(args.image)
-    score = res["quality_score"]
-    verdict = res["verdict"]
-    print(f"\nQuality Score: {score * 100:.0f}/100 | Verdict: {verdict}")
-    print(f"Summary: {res['summary']}")
-    if res["flaws"]:
-        print("\nDiagnosed Flaws:")
-        for f in res["flaws"]:
-            print(f"  • {f}")
-    if verdict == "POOR_REJECT" or res["flaws"]:
-        print("\nRecommended AI Prompt to Regenerate:")
-        print(f"  {res['suggested_prompt']['positive']}")
-        print(f"\nMidjourney Command:\n  {res['suggested_prompt']['midjourney']}\n")
+def resolve_asset_ir(target: str) -> AssetIR:
+    """Resolves character ID, directory, or JSON file to an AssetIR instance."""
+    p = Path(target)
+    if p.is_file():
+        if p.name.endswith(".img2game2d.json"):
+            manifest = ProjectManifest.load(p)
+            asset_path = p.parent / manifest.asset_ir
+            with open(asset_path, "r", encoding="utf-8") as f:
+                return deserialize_asset_ir(f.read())
+        with open(p, "r", encoding="utf-8") as f:
+            return deserialize_asset_ir(f.read())
+
+    # Check character directories
+    char_candidate = PROJECT_ROOT / "characters" / target
+    if char_candidate.is_dir():
+        return convert_legacy_character_to_asset_ir(char_candidate, project_root=PROJECT_ROOT)
+
+    if p.is_dir():
+        return convert_legacy_character_to_asset_ir(p, project_root=PROJECT_ROOT)
+
+    raise FileNotFoundError(f"Cannot resolve target '{target}' to a valid character or AssetIR file.")
 
 
-def cmd_enhance(args: argparse.Namespace) -> None:
-    print(f"=== Enhancing {args.image} ===")
-    res = run_enhance(
-        args.image,
-        args.out,
-        scale=args.scale,
-        clarity=args.clarity,
+def cmd_inspect(args: argparse.Namespace) -> int:
+    """Inspects an asset and outputs metadata, structure, and stats."""
+    try:
+        asset_ir = resolve_asset_ir(args.target)
+        info = {
+            "id": asset_ir.asset.id,
+            "name": asset_ir.asset.name,
+            "schema_version": asset_ir.schema_version,
+            "canvas": {
+                "width": asset_ir.canvas.width,
+                "height": asset_ir.canvas.height,
+                "pivot_x": asset_ir.canvas.pivot_x,
+                "ground_y": asset_ir.canvas.ground_y,
+            },
+            "frames_count": len(asset_ir.frames),
+            "animations": [
+                {"name": a.name, "fps": a.fps, "loop": a.loop, "frames": len(a.frame_ids)}
+                for a in asset_ir.animations
+            ],
+            "skeleton": {
+                "root": asset_ir.skeleton.root_bone_id if asset_ir.skeleton else None,
+                "bones_count": len(asset_ir.skeleton.bones) if asset_ir.skeleton else 0,
+            },
+            "materials": {
+                "diffuse": asset_ir.materials.diffuse_map if asset_ir.materials else None,
+                "normal": asset_ir.materials.normal_map if asset_ir.materials else None,
+                "emission": asset_ir.materials.emission_map if asset_ir.materials else None,
+            },
+            "atlas": {
+                "size": f"{asset_ir.atlas.width}x{asset_ir.atlas.height}" if asset_ir.atlas else None,
+                "occupancy": f"{asset_ir.atlas.occupancy_ratio * 100:.1f}%" if asset_ir.atlas else None,
+            },
+        }
+        if getattr(args, "json", False):
+            print(json.dumps(info, indent=2))
+        else:
+            print(f"\nAsset: {info['name']} ({info['id']}) [AssetIR v{info['schema_version']}]")
+            print(f"Canvas: {info['canvas']['width']}x{info['canvas']['height']} (Ground: {info['canvas']['ground_y']}, Pivot: {info['canvas']['pivot_x']})")
+            print(f"Total Frames: {info['frames_count']}")
+            print(f"Animations ({len(info['animations'])}):")
+            for a in info["animations"]:
+                print(f"  • {a['name']:<12} {a['frames']:>2} frames @ {a['fps']:>2} fps {'[loop]' if a['loop'] else ''}")
+            if info["skeleton"]["bones_count"] > 0:
+                print(f"Skeletal Rig: {info['skeleton']['bones_count']} bones (Root: {info['skeleton']['root']})")
+            if info["atlas"]["size"]:
+                print(f"Texture Atlas: {info['atlas']['size']} (Occupancy: {info['atlas']['occupancy']})")
+        return 0
+    except Exception as e:
+        if getattr(args, "json", False):
+            print(json.dumps({"error": str(e)}, indent=2))
+        else:
+            print(f"Error inspecting asset: {e}", file=sys.stderr)
+        return 1
+
+
+def cmd_validate(args: argparse.Namespace) -> int:
+    """Validates an asset against AssetIR rules and returns diagnostics."""
+    try:
+        asset_ir = resolve_asset_ir(args.target)
+        diagnostics = validate_asset_ir(asset_ir)
+        errors = [d for d in diagnostics if d.severity == "error"]
+        warnings = [d for d in diagnostics if d.severity == "warning"]
+        is_valid = len(errors) == 0
+
+        result = {
+            "valid": is_valid,
+            "asset_id": asset_ir.asset.id,
+            "error_count": len(errors),
+            "warning_count": len(warnings),
+            "diagnostics": [d.to_dict() for d in diagnostics],
+        }
+
+        if getattr(args, "json", False):
+            print(json.dumps(result, indent=2))
+        else:
+            status_str = "✓ VALID" if is_valid else "✗ INVALID"
+            print(f"\nValidation Result: {status_str} ({len(errors)} errors, {len(warnings)} warnings)")
+            for d in diagnostics:
+                prefix = "✖ ERROR" if d.severity == "error" else "⚠ WARN "
+                loc_str = f" [Frame {d.location.get('frame')}]" if d.location and "frame" in d.location else ""
+                print(f"  {prefix} [{d.code}]{loc_str}: {d.message}")
+                if d.suggested_fix:
+                    print(f"         Suggested Fix: {d.suggested_fix}")
+
+        return 0 if is_valid else 1
+    except Exception as e:
+        if getattr(args, "json", False):
+            print(json.dumps({"valid": False, "error": str(e)}, indent=2))
+        else:
+            print(f"Validation failed with error: {e}", file=sys.stderr)
+        return 1
+
+
+def cmd_convert(args: argparse.Namespace) -> int:
+    """Converts a legacy character directory to canonical AssetIR and project manifest."""
+    try:
+        char_dir = Path(args.source)
+        if not char_dir.is_dir():
+            char_dir = PROJECT_ROOT / "characters" / args.source
+        if not char_dir.is_dir():
+            raise FileNotFoundError(f"Character directory not found: {args.source}")
+
+        asset_ir = convert_legacy_character_to_asset_ir(char_dir, project_root=PROJECT_ROOT)
+        out_dir = Path(args.out) if args.out else char_dir
+
+        out_asset_file = out_dir / f"{asset_ir.asset.id}.assetir.json"
+        with open(out_asset_file, "w", encoding="utf-8") as f:
+            f.write(serialize_asset_ir(asset_ir))
+
+        manifest = ProjectManifest(
+            name=asset_ir.asset.name,
+            source=f"charatcer 1.jpeg" if "architect" in asset_ir.asset.id else "charatcer 2.jpeg",
+            asset_ir=out_asset_file.name,
+            materials={"diffuse": asset_ir.materials.diffuse_map if asset_ir.materials else ""},
+        )
+        out_manifest_file = out_dir / f"{asset_ir.asset.id}.img2game2d.json"
+        manifest.save(out_manifest_file)
+
+        res = {
+            "status": "success",
+            "asset_id": asset_ir.asset.id,
+            "asset_ir_file": str(out_asset_file),
+            "manifest_file": str(out_manifest_file),
+        }
+        if getattr(args, "json", False):
+            print(json.dumps(res, indent=2))
+        else:
+            print(f"✓ Converted '{asset_ir.asset.id}' to AssetIR v3:")
+            print(f"  AssetIR:  {out_asset_file}")
+            print(f"  Manifest: {out_manifest_file}")
+        return 0
+    except Exception as e:
+        if getattr(args, "json", False):
+            print(json.dumps({"status": "error", "error": str(e)}, indent=2))
+        else:
+            print(f"Conversion error: {e}", file=sys.stderr)
+        return 1
+
+
+def main():
+    parser = argparse.ArgumentParser(
+        prog="img2game2d",
+        description="img2game2d v3 — Production 2D Game Asset Compiler",
     )
-    print(f"✓ Enhanced image saved to: {res['output']} "
-          f"({res['orig_resolution']['width']}x{res['orig_resolution']['height']} -> "
-          f"{res['enhanced_resolution']['width']}x{res['enhanced_resolution']['height']})")
+    subparsers = parser.add_subparsers(dest="command", help="Available subcommands")
 
-
-def cmd_viewer(args: argparse.Namespace) -> None:
-    print(f"=== Generating Interactive Web QA Viewer ===")
-    res = export_viewer(args.asset, args.animations, args.out)
-    print(f"✓ Viewer generated at: {res['viewer_html']}")
-
-
-def cmd_analyze(args: argparse.Namespace) -> None:
-    img_path = args.image
-    if not Path(img_path).exists():
-        print(f"Error: image file not found: {img_path}", file=sys.stderr)
-        sys.exit(1)
-
-    print(f"=== Analyzing {img_path} ===")
-    info = probe(img_path)
-    print(f"Format: {info['format']} | Dimensions: {info['width']}x{info['height']} | Alpha: {info['has_alpha']}")
-
-    style_info = detect_style(img_path)
-    print(f"Art Style: {style_info['detected_style']} (confidence: {style_info['confidence']:.2f})")
-
-    view_info = detect_views(img_path)
-    views_str = ", ".join([v.get("label", "view") for v in view_info.get("views", [])])
-    print(f"Views Detected ({view_info['view_count']}): {views_str}")
-
-    quality_res = assess_image_quality(img_path, detected_style=style_info["detected_style"])
-    print(f"Quality Score: {quality_res['quality_score'] * 100:.0f}/100 ({quality_res['verdict']})")
-
-    out_dir = Path(args.out_dir) if args.out_dir else Path("analysis")
-    out_dir.mkdir(parents=True, exist_ok=True)
-    save_json(info, str(out_dir / "probe.json"))
-    save_json(style_info, str(out_dir / "style.json"))
-    save_json(view_info, str(out_dir / "views.json"))
-    save_json(quality_res, str(out_dir / "quality.json"))
-    print(f"Analysis saved to {out_dir}/")
-
-
-def cmd_build(args: argparse.Namespace) -> None:
-    img_path = args.image
-    if not Path(img_path).exists():
-        print(f"Error: image file not found: {img_path}", file=sys.stderr)
-        sys.exit(1)
-
-    # Pre-flight quality assessment
-    quality_res = assess_image_quality(img_path)
-    if quality_res["verdict"] == "POOR_REJECT" and not getattr(args, "force", False):
-        print("\n[!] PRE-FLIGHT REJECTION: Reference image quality is insufficient for clean 2D rigging.")
-        print(f"    Quality Score: {quality_res['quality_score'] * 100:.0f} / 100")
-        for f in quality_res["flaws"]:
-            print(f"    • {f}")
-        print("\nRecommended AI prompt to generate a pristine replacement:")
-        print(f"  {quality_res['suggested_prompt']['positive']}\n")
-        print("To bypass this check, re-run with --force.")
-        sys.exit(2)
-
-    out_root = Path(args.out)
-    source_dir = out_root / "source"
-    analysis_dir = out_root / "analysis"
-    layers_dir = out_root / "layers"
-    anim_dir = out_root / "animations"
-    atlas_dir = out_root / "atlases"
-    meta_dir = out_root / "metadata"
-    export_dir = out_root / "exports"
-
-    for d in [source_dir, analysis_dir, layers_dir, anim_dir, atlas_dir, meta_dir, export_dir]:
-        d.mkdir(parents=True, exist_ok=True)
-
-    # 0. Optional Enhancement
-    if getattr(args, "enhance", False):
-        print("\n[0/6] Enhancing Character Art (Super-Resolution & Clarity)...")
-        enhanced_path = str(source_dir / f"enhanced_{Path(img_path).name}")
-        run_enhance(img_path, enhanced_path, scale=2.0, clarity=1.3)
-        img_path = enhanced_path
-
-    # 1. Intake
-    print("\n[1/6] Running Intake...")
-    fg_path = str(source_dir / "foreground.png")
-    mask_path = str(source_dir / "mask.png")
-    remove_background(img_path, fg_path, mask_path)
-
-    style_res = detect_style(img_path)
-    view_res = detect_views(img_path)
-    probe_res = probe(img_path)
-
-    stem = Path(img_path).stem.replace(" ", "_").lower()
-    analysis_data = {
-        "asset_id": stem,
-        "name": Path(img_path).stem.title(),
-        "asset_type": args.type,
-        "character_type": "humanoid" if args.type == "character" else "item",
-        "visual_style": style_res["detected_style"],
-        "source_image": str(Path(img_path).resolve()),
-        "views_detected": [v.get("label", "front") for v in view_res.get("views", [])] or ["front"],
-        "resolution": {"width": probe_res["width"], "height": probe_res["height"]},
-        "bounding_box": {"x": 0, "y": 0, "width": probe_res["width"], "height": probe_res["height"]},
-        "parts": ["head", "torso", "left_arm", "right_arm", "left_leg", "right_leg"],
-        "colors": [{"hex": "#1a1a2e", "role": "main"}],
-        "symmetry": "near-symmetric",
-        "animations": [a.strip() for a in args.animations.split(",") if a.strip()],
-    }
-    save_json(analysis_data, str(analysis_dir / "analysis.json"))
-
-    # 2. Spec
-    print("\n[2/6] Generating Spec...")
-    asset_spec = build_asset_spec(analysis_data, style_res)
-    asset_path = str(out_root / "asset.json")
-    save_json(asset_spec, asset_path)
-    valid, errors = validate_asset(asset_path)
-    if not valid:
-        print(f"Warning: Spec validation issues: {errors}")
-
-    layer_spec = decompose_layers(asset_spec)
-    layer_spec_path = str(layers_dir / "layer-spec.json")
-    save_json(layer_spec, layer_spec_path)
-
-    rig = build_rig(layer_spec)
-    save_json(rig, str(meta_dir / "rig.json"))
-
-    # 3. Build
-    print("\n[3/6] Building Layers & Animation Frames...")
-    orchestrate(
-        source=fg_path,
-        reference=img_path,
-        spec=layer_spec_path,
-        asset=asset_path,
-        animations=asset_spec["animations"].keys(),
-        out_layers=str(layers_dir) + "/",
-        out_frames=str(anim_dir) + "/",
-        provider=args.provider,
-    )
-
-    sil_res = validate_silhouette(img_path, str(anim_dir / "idle"))
-    save_json(sil_res, str(analysis_dir / "silhouette_check.json"))
-
-    col_res = validate_colors(img_path, str(anim_dir))
-    save_json(col_res, str(analysis_dir / "color_check.json"))
-
-    cont_res = validate_continuity(str(anim_dir))
-    save_json(cont_res, str(analysis_dir / "continuity_check.json"))
-
-    make_comparison_sheet(img_path, str(anim_dir / "idle"), str(analysis_dir / "comparison.png"))
-
-    review_action = "continue" if (sil_res.get("passed", True) and cont_res.get("passed", True)) else "refine-frames"
-    append_review(
-        asset_path,
-        stage="review",
-        action=review_action,
-        silhouette=sil_res.get("score", 0.9),
-        colors=col_res.get("score", 0.9),
-        continuity=cont_res.get("score", 0.9),
-        summary="Automated build review complete."
-    )
-
-    # 5. Atlas
-    print("\n[5/6] Packing Atlases...")
-    pack_atlas(str(anim_dir) + "/", str(atlas_dir) + "/", power_of_two=True)
-
-    # 6. Export
-    print("\n[6/6] Exporting Game Assets...")
-    asset_spec = load_json(asset_path)
-    run_export(asset_spec, str(atlas_dir) + "/", args.engine, str(export_dir) + "/")
-
-    print(f"\n✓ Pipeline complete! Assets generated at: {out_root}/")
-
-
-def main() -> None:
-    parser = argparse.ArgumentParser(prog="img2game2d", description="2D Game Asset Generation Pipeline")
-    subparsers = parser.add_subparsers(dest="command", required=True)
-
-    # init (Framework Scaffolder)
-    p_init = subparsers.add_parser("init", help="Scaffold a new img2game2d v2.0 framework project")
-    p_init.add_argument("name", nargs="?", default="my-game-project", help="Project directory name")
-    p_init.add_argument("--engines", default=None, help="Comma-separated target engines (e.g. godot,spine,unity)")
-    p_init.add_argument("--dir", default=None, help="Target directory (defaults to current dir / name)")
-    p_init.set_defaults(func=cmd_init)
-
-    # dev (Web Studio Live Server)
-    p_dev = subparsers.add_parser("dev", help="Start the interactive Finnova-style Web Studio server")
-    p_dev.add_argument("--port", "-p", type=int, default=8080, help="Server port (default: 8080)")
-    p_dev.add_argument("--dir", default=None, help="Directory to serve (default: exports/viewer)")
+    # 1. Legacy commands
+    p_dev = subparsers.add_parser("dev", help="Start Studio workstation development server")
     p_dev.set_defaults(func=cmd_dev)
 
-    # lighting (Normal & Emission Map Generator)
-    p_lighting = subparsers.add_parser("lighting", help="Generate 2D normal and bloom emission maps")
-    p_lighting.add_argument("image", help="Path to input sprite or atlas image")
-    p_lighting.add_argument("--out", "-o", default=None, help="Output directory")
-    p_lighting.add_argument("--strength", "-s", type=float, default=2.5, help="Normal bevel strength (default: 2.5)")
-    p_lighting.set_defaults(func=cmd_lighting)
-
-    # check
-    p_check = subparsers.add_parser("check", help="Assess image quality, border clipping, and generate AI prompt if flawed")
-    p_check.add_argument("image", help="Path to input image")
-    p_check.set_defaults(func=cmd_check)
-
-    # enhance
-    p_enhance = subparsers.add_parser("enhance", help="Enhance image resolution, clarity, and ink outlines")
-    p_enhance.add_argument("image", help="Path to input image")
-    p_enhance.add_argument("--out", "-o", required=True, help="Path for output enhanced image")
-    p_enhance.add_argument("--scale", "-s", type=float, default=2.0, help="Scale factor (default: 2.0)")
-    p_enhance.add_argument("--clarity", "-c", type=float, default=1.3, help="Clarity/sharpening factor (default: 1.3)")
-    p_enhance.set_defaults(func=cmd_enhance)
-
-    # analyze
-    p_analyze = subparsers.add_parser("analyze", help="Probe and analyze 2D reference image")
-    p_analyze.add_argument("image", help="Path to input image")
-    p_analyze.add_argument("--out-dir", default=None, help="Output directory for analysis JSONs")
-    p_analyze.set_defaults(func=cmd_analyze)
-
-    # slice-actions
-    p_slice = subparsers.add_parser("slice-actions", help="Detect and slice multi-pose action sheet into poses")
-    p_slice.add_argument("sheet", help="Path to action sheet image")
-    p_slice.add_argument("--out", "-o", default="poses", help="Output directory for poses")
-    p_slice.add_argument("--labels", help="Comma-separated labels (e.g. idle,walk,jump,attack,hurt)")
-    p_slice.add_argument("--size", type=int, default=512, help="Normalized canvas size (default: 512)")
-    p_slice.set_defaults(func=cmd_slice_actions)
-
-    # build
-    p_build = subparsers.add_parser("build", help="Run end-to-end asset generation pipeline")
-    p_build.add_argument("image", help="Path to input image")
-    p_build.add_argument("--enhance", action="store_true", help="Enhance resolution and clarity before building")
-    p_build.add_argument("--action-sheet", action="store_true", help="Input is a multi-pose action sheet (idle,walk,jump,attack,hurt)")
-    p_build.add_argument("--force", action="store_true", help="Bypass pre-flight quality check and force build")
-    p_build.add_argument("--type", default="character", choices=["character", "object", "effect"])
-    p_build.add_argument("--engine", default="all", choices=["godot", "unity", "spine", "phaser", "pixijs", "viewer", "all"])
-    p_build.add_argument("--animations", default="idle,walk,attack", help="Comma-separated animations")
-    p_build.add_argument("--provider", default="procedural", choices=["procedural", "stub", "openai", "local"])
-    p_build.add_argument("--out", default="game-asset", help="Output directory")
+    p_build = subparsers.add_parser("build", help="Run full asset extraction and export pipeline")
+    p_build.add_argument("--json", action="store_true", help="Emit machine-readable JSON")
     p_build.set_defaults(func=cmd_build)
 
-    # viewer
-    p_viewer = subparsers.add_parser("viewer", help="Generate standalone interactive web QA viewer")
-    p_viewer.add_argument("--asset", required=True, help="Path to asset.json")
-    p_viewer.add_argument("--animations", default="animations/", help="Path to animations directory")
-    p_viewer.add_argument("--out", default="viewer/", help="Output directory for viewer")
-    p_viewer.set_defaults(func=cmd_viewer)
+    p_light = subparsers.add_parser("lighting", help="Generate 2D normal and emission lighting maps")
+    p_light.add_argument("--json", action="store_true", help="Emit machine-readable JSON")
+    p_light.set_defaults(func=cmd_lighting)
+
+    p_slice = subparsers.add_parser("slice-actions", help="Extract and slice character action sheets")
+    p_slice.add_argument("character", nargs="?", default="all", help="Character ID or 'all'")
+    p_slice.add_argument("--json", action="store_true", help="Emit machine-readable JSON")
+    p_slice.set_defaults(func=cmd_slice_actions)
+
+    # 2. v3 Core commands
+    p_inspect = subparsers.add_parser("inspect", help="Inspect asset metadata and hierarchy")
+    p_inspect.add_argument("target", help="Character ID, directory, or manifest path")
+    p_inspect.add_argument("--json", action="store_true", help="Emit machine-readable JSON")
+    p_inspect.set_defaults(func=cmd_inspect)
+
+    p_validate = subparsers.add_parser("validate", help="Validate asset structural integrity and geometry")
+    p_validate.add_argument("target", help="Character ID, directory, or manifest path")
+    p_validate.add_argument("--json", action="store_true", help="Emit machine-readable JSON")
+    p_validate.set_defaults(func=cmd_validate)
+
+    p_convert = subparsers.add_parser("convert", help="Convert legacy character metadata to canonical AssetIR")
+    p_convert.add_argument("source", help="Character ID or path")
+    p_convert.add_argument("--out", default=None, help="Output directory")
+    p_convert.add_argument("--json", action="store_true", help="Emit machine-readable JSON")
+    p_convert.set_defaults(func=cmd_convert)
 
     args = parser.parse_args()
-    args.func(args)
+    if not hasattr(args, "func"):
+        parser.print_help()
+        return 1
+
+    return args.func(args)
 
 
 if __name__ == "__main__":
-    main()
+    sys.exit(main())

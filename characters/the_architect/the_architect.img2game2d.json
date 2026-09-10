@@ -1,0 +1,13 @@
+{
+  "schema_version": "3.0.0",
+  "name": "The Architect",
+  "source": "charatcer 1.jpeg",
+  "asset_ir": "the_architect.assetir.json",
+  "rig": null,
+  "animations": {},
+  "materials": {
+    "diffuse": "the_architect_atlas.png"
+  },
+  "atlases": {},
+  "exports": {}
+}

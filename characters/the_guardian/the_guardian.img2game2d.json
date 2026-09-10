@@ -1,0 +1,13 @@
+{
+  "schema_version": "3.0.0",
+  "name": "The Guardian",
+  "source": "charatcer 2.jpeg",
+  "asset_ir": "the_guardian.assetir.json",
+  "rig": null,
+  "animations": {},
+  "materials": {
+    "diffuse": "the_guardian_atlas.png"
+  },
+  "atlases": {},
+  "exports": {}
+}
