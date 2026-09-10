@@ -1,0 +1,35 @@
+{
+  "gameObjectName": "TheGuardian",
+  "spriteAtlas": "the_guardian_atlas.png",
+  "pixelsPerUnit": 100,
+  "pivot": {
+    "x": 0.5,
+    "y": 0.1015625
+  },
+  "boxCollider2D": {
+    "offset": [
+      -35,
+      180
+    ],
+    "size": [
+      70,
+      170
+    ]
+  },
+  "animatorController": {
+    "parameters": [
+      "Speed",
+      "IsJumping",
+      "IsAttacking",
+      "IsDefending"
+    ],
+    "clips": [
+      "idle",
+      "run",
+      "jump",
+      "attack",
+      "defend",
+      "hurt"
+    ]
+  }
+}

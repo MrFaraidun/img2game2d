@@ -1,0 +1,173 @@
+the_architect_atlas.png
+size: 2048,2048
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+idle_00
+  rotate: false
+  xy: 2, 2
+  size: 204, 369
+  orig: 576, 512
+  offset: 186, 52
+  index: -1
+idle_01
+  rotate: false
+  xy: 208, 2
+  size: 204, 369
+  orig: 576, 512
+  offset: 186, 52
+  index: -1
+idle_02
+  rotate: false
+  xy: 414, 2
+  size: 204, 369
+  orig: 576, 512
+  offset: 186, 52
+  index: -1
+idle_03
+  rotate: false
+  xy: 620, 2
+  size: 204, 369
+  orig: 576, 512
+  offset: 186, 52
+  index: -1
+attack_02
+  rotate: false
+  xy: 826, 2
+  size: 460, 347
+  orig: 576, 512
+  offset: 58, 52
+  index: -1
+attack_03
+  rotate: false
+  xy: 1288, 2
+  size: 520, 339
+  orig: 576, 512
+  offset: 28, 52
+  index: -1
+attack_04
+  rotate: false
+  xy: 2, 373
+  size: 405, 336
+  orig: 576, 512
+  offset: 86, 52
+  index: -1
+jump_00
+  rotate: false
+  xy: 409, 373
+  size: 341, 325
+  orig: 576, 512
+  offset: 118, 107
+  index: -1
+jump_01
+  rotate: false
+  xy: 752, 373
+  size: 220, 323
+  orig: 576, 512
+  offset: 178, 72
+  index: -1
+attack_00
+  rotate: false
+  xy: 974, 373
+  size: 520, 316
+  orig: 576, 512
+  offset: 28, 52
+  index: -1
+defend_00
+  rotate: false
+  xy: 1496, 373
+  size: 401, 292
+  orig: 576, 512
+  offset: 88, 52
+  index: -1
+run_06
+  rotate: false
+  xy: 2, 711
+  size: 274, 289
+  orig: 576, 512
+  offset: 151, 52
+  index: -1
+defend_01
+  rotate: false
+  xy: 278, 711
+  size: 386, 288
+  orig: 576, 512
+  offset: 95, 52
+  index: -1
+run_03
+  rotate: false
+  xy: 666, 711
+  size: 288, 287
+  orig: 576, 512
+  offset: 144, 52
+  index: -1
+run_04
+  rotate: false
+  xy: 956, 711
+  size: 267, 287
+  orig: 576, 512
+  offset: 155, 52
+  index: -1
+run_00
+  rotate: false
+  xy: 1225, 711
+  size: 274, 286
+  orig: 576, 512
+  offset: 151, 52
+  index: -1
+run_01
+  rotate: false
+  xy: 1501, 711
+  size: 266, 286
+  orig: 576, 512
+  offset: 155, 52
+  index: -1
+run_02
+  rotate: false
+  xy: 1769, 711
+  size: 266, 284
+  orig: 576, 512
+  offset: 155, 52
+  index: -1
+run_05
+  rotate: false
+  xy: 2, 1002
+  size: 255, 284
+  orig: 576, 512
+  offset: 161, 52
+  index: -1
+run_07
+  rotate: false
+  xy: 259, 1002
+  size: 242, 284
+  orig: 576, 512
+  offset: 167, 52
+  index: -1
+attack_01
+  rotate: false
+  xy: 503, 1002
+  size: 525, 283
+  orig: 576, 512
+  offset: 26, 52
+  index: -1
+jump_02
+  rotate: false
+  xy: 1030, 1002
+  size: 223, 253
+  orig: 576, 512
+  offset: 177, 52
+  index: -1
+defend_03
+  rotate: false
+  xy: 1255, 1002
+  size: 300, 250
+  orig: 576, 512
+  offset: 138, 52
+  index: -1
+defend_02
+  rotate: false
+  xy: 1557, 1002
+  size: 329, 246
+  orig: 576, 512
+  offset: 124, 52
+  index: -1

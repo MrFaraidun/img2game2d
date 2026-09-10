@@ -1,0 +1,173 @@
+the_guardian_atlas.png
+size: 2048,2048
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+defend_03
+  rotate: false
+  xy: 2, 2
+  size: 354, 360
+  orig: 576, 512
+  offset: 111, 52
+  index: -1
+defend_01
+  rotate: false
+  xy: 358, 2
+  size: 397, 357
+  orig: 576, 512
+  offset: 90, 52
+  index: -1
+attack_01
+  rotate: false
+  xy: 757, 2
+  size: 330, 352
+  orig: 576, 512
+  offset: 123, 52
+  index: -1
+defend_02
+  rotate: false
+  xy: 1089, 2
+  size: 384, 338
+  orig: 576, 512
+  offset: 96, 52
+  index: -1
+defend_00
+  rotate: false
+  xy: 1475, 2
+  size: 383, 336
+  orig: 576, 512
+  offset: 97, 52
+  index: -1
+attack_02
+  rotate: false
+  xy: 2, 364
+  size: 375, 333
+  orig: 576, 512
+  offset: 101, 52
+  index: -1
+jump_00
+  rotate: false
+  xy: 379, 364
+  size: 294, 323
+  orig: 576, 512
+  offset: 141, 97
+  index: -1
+idle_00
+  rotate: false
+  xy: 675, 364
+  size: 234, 321
+  orig: 576, 512
+  offset: 171, 52
+  index: -1
+idle_01
+  rotate: false
+  xy: 911, 364
+  size: 240, 321
+  orig: 576, 512
+  offset: 168, 52
+  index: -1
+idle_02
+  rotate: false
+  xy: 1153, 364
+  size: 240, 321
+  orig: 576, 512
+  offset: 168, 52
+  index: -1
+idle_03
+  rotate: false
+  xy: 1395, 364
+  size: 247, 320
+  orig: 576, 512
+  offset: 165, 52
+  index: -1
+jump_01
+  rotate: false
+  xy: 1644, 364
+  size: 314, 319
+  orig: 576, 512
+  offset: 131, 102
+  index: -1
+hurt_00
+  rotate: false
+  xy: 2, 699
+  size: 301, 291
+  orig: 576, 512
+  offset: 138, 52
+  index: -1
+jump_02
+  rotate: false
+  xy: 305, 699
+  size: 438, 287
+  orig: 576, 512
+  offset: 69, 52
+  index: -1
+run_00
+  rotate: false
+  xy: 745, 699
+  size: 304, 285
+  orig: 576, 512
+  offset: 136, 52
+  index: -1
+run_01
+  rotate: false
+  xy: 1051, 699
+  size: 305, 285
+  orig: 576, 512
+  offset: 136, 52
+  index: -1
+run_02
+  rotate: false
+  xy: 1358, 699
+  size: 303, 284
+  orig: 576, 512
+  offset: 137, 52
+  index: -1
+run_03
+  rotate: false
+  xy: 1663, 699
+  size: 307, 284
+  orig: 576, 512
+  offset: 135, 52
+  index: -1
+run_04
+  rotate: false
+  xy: 2, 992
+  size: 298, 284
+  orig: 576, 512
+  offset: 139, 52
+  index: -1
+run_06
+  rotate: false
+  xy: 302, 992
+  size: 304, 284
+  orig: 576, 512
+  offset: 136, 52
+  index: -1
+run_07
+  rotate: false
+  xy: 608, 992
+  size: 302, 283
+  orig: 576, 512
+  offset: 137, 52
+  index: -1
+run_05
+  rotate: false
+  xy: 912, 992
+  size: 306, 282
+  orig: 576, 512
+  offset: 135, 52
+  index: -1
+attack_00
+  rotate: false
+  xy: 1220, 992
+  size: 350, 281
+  orig: 576, 512
+  offset: 113, 52
+  index: -1
+attack_03
+  rotate: false
+  xy: 1572, 992
+  size: 385, 268
+  orig: 576, 512
+  offset: 96, 52
+  index: -1

@@ -1,0 +1,538 @@
+{
+  "skeleton": {
+    "hash": "the_guardian_hash",
+    "spine": "3.8.99",
+    "x": -288,
+    "y": 0,
+    "width": 576,
+    "height": 512,
+    "images": "./",
+    "audio": ""
+  },
+  "bones": [
+    {
+      "name": "root"
+    },
+    {
+      "name": "pelvis",
+      "parent": "root",
+      "x": 0,
+      "y": 195,
+      "rotation": 90,
+      "length": 36,
+      "color": "6366f1"
+    },
+    {
+      "name": "spine",
+      "parent": "pelvis",
+      "x": 36,
+      "y": 0,
+      "rotation": 0,
+      "length": 45,
+      "color": "6366f1"
+    },
+    {
+      "name": "chest",
+      "parent": "spine",
+      "x": 45,
+      "y": 0,
+      "rotation": 0,
+      "length": 45,
+      "color": "00f0ff"
+    },
+    {
+      "name": "neck",
+      "parent": "chest",
+      "x": 45,
+      "y": 0,
+      "rotation": 0,
+      "length": 25,
+      "color": "6366f1"
+    },
+    {
+      "name": "head",
+      "parent": "neck",
+      "x": 25,
+      "y": 0,
+      "rotation": 0,
+      "length": 64,
+      "color": "00f0ff"
+    },
+    {
+      "name": "shoulder_l",
+      "parent": "chest",
+      "x": 36,
+      "y": -28,
+      "rotation": 130,
+      "length": 40,
+      "color": "818cf8"
+    },
+    {
+      "name": "forearm_l",
+      "parent": "shoulder_l",
+      "x": 40,
+      "y": 0,
+      "rotation": 5,
+      "length": 40,
+      "color": "818cf8"
+    },
+    {
+      "name": "hand_l",
+      "parent": "forearm_l",
+      "x": 40,
+      "y": 0,
+      "rotation": 10,
+      "length": 22,
+      "color": "818cf8"
+    },
+    {
+      "name": "shield_l",
+      "parent": "forearm_l",
+      "x": 40,
+      "y": 0,
+      "rotation": -5,
+      "length": 92,
+      "color": "a855f7"
+    },
+    {
+      "name": "shoulder_r",
+      "parent": "chest",
+      "x": 36,
+      "y": 28,
+      "rotation": -160,
+      "length": 40,
+      "color": "818cf8"
+    },
+    {
+      "name": "forearm_r",
+      "parent": "shoulder_r",
+      "x": 40,
+      "y": 0,
+      "rotation": -10,
+      "length": 40,
+      "color": "818cf8"
+    },
+    {
+      "name": "hand_r",
+      "parent": "forearm_r",
+      "x": 40,
+      "y": 0,
+      "rotation": -10,
+      "length": 22,
+      "color": "818cf8"
+    },
+    {
+      "name": "heavy_hammer",
+      "parent": "hand_r",
+      "x": 22,
+      "y": 0,
+      "rotation": 40,
+      "length": 123,
+      "color": "a855f7"
+    },
+    {
+      "name": "thigh_l",
+      "parent": "pelvis",
+      "x": -5,
+      "y": -20,
+      "rotation": 176,
+      "length": 68,
+      "color": "4f46e5"
+    },
+    {
+      "name": "shin_l",
+      "parent": "thigh_l",
+      "x": 68,
+      "y": 0,
+      "rotation": 4,
+      "length": 68,
+      "color": "4f46e5"
+    },
+    {
+      "name": "foot_l",
+      "parent": "shin_l",
+      "x": 68,
+      "y": 0,
+      "rotation": 85,
+      "length": 26,
+      "color": "4f46e5"
+    },
+    {
+      "name": "thigh_r",
+      "parent": "pelvis",
+      "x": -5,
+      "y": 20,
+      "rotation": 174,
+      "length": 68,
+      "color": "4f46e5"
+    },
+    {
+      "name": "shin_r",
+      "parent": "thigh_r",
+      "x": 68,
+      "y": 0,
+      "rotation": -4,
+      "length": 68,
+      "color": "4f46e5"
+    },
+    {
+      "name": "foot_r",
+      "parent": "shin_r",
+      "x": 68,
+      "y": 0,
+      "rotation": -85,
+      "length": 26,
+      "color": "4f46e5"
+    }
+  ],
+  "slots": [
+    {
+      "name": "root_slot",
+      "bone": "root"
+    },
+    {
+      "name": "pelvis_slot",
+      "bone": "pelvis"
+    },
+    {
+      "name": "spine_slot",
+      "bone": "spine"
+    },
+    {
+      "name": "chest_slot",
+      "bone": "chest"
+    },
+    {
+      "name": "head_slot",
+      "bone": "head"
+    },
+    {
+      "name": "arm_l_slot",
+      "bone": "forearm_l"
+    },
+    {
+      "name": "arm_r_slot",
+      "bone": "forearm_r"
+    },
+    {
+      "name": "gear_l_slot",
+      "bone": "shield_l"
+    },
+    {
+      "name": "weapon_slot",
+      "bone": "heavy_hammer"
+    },
+    {
+      "name": "leg_l_slot",
+      "bone": "shin_l"
+    },
+    {
+      "name": "leg_r_slot",
+      "bone": "shin_r"
+    },
+    {
+      "name": "character",
+      "bone": "chest",
+      "attachment": "defend_00"
+    }
+  ],
+  "skins": [
+    {
+      "name": "default",
+      "attachments": {
+        "character": {
+          "defend_00": {
+            "x": 0.5,
+            "y": 167.98,
+            "width": 383,
+            "height": 336
+          },
+          "defend_01": {
+            "x": 0.5,
+            "y": 178.48,
+            "width": 397,
+            "height": 357
+          },
+          "defend_02": {
+            "x": 0.0,
+            "y": 168.98,
+            "width": 384,
+            "height": 338
+          },
+          "defend_03": {
+            "x": 0.0,
+            "y": 179.98,
+            "width": 354,
+            "height": 360
+          },
+          "attack_00": {
+            "x": 0.0,
+            "y": 140.48,
+            "width": 350,
+            "height": 281
+          },
+          "attack_01": {
+            "x": 0.0,
+            "y": 175.98,
+            "width": 330,
+            "height": 352
+          },
+          "attack_02": {
+            "x": 0.5,
+            "y": 166.48,
+            "width": 375,
+            "height": 333
+          },
+          "attack_03": {
+            "x": 0.5,
+            "y": 133.98,
+            "width": 385,
+            "height": 268
+          },
+          "jump_00": {
+            "x": 0.0,
+            "y": 206.48,
+            "width": 294,
+            "height": 323
+          },
+          "jump_01": {
+            "x": 0.0,
+            "y": 209.48,
+            "width": 314,
+            "height": 319
+          },
+          "jump_02": {
+            "x": 0.0,
+            "y": 143.48,
+            "width": 438,
+            "height": 287
+          },
+          "idle_00": {
+            "x": 0.0,
+            "y": 160.48,
+            "width": 234,
+            "height": 321
+          },
+          "idle_01": {
+            "x": 0.0,
+            "y": 160.48,
+            "width": 240,
+            "height": 321
+          },
+          "idle_02": {
+            "x": 0.0,
+            "y": 160.48,
+            "width": 240,
+            "height": 321
+          },
+          "idle_03": {
+            "x": 0.5,
+            "y": 159.98,
+            "width": 247,
+            "height": 320
+          },
+          "hurt_00": {
+            "x": 0.5,
+            "y": 145.48,
+            "width": 301,
+            "height": 291
+          },
+          "run_00": {
+            "x": 0.0,
+            "y": 142.48,
+            "width": 304,
+            "height": 285
+          },
+          "run_01": {
+            "x": 0.5,
+            "y": 142.48,
+            "width": 305,
+            "height": 285
+          },
+          "run_02": {
+            "x": 0.5,
+            "y": 141.98,
+            "width": 303,
+            "height": 284
+          },
+          "run_03": {
+            "x": 0.5,
+            "y": 141.98,
+            "width": 307,
+            "height": 284
+          },
+          "run_04": {
+            "x": 0.0,
+            "y": 141.98,
+            "width": 298,
+            "height": 284
+          },
+          "run_05": {
+            "x": 0.0,
+            "y": 140.98,
+            "width": 306,
+            "height": 282
+          },
+          "run_06": {
+            "x": 0.0,
+            "y": 141.98,
+            "width": 304,
+            "height": 284
+          },
+          "run_07": {
+            "x": 0.0,
+            "y": 141.48,
+            "width": 302,
+            "height": 283
+          }
+        }
+      }
+    }
+  ],
+  "animations": {
+    "defend": {
+      "slots": {
+        "character": {
+          "attachment": [
+            {
+              "time": 0.0,
+              "name": "defend_00"
+            },
+            {
+              "time": 0.125,
+              "name": "defend_01"
+            },
+            {
+              "time": 0.25,
+              "name": "defend_02"
+            },
+            {
+              "time": 0.375,
+              "name": "defend_03"
+            }
+          ]
+        }
+      }
+    },
+    "attack": {
+      "slots": {
+        "character": {
+          "attachment": [
+            {
+              "time": 0.0,
+              "name": "attack_00"
+            },
+            {
+              "time": 0.0833,
+              "name": "attack_01"
+            },
+            {
+              "time": 0.1667,
+              "name": "attack_02"
+            },
+            {
+              "time": 0.25,
+              "name": "attack_03"
+            }
+          ]
+        }
+      }
+    },
+    "jump": {
+      "slots": {
+        "character": {
+          "attachment": [
+            {
+              "time": 0.0,
+              "name": "jump_00"
+            },
+            {
+              "time": 0.1429,
+              "name": "jump_01"
+            },
+            {
+              "time": 0.2857,
+              "name": "jump_02"
+            }
+          ]
+        }
+      }
+    },
+    "idle": {
+      "slots": {
+        "character": {
+          "attachment": [
+            {
+              "time": 0.0,
+              "name": "idle_00"
+            },
+            {
+              "time": 0.1667,
+              "name": "idle_01"
+            },
+            {
+              "time": 0.3333,
+              "name": "idle_02"
+            },
+            {
+              "time": 0.5,
+              "name": "idle_03"
+            }
+          ]
+        }
+      }
+    },
+    "hurt": {
+      "slots": {
+        "character": {
+          "attachment": [
+            {
+              "time": 0.0,
+              "name": "hurt_00"
+            }
+          ]
+        }
+      }
+    },
+    "run": {
+      "slots": {
+        "character": {
+          "attachment": [
+            {
+              "time": 0.0,
+              "name": "run_00"
+            },
+            {
+              "time": 0.0833,
+              "name": "run_01"
+            },
+            {
+              "time": 0.1667,
+              "name": "run_02"
+            },
+            {
+              "time": 0.25,
+              "name": "run_03"
+            },
+            {
+              "time": 0.3333,
+              "name": "run_04"
+            },
+            {
+              "time": 0.4167,
+              "name": "run_05"
+            },
+            {
+              "time": 0.5,
+              "name": "run_06"
+            },
+            {
+              "time": 0.5833,
+              "name": "run_07"
+            }
+          ]
+        }
+      }
+    }
+  }
+}
