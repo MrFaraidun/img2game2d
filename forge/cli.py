@@ -248,6 +248,11 @@ def main():
         prog="img2game2d",
         description="img2game2d v3 — Production 2D Game Asset Compiler",
     )
+    parser.add_argument(
+        "-v", "--version",
+        action="version",
+        version="%(prog)s 3.0.0 (Milestone V3.0 Asset Compiler)",
+    )
     subparsers = parser.add_subparsers(dest="command", help="Available subcommands")
 
     # 1. Legacy commands

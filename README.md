@@ -1,12 +1,12 @@
-# img2game2d — Image-to-2D-Game-Asset Pipeline & Agent Skill
+# img2game2d — Image-to-2D Game Asset Compiler & Agent Skill
 
 [![Python 3.9+](https://img.shields.io/badge/python-3.9+-blue.svg)](https://www.python.org/)
-[![Version](https://img.shields.io/badge/version-v2.0.0-blue.svg)](CHANGELOG.md)
-[![Tests](https://img.shields.io/badge/tests-36%2F36%20passing%20(100%25)-brightgreen.svg)](forge/tests/test_all.py)
+[![Version](https://img.shields.io/badge/version-v3.0.0-blue.svg)](CHANGELOG.md)
+[![Tests](https://img.shields.io/badge/tests-51%2F51%20passing%20(100%25)-brightgreen.svg)](tests/)
 [![Engines](https://img.shields.io/badge/engines-Godot%204%20%7C%20Unity%20%7C%20Spine%202D%20%7C%20Phaser%20%7C%20PixiJS-orange.svg)](#supported-game-engines)
 [![License](https://img.shields.io/badge/license-Apache--2.0-green.svg)](LICENSE)
 
-> Production-ready AI agent skill and CLI pipeline converting concept art, reference sheets, action sheets, and character illustrations into structured, game-ready 2D assets with surgical layer decomposition, skeletal rigging, procedural kinematics, animated texture atlases, and native game engine exporters.
+> Production-grade 2D Game Asset Compiler and AI agent skill converting concept art, reference sheets, action sheets, and character illustrations into canonical AssetIR schemas, skeletal rigs, dynamic normal/emission lighting maps, and multi-engine export packages.
 
 ---
 

@@ -1,6 +1,6 @@
 {
   "$schema": "https://raw.githubusercontent.com/MrFaraidun/img2game2d/main/schemas/config.schema.json",
-  "version": "2.0.0",
+  "version": "3.0.0",
   "project": {
     "name": "3d-model-characters",
     "description": "Production character assets for The Architect & The Guardian",

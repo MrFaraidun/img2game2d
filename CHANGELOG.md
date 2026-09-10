@@ -5,6 +5,23 @@ All notable changes to `img2game2d` will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [3.0.0] - 2026-09-10 — Milestone V3.0 Asset Compiler & Canonical AssetIR
+
+- **Canonical AssetIR Specification & Python Engine (`core/asset_ir/`)**:
+  - Defined deterministic, engine-agnostic Intermediate Representation (`AssetIR`, `SkeletonIR`, `BoneIR`, `AtlasIR`, `AnimationIR`).
+  - Strict mathematical transforms (`transforms.py`) ensuring zero affine drift, normalized radians $(-\pi, \pi]$, and coordinate conversion.
+  - Diagnostic validation engine (`validation.py`) checking parent cycles, pivot bounds $[0, 1]$, and bounding overlaps.
+  - Bi-directional migration and conversion harness (`converter.py`, `manifest.py`).
+- **TypeScript Mirror & React 19 Studio Integration (`studio/src/core/asset-ir/`)**:
+  - Full TypeScript mirror contracts matching Python engine with zero divergence.
+  - Interactive export bundler (`ExportsWorkstation.tsx`) generating client-side `.zip` packages via `JSZip` for Godot, Unity, Spine, and Phaser.
+- **Unified CLI & Agent Tools (`cli.py`, `forge/cli.py`)**:
+  - Headless inspection (`img2game2d inspect <asset> --json`).
+  - Validation enforcement (`img2game2d validate <asset> --json`).
+  - Conversion pipeline (`img2game2d convert <legacy.json> -o <assetir.json>`).
+- **Automated Test Suite (`tests/`)**:
+  - Added 15 comprehensive unit tests for transforms, validation, and schema conversion.
+
 ## [2.0.0] - 2026-09-10 — Framework Release & Finnova Bento Web Studio
 
 - **Framework Scaffolding Engine (`forge/scaffold.py`, `forge/cli.py`)**:
