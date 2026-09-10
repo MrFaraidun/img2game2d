@@ -1,8 +1,7 @@
 /**
- * img2game2d v2.0 Framework Web Studio Engine
- * High-performance Canvas 2D engine with real-time dynamic 2D normal-map lighting,
- * bloom emission shaders, procedural audio synthesis, and Finnova Bento controls.
- * Zero-Emoji Clean Architecture • Multi-Tab Router • Dual-Theme Engine
+ * img2game2d v2.0 Platform Web Studio Engine
+ * Full Dual-Theme Support (Light & Dark) • Canonical Atlas Frame Renderer
+ * Zero-Emoji Clean Vector Design • Interactive Filmstrip & Inspector
  */
 
 // Application State
@@ -43,12 +42,14 @@ const state = {
     the_architect: {
       name: 'The Architect',
       metaUrl: 'assets/the_architect_meta.json',
+      atlasJsonUrl: 'assets/the_architect_atlas.json',
       atlasUrl: 'assets/the_architect_atlas.png',
       normalUrl: 'assets/the_architect_atlas_normal.png',
       emissionUrl: 'assets/the_architect_atlas_emission.png',
       spineJsonUrl: '/exports/spine/the_architect/the_architect_skeleton.json',
       spineAtlasUrl: '/exports/spine/the_architect/the_architect.atlas',
       meta: null,
+      atlasData: null,
       atlasImg: null,
       normalImg: null,
       emissionImg: null,
@@ -57,12 +58,14 @@ const state = {
     the_guardian: {
       name: 'The Guardian',
       metaUrl: 'assets/the_guardian_meta.json',
+      atlasJsonUrl: 'assets/the_guardian_atlas.json',
       atlasUrl: 'assets/the_guardian_atlas.png',
       normalUrl: 'assets/the_guardian_atlas_normal.png',
       emissionUrl: 'assets/the_guardian_atlas_emission.png',
       spineJsonUrl: '/exports/spine/the_guardian/the_guardian_skeleton.json',
       spineAtlasUrl: '/exports/spine/the_guardian/the_guardian.atlas',
       meta: null,
+      atlasData: null,
       atlasImg: null,
       normalImg: null,
       emissionImg: null,
@@ -131,7 +134,7 @@ function playActionSFX(action) {
       osc.type = 'sawtooth';
       osc.frequency.setValueAtTime(320, now);
       osc.frequency.exponentialRampToValueAtTime(70, now + 0.18);
-      gain.gain.setValueAtTime(0.3, now);
+      gain.gain.setValueAtTime(0.25, now);
       gain.gain.exponentialRampToValueAtTime(0.001, now + 0.18);
       osc.start(now);
       osc.stop(now + 0.18);
@@ -139,7 +142,7 @@ function playActionSFX(action) {
       osc.type = 'sine';
       osc.frequency.setValueAtTime(140, now);
       osc.frequency.exponentialRampToValueAtTime(420, now + 0.22);
-      gain.gain.setValueAtTime(0.25, now);
+      gain.gain.setValueAtTime(0.2, now);
       gain.gain.exponentialRampToValueAtTime(0.001, now + 0.22);
       osc.start(now);
       osc.stop(now + 0.22);
@@ -147,7 +150,7 @@ function playActionSFX(action) {
       osc.type = 'triangle';
       osc.frequency.setValueAtTime(120, now);
       osc.frequency.linearRampToValueAtTime(80, now + 0.25);
-      gain.gain.setValueAtTime(0.35, now);
+      gain.gain.setValueAtTime(0.3, now);
       gain.gain.exponentialRampToValueAtTime(0.001, now + 0.25);
       osc.start(now);
       osc.stop(now + 0.25);
@@ -155,7 +158,7 @@ function playActionSFX(action) {
       osc.type = 'sine';
       osc.frequency.setValueAtTime(90, now);
       osc.frequency.exponentialRampToValueAtTime(40, now + 0.08);
-      gain.gain.setValueAtTime(0.12, now);
+      gain.gain.setValueAtTime(0.1, now);
       gain.gain.exponentialRampToValueAtTime(0.001, now + 0.08);
       osc.start(now);
       osc.stop(now + 0.08);
@@ -191,6 +194,15 @@ async function loadCharacter(charId) {
     }
   }
 
+  if (!char.atlasData) {
+    try {
+      const res = await fetch(char.atlasJsonUrl);
+      char.atlasData = await res.json();
+    } catch (e) {
+      console.error('Error fetching atlas json:', e);
+    }
+  }
+
   if (!char.atlasImg) char.atlasImg = await loadImage(char.atlasUrl);
   if (!char.normalImg) char.normalImg = await loadImage(char.normalUrl);
   if (!char.emissionImg) char.emissionImg = await loadImage(char.emissionUrl);
@@ -206,6 +218,34 @@ async function loadCharacter(charId) {
       console.warn('Spine data not loaded yet:', e);
     }
   }
+}
+
+// Helper: Get Frame Info for given animation and frame index
+function getFrameCoordinates(char, animName, frameIdx) {
+  if (!char || !char.atlasData || !char.atlasData.frames) return null;
+  const key = `${animName}_${String(frameIdx).padStart(2, '0')}.png`;
+  const frameItem = char.atlasData.frames[key];
+  if (!frameItem) return null;
+
+  return {
+    key: key,
+    // Slice bounds inside atlas image
+    source: {
+      x: frameItem.frame.x,
+      y: frameItem.frame.y,
+      w: frameItem.frame.w,
+      h: frameItem.frame.h
+    },
+    // Trimmed placement on 576x512 canvas
+    dest: {
+      x: frameItem.spriteSourceSize.x,
+      y: frameItem.spriteSourceSize.y,
+      w: frameItem.spriteSourceSize.w,
+      h: frameItem.spriteSourceSize.h
+    },
+    canvasSize: frameItem.sourceSize || { w: 576, h: 512 },
+    pivot: frameItem.pivot || { x: 0.5, y: 0.90 }
+  };
 }
 
 // Set Character
@@ -248,6 +288,7 @@ async function setCharacter(charId) {
   if (mapNorm) mapNorm.src = char.normalUrl;
   if (mapEmis) mapEmis.src = char.emissionUrl;
 
+  updateFilmstrip();
   updateSpineInspector();
   updateEngineExportsView();
   updateExportModalFiles();
@@ -269,13 +310,60 @@ function setAnimation(animName) {
 
   const char = state.characters[state.activeChar];
   if (char && char.meta && char.meta.animations[animName]) {
-    const fps = char.meta.animations[animName].fps || 12;
+    const anim = char.meta.animations[animName];
+    const fps = anim.fps || 12;
     const fpsLabel = document.getElementById('actionFpsVal');
     if (fpsLabel) fpsLabel.textContent = `${fps} FPS`;
+    const seqNameLabel = document.getElementById('actionSeqName');
+    if (seqNameLabel) seqNameLabel.textContent = `${animName.toUpperCase()} (${anim.frame_count}f @ ${fps}fps)`;
   }
 
+  updateFilmstrip();
   playActionSFX(animName);
   drawStage();
+}
+
+// Update Filmstrip / Frame Strip Widget
+function updateFilmstrip() {
+  const track = document.getElementById('filmstripTrack');
+  const char = state.characters[state.activeChar];
+  if (!track || !char || !char.meta) return;
+
+  const anim = char.meta.animations[state.activeAnim];
+  if (!anim) return;
+
+  const frameCount = anim.frame_count || 1;
+  track.innerHTML = '';
+
+  for (let i = 0; i < frameCount; i++) {
+    const frameCoords = getFrameCoordinates(char, state.activeAnim, i);
+    const frameBox = document.createElement('div');
+    frameBox.className = `filmstrip-frame ${i === state.currentFrameIdx ? 'active' : ''}`;
+    frameBox.title = `Frame ${i}: ${frameCoords ? frameCoords.key : ''}`;
+
+    // Frame canvas thumbnail
+    const thumb = document.createElement('canvas');
+    thumb.width = 44;
+    thumb.height = 44;
+    thumb.className = 'filmstrip-thumb';
+    const tctx = thumb.getContext('2d');
+
+    if (char.atlasImg && frameCoords) {
+      const s = frameCoords.source;
+      tctx.drawImage(char.atlasImg, s.x, s.y, s.w, s.h, 0, 0, 44, 44);
+    }
+
+    frameBox.innerHTML = `<span class="filmstrip-num">${i}</span>`;
+    frameBox.appendChild(thumb);
+
+    frameBox.onclick = () => {
+      state.isPlaying = false;
+      state.currentFrameIdx = i;
+      drawStage();
+    };
+
+    track.appendChild(frameBox);
+  }
 }
 
 // Animation Loop Variables
@@ -308,62 +396,72 @@ function loop(timestamp) {
 // Draw Frame on Main Canvas
 function drawStage() {
   const char = state.characters[state.activeChar];
-  if (!char || !char.meta || !char.atlasImg) return;
+  if (!char || !char.atlasImg) return;
 
-  const anim = char.meta.animations[state.activeAnim];
-  if (!anim) return;
-
-  const frameIdx = state.currentFrameIdx;
-  const frameInfo = anim.frames[frameIdx];
-  if (!frameInfo) return;
+  const anim = char.meta ? char.meta.animations[state.activeAnim] : null;
+  const coords = getFrameCoordinates(char, state.activeAnim, state.currentFrameIdx);
+  if (!coords) return;
 
   // Clear Canvas
   ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-  const { x, y, width: w, height: h } = frameInfo.frame;
-  const destX = 0;
-  const destY = 0;
-  const destW = canvas.width;
-  const destH = canvas.height;
+  const { source: s, dest: d } = coords;
 
   // Render Based on View Mode
   if (state.viewMode === 'diffuse') {
-    ctx.drawImage(char.atlasImg, x, y, w, h, destX, destY, destW, destH);
+    ctx.drawImage(char.atlasImg, s.x, s.y, s.w, s.h, d.x, d.y, d.w, d.h);
   } else if (state.viewMode === 'normal' && char.normalImg) {
-    ctx.drawImage(char.normalImg, x, y, w, h, destX, destY, destW, destH);
+    ctx.drawImage(char.normalImg, s.x, s.y, s.w, s.h, d.x, d.y, d.w, d.h);
   } else if (state.viewMode === 'emission' && char.emissionImg) {
-    ctx.drawImage(char.emissionImg, x, y, w, h, destX, destY, destW, destH);
+    ctx.drawImage(char.emissionImg, s.x, s.y, s.w, s.h, d.x, d.y, d.w, d.h);
   } else if (state.viewMode === 'torch') {
-    renderDynamicTorch(char, x, y, w, h, destX, destY, destW, destH);
+    renderDynamicTorch(char, s, d);
   }
 
   // Draw Overlays (Gizmos)
   if (state.showHitbox) drawHitbox();
-  if (state.showPivot) drawPivot();
+  if (state.showPivot) drawPivot(coords.pivot);
   if (state.showGroundLine) drawGroundBaseline();
   if (state.showFrameBox) drawFrameBoundary();
 
-  updatePlaybackTimeline(anim);
+  // Update Filmstrip selection
+  const track = document.getElementById('filmstripTrack');
+  if (track) {
+    const frames = track.querySelectorAll('.filmstrip-frame');
+    frames.forEach((f, idx) => {
+      f.classList.toggle('active', idx === state.currentFrameIdx);
+    });
+  }
+
+  // Update Telemetry
+  const telBounds = document.getElementById('telBounds');
+  const telOffset = document.getElementById('telOffset');
+  const telPivot = document.getElementById('telPivot');
+  if (telBounds) telBounds.textContent = `${d.w}×${d.h} px`;
+  if (telOffset) telOffset.textContent = `(${d.x}, ${d.y})`;
+  if (telPivot) telPivot.textContent = `(${(coords.pivot.x * canvas.width).toFixed(0)}, ${(coords.pivot.y * canvas.height).toFixed(0)})`;
+
+  if (anim) updatePlaybackTimeline(anim);
 }
 
 // Dynamic 2D Tangent Space Normal-Map Lighting Renderer
-function renderDynamicTorch(char, srcX, srcY, srcW, srcH, destX, destY, destW, destH) {
+function renderDynamicTorch(char, s, d) {
   offscreenCtx.clearRect(0, 0, offscreenCanvas.width, offscreenCanvas.height);
-  offscreenCtx.drawImage(char.atlasImg, srcX, srcY, srcW, srcH, destX, destY, destW, destH);
+  offscreenCtx.drawImage(char.atlasImg, s.x, s.y, s.w, s.h, d.x, d.y, d.w, d.h);
   const diffImgData = offscreenCtx.getImageData(0, 0, offscreenCanvas.width, offscreenCanvas.height);
   const diffData = diffImgData.data;
 
   let normData = null;
   if (char.normalImg) {
     offscreenCtx.clearRect(0, 0, offscreenCanvas.width, offscreenCanvas.height);
-    offscreenCtx.drawImage(char.normalImg, srcX, srcY, srcW, srcH, destX, destY, destW, destH);
+    offscreenCtx.drawImage(char.normalImg, s.x, s.y, s.w, s.h, d.x, d.y, d.w, d.h);
     normData = offscreenCtx.getImageData(0, 0, offscreenCanvas.width, offscreenCanvas.height).data;
   }
 
   let emisData = null;
   if (char.emissionImg) {
     offscreenCtx.clearRect(0, 0, offscreenCanvas.width, offscreenCanvas.height);
-    offscreenCtx.drawImage(char.emissionImg, srcX, srcY, srcW, srcH, destX, destY, destW, destH);
+    offscreenCtx.drawImage(char.emissionImg, s.x, s.y, s.w, s.h, d.x, d.y, d.w, d.h);
     emisData = offscreenCtx.getImageData(0, 0, offscreenCanvas.width, offscreenCanvas.height).data;
   }
 
@@ -445,9 +543,9 @@ function drawHitbox() {
   ctx.restore();
 }
 
-function drawPivot() {
-  const px = canvas.width * 0.5;
-  const py = canvas.height * 0.90;
+function drawPivot(p) {
+  const px = canvas.width * (p ? p.x : 0.5);
+  const py = canvas.height * (p ? p.y : 0.90);
   ctx.save();
   ctx.strokeStyle = 'rgba(56, 189, 248, 0.9)';
   ctx.fillStyle = 'rgba(56, 189, 248, 0.3)';
@@ -561,7 +659,6 @@ function initTabRouter() {
     };
   });
 
-  // Support URL hash routing
   const hash = window.location.hash.replace('#', '');
   if (['studio', 'lighting', 'spine', 'engines'].includes(hash)) {
     switchTab(hash);
@@ -571,12 +668,10 @@ function initTabRouter() {
 function switchTab(tabId) {
   state.activeTab = tabId;
 
-  // Update pills
   document.querySelectorAll('.nav-pill[data-tab]').forEach((p) => {
     p.classList.toggle('active', p.dataset.tab === tabId);
   });
 
-  // Update view containers
   document.querySelectorAll('.tab-view').forEach((view) => {
     view.classList.remove('active');
   });
@@ -584,7 +679,6 @@ function switchTab(tabId) {
   const activeView = document.getElementById(`view-${tabId}`);
   if (activeView) activeView.classList.add('active');
 
-  // Update global headings
   const hInfo = viewHeadings[tabId];
   if (hInfo) {
     const headingEl = document.getElementById('viewHeading');
@@ -593,13 +687,11 @@ function switchTab(tabId) {
     if (subEl) subEl.textContent = hInfo.sub;
   }
 
-  // Update Channel pills visibility
   const channelGroup = document.getElementById('channelPillsGroup');
   if (channelGroup) {
     channelGroup.style.display = (tabId === 'studio' || tabId === 'lighting') ? 'flex' : 'none';
   }
 
-  // Trigger tab-specific refresh
   if (tabId === 'spine') updateSpineInspector();
   if (tabId === 'engines') updateEngineExportsView();
 
@@ -617,7 +709,6 @@ async function updateSpineInspector() {
   const slotsBody = document.getElementById('spineSlotsBody');
   const boneCountBadge = document.getElementById('spineBoneCount');
 
-  // Fallback / default bone structure if skeleton.json is fetching
   let bones = [
     { name: 'root', parent: null, length: 0, x: 0, y: 0, rotation: 0 },
     { name: 'hip', parent: 'root', length: 42, x: 0, y: 120, rotation: 0 },
@@ -643,7 +734,6 @@ async function updateSpineInspector() {
 
   if (boneCountBadge) boneCountBadge.textContent = `${bones.length} Bones`;
 
-  // Render Bone Tree
   if (treeContainer) {
     treeContainer.innerHTML = '';
     bones.forEach((bone, idx) => {
@@ -663,25 +753,22 @@ async function updateSpineInspector() {
     });
   }
 
-  // Select Root by default
   if (bones[0]) selectSpineBone(bones[0]);
 
-  // Render Slots Table
   if (slotsBody) {
     slotsBody.innerHTML = '';
     slots.forEach((s) => {
       const tr = document.createElement('tr');
       tr.innerHTML = `
-        <td style="color: var(--wb-text-light); font-weight: 600;">${s.name}</td>
+        <td style="font-weight: 600;">${s.name}</td>
         <td><span class="tag-pill">${s.bone}</span></td>
         <td>${s.attachment || 'none'}</td>
-        <td style="color: var(--accent-cyan);">${s.region || 'atlas POT'}</td>
+        <td style="color: var(--primary-indigo); font-family: var(--font-mono);">${s.region || 'atlas POT'}</td>
       `;
       slotsBody.appendChild(tr);
     });
   }
 
-  // Update TypeScript Snippet
   const snippetEl = document.getElementById('spineSnippetCode');
   if (snippetEl) {
     snippetEl.textContent = `// Spine 2D TypeScript Runtime Integration

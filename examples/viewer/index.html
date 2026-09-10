@@ -11,7 +11,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css?v=2.1.0">
+  <link rel="stylesheet" href="style.css?v=2.2.0">
 </head>
 <body class="studio-body">
 
@@ -330,6 +330,23 @@
                 <button class="spd-pill active" data-spd="1.0">1.0x</button>
                 <button class="spd-pill" data-spd="1.5">1.5x</button>
                 <button class="spd-pill" data-spd="2.0">2.0x</button>
+              </div>
+            </div>
+
+            <!-- Interactive Filmstrip & Frame Telemetry Bar -->
+            <div class="filmstrip-card">
+              <div class="filmstrip-header">
+                <span class="filmstrip-title">ANIMATION FILMSTRIP & FRAME SLICES</span>
+                <span class="tag-pill" id="actionSeqName">Active Sequence</span>
+              </div>
+              <div class="filmstrip-track" id="filmstripTrack">
+                <!-- Dynamically rendered frame thumbnails -->
+              </div>
+              <div class="frame-telemetry-bar">
+                <span>Slice Bounds: <strong id="telBounds">204×369 px</strong></span>
+                <span>Canvas Offset: <strong id="telOffset">(186, 91)</strong></span>
+                <span>Target Pivot: <strong id="telPivot">(288, 460)</strong></span>
+                <span>Pipeline: <strong>Power-of-Two Trimmed</strong></span>
               </div>
             </div>
           </section>
@@ -714,6 +731,6 @@ new SpinePlayer("spine-container", {
     </div>
   </div>
 
-  <script src="viewer.js?v=2.1.0"></script>
+  <script src="viewer.js?v=2.2.0"></script>
 </body>
 </html>
