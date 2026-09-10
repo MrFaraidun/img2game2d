@@ -1,8 +1,9 @@
 # img2game2d — Image-to-2D-Game-Asset Pipeline & Agent Skill
 
 [![Python 3.9+](https://img.shields.io/badge/python-3.9+-blue.svg)](https://www.python.org/)
-[![Tests](https://img.shields.io/badge/tests-33%2F33%20passing%20(100%25)-brightgreen.svg)](forge/tests/test_all.py)
-[![Engines](https://img.shields.io/badge/engines-Godot%204%20%7C%20Unity%20%7C%20Phaser%20%7C%20PixiJS-orange.svg)](#supported-game-engines)
+[![Version](https://img.shields.io/badge/version-v1.5.0-blue.svg)](CHANGELOG.md)
+[![Tests](https://img.shields.io/badge/tests-35%2F35%20passing%20(100%25)-brightgreen.svg)](forge/tests/test_all.py)
+[![Engines](https://img.shields.io/badge/engines-Godot%204%20%7C%20Unity%20%7C%20Spine%202D%20%7C%20Phaser%20%7C%20PixiJS-orange.svg)](#supported-game-engines)
 [![License](https://img.shields.io/badge/license-Apache--2.0-green.svg)](LICENSE)
 
 > Production-ready AI agent skill and CLI pipeline converting concept art, reference sheets, action sheets, and character illustrations into structured, game-ready 2D assets with surgical layer decomposition, skeletal rigging, procedural kinematics, animated texture atlases, and native game engine exporters.
@@ -78,15 +79,15 @@ Concept / Action Sheet
 [Stage 4: Review & Validation]     ── validate_silhouette ── validate_colors ── validate_continuity
        │
        ▼
-[Stage 5: Atlas Packing]          ── pack_atlas (Power-of-2 Bin-Packing) ── generate_spritesheet
+[Stage 5: Atlas & 2D Lighting]    ── pack_atlas (Power-of-2 Bin-Packing) ── generate_lighting_maps (Normal + Emission)
        │
        ▼
-[Stage 6: Multi-Engine Export]    ── Godot 4 / Unity / Phaser 3 / PixiJS / Interactive Web Canvas QA Viewer
+[Stage 6: Multi-Engine Export]    ── Godot 4 / Unity / Spine 2D / Phaser 3 / PixiJS / Web QA Viewer
 ```
 
 ---
 
-## ⚡ Key Capabilities (v1.0.0 Launch)
+## ⚡ Key Capabilities (v1.5.0)
 
 1. **Super-Resolution & Clarity Enhancement (`enhance.py`)**:
    - Lanczos 2x/4x super-sampling for low-res pixel or hand-drawn concepts.
@@ -104,11 +105,19 @@ Concept / Action Sheet
    - Automatically detects, slices, and normalizes horizontal character action sheets (3–6 poses) into 512×512 sprites.
    - Solves AI character drift by allowing users to generate a single wide sheet of all poses at once.
 
-5. **Pre-Flight Quality Gate & Prompt Synthesizer (`assess_quality.py`)**:
+5. **Spine 2D Native Exporter (`spine_exporter.py`)**:
+   - Generates official Spine 2D `skeleton.json` and LibGDX `.atlas` definitions with bone hierarchy and slot frame keyframes.
+   - Drag-and-drop compatible with `spine-unity`, `spine-godot`, `spine-ue4`, and Web runtimes.
+
+6. **2D Dynamic Lighting Maps (`generate_lighting_maps.py`)**:
+   - Generates tangent-space Normal Maps (`_normal.png`) for dynamic 2D point/spot lights in Godot 4 and Unity URP 2D.
+   - Generates bloom Emission Maps (`_emission.png`) for glowing weapons, magic shields, and visors.
+
+7. **Pre-Flight Quality Gate & Prompt Synthesizer (`assess_quality.py`)**:
    - Evaluates input images for edge clipping, contrast, and resolution.
    - Automatically synthesizes tailored positive/negative prompts and Midjourney `/imagine` commands for both single-pose and action sheets.
 
-6. **Interactive HTML5 Canvas QA Viewer (`viewer_exporter.py`)**:
+8. **Interactive HTML5 Canvas QA Viewer (`viewer_exporter.py`)**:
    - Built-in visual player with playback scrubbing, hitbox and skeleton overlays, and procedural sound synthesis (Web Audio API).
 
 ---

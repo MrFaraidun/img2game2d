@@ -5,6 +5,20 @@ All notable changes to `img2game2d` will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.5.0] - 2026-09-10 — Spine 2D Native Runtime & 2D Dynamic Lighting Engine
+
+- **Spine 2D Exporter (`forge/stage6_export/spine_exporter.py`)**:
+  - Full export to official Spine 2D `skeleton.json` (Spine 3.8/4.x spec) and standard LibGDX `.atlas` format.
+  - Generates bone hierarchies (`root`, `body`), slot attachments, and keyed timeline animations.
+  - Native drag-and-drop compatibility with `spine-unity`, `spine-godot`, `spine-ue4`, and web runtimes.
+  - Integrated into main export router (`--engine spine` or `--engine all`).
+- **2D Dynamic Lighting Engine (`forge/stage5_atlas/generate_lighting_maps.py`)**:
+  - **Tangent-Space Normal Maps (`_normal.png`)**: Computes surface gradients via Sobel operators on luminance, encoding surface angles into OpenGL standard tangent vectors `[R: Nx, G: Ny, B: Nz]` for dynamic 2D point/spot lights in Godot 4 CanvasItem and Unity URP 2D.
+  - **Emission / Bloom Maps (`_emission.png`)**: Extracts high-saturation, high-energy pixels (cyberblades, shields, visors) onto clean emissive textures for bloom shaders.
+- **Test Suite Expansion (`forge/tests/test_all.py`)**:
+  - Added `test_spine_exporter` and `test_lighting_maps`.
+  - Expanded test suite from 33 to 35 automated tests with 100% passing rate.
+
 ## [1.1.0] - 2026-09-06 — Production Character Showcases & Zero-Halo Engine
 
 - **New Live Production Showcases**:

@@ -284,6 +284,15 @@ class TestAtlas:
         assert w == 2 ** math.ceil(math.log2(w))
         assert h == 2 ** math.ceil(math.log2(h))
 
+    def test_lighting_maps(self, populated_atlases, tmp_path):
+        from stage5_atlas.generate_lighting_maps import generate_lighting_maps
+        atl_dir = Path(populated_atlases)
+        pngs = list(atl_dir.glob("*.png"))
+        assert len(pngs) > 0
+        res = generate_lighting_maps(pngs[0], str(tmp_path / "lighting"))
+        assert Path(res["normal"]).exists()
+        assert Path(res["emission"]).exists()
+
 
 # ── Exporter tests ────────────────────────────────────────────────────────────
 
@@ -342,6 +351,18 @@ class TestExporters:
         ts = Path(result["typescript"]).read_text()
         assert "AnimatedSprite" in ts
         assert result["clip_count"] >= 1
+
+    def test_spine_exporter(self, populated_asset, populated_atlases, tmp_path):
+        from stage6_export.spine_exporter import SpineExporter
+        out = tmp_path / "spine"
+        result = SpineExporter().export(populated_asset, populated_atlases, str(out))
+        assert Path(result["skeleton"]).exists()
+        assert Path(result["atlas"]).exists()
+        data = json.loads(Path(result["skeleton"]).read_text())
+        assert "skeleton" in data
+        assert "bones" in data
+        assert "slots" in data
+        assert "animations" in data
 
 
 # ── Cache tests ───────────────────────────────────────────────────────────────

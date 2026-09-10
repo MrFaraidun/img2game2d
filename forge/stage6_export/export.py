@@ -29,7 +29,7 @@ from _shared.schema_utils import load_json
 import json
 import tempfile
 
-ENGINES = ["godot", "unity", "phaser", "pixijs", "viewer"]
+ENGINES = ["godot", "unity", "phaser", "pixijs", "spine", "viewer"]
 
 
 def export(asset: dict, atlases_dir: str, engine: str, out_dir: str) -> dict:
@@ -53,6 +53,9 @@ def export(asset: dict, atlases_dir: str, engine: str, out_dir: str) -> dict:
     elif engine == "pixijs":
         from stage6_export.pixijs_exporter import PixiJSExporter
         return PixiJSExporter().export(asset, atlases_dir, out_dir)
+    elif engine == "spine":
+        from stage6_export.spine_exporter import SpineExporter
+        return SpineExporter().export(asset, atlases_dir, out_dir)
     elif engine == "viewer":
         from stage6_export.viewer_exporter import export_viewer
         atl_p = Path(atlases_dir)

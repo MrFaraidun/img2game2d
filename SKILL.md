@@ -1,8 +1,8 @@
 ---
 name: img2game2d
-description: Convert character/object concept images, reference sheets, sketches, turnarounds, and existing 2D artwork into structured, game-ready 2D assets. Use for sprite sheets, skeletal rigs, animation clips, sprite atlases, and engine exports (Godot, Unity, Phaser, PixiJS).
+description: Convert character/object concept images, reference sheets, sketches, turnarounds, and existing 2D artwork into structured, game-ready 2D assets. Use for sprite sheets, skeletal rigs, animation clips, sprite atlases, dynamic 2D lighting maps (normal/emission), and engine exports (Godot, Unity, Spine 2D, Phaser, PixiJS).
 license: Apache-2.0
-version: 1.0.0
+version: 1.5.0
 ---
 
 # img2game2d — Image to 2D Game Asset
@@ -28,7 +28,8 @@ Activate this skill when the user:
 - Provides a concept art / character sheet / reference image and wants game assets
 - Provides a multi-pose Action Sheet (e.g. 5 poses: idle, walk, jump, attack, hurt on one canvas)
 - Needs sprite sheets, animation frames, sprite atlases
-- Needs Godot `.tscn`, Unity prefab stubs, Phaser/PixiJS atlas JSON
+- Needs Godot `.tscn`, Unity prefab stubs, Spine 2D `skeleton.json`/`.atlas`, Phaser/PixiJS atlas JSON
+- Needs dynamic 2D lighting maps (tangent-space normal maps, bloom emission maps)
 - Wants a skeletal rig JSON from a 2D character reference
 - Needs layer decomposition of a character into head/body/arms/etc.
 - Asks for "game-ready sprites" from any 2D artwork
@@ -226,7 +227,7 @@ python3 forge/stage4_review/append_review.py asset.json \
 If any score < threshold: run `repair` stage using `prompts/repair.md`.
 Repair loop limit: 3 iterations per stage, 6 total.
 
-### Stage 5 — Atlas
+### Stage 5 — Atlas & 2D Dynamic Lighting
 
 ```bash
 # Pack sprite atlas
@@ -243,6 +244,12 @@ python3 forge/stage5_atlas/generate_spritesheet.py \
   --frames animations/idle/ \
   --out atlases/idle_sheet.png \
   --json atlases/idle_sheet.json
+
+# Generate 2D dynamic lighting maps (tangent-space normal map + bloom emission map)
+python3 forge/stage5_atlas/generate_lighting_maps.py \
+  --input atlases/character_atlas.png \
+  --out atlases/ \
+  --strength 2.5
 ```
 
 ### Stage 6 — Export
@@ -250,12 +257,19 @@ python3 forge/stage5_atlas/generate_spritesheet.py \
 Read the relevant `grimoire/export/<engine>_guide.md`.
 
 ```bash
-# Export to specific engine (godot, unity, phaser, pixijs, viewer)
+# Export to specific engine (godot, unity, spine, phaser, pixijs, viewer)
 python3 forge/stage6_export/export.py \
   --asset asset.json \
   --atlases atlases/ \
   --engine godot \
   --out exports/godot/
+
+# Export to Spine 2D (skeleton.json + .atlas for Unity, Godot, and Unreal Spine runtimes)
+python3 forge/stage6_export/export.py \
+  --asset asset.json \
+  --atlases atlases/ \
+  --engine spine \
+  --out exports/spine/
 
 # Interactive Web QA Viewer (Canvas 2D + Web Audio Synthesizer)
 python3 forge/stage6_export/export.py \
@@ -263,6 +277,14 @@ python3 forge/stage6_export/export.py \
   --atlases atlases/ \
   --engine viewer \
   --out exports/viewer/
+
+# Or export all targets at once:
+python3 forge/stage6_export/export.py \
+  --asset asset.json \
+  --atlases atlases/ \
+  --engine all \
+  --out exports/
+```
 
 # All engines (includes Web QA viewer)
 python3 forge/stage6_export/export.py \
