@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,14 +11,14 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css?v=2.0.1">
+  <link rel="stylesheet" href="style.css?v=2.1.0">
 </head>
 <body class="studio-body">
 
-  <!-- Main Container -->
+  <!-- Main Application Container -->
   <div class="studio-container">
 
-    <!-- Top Finnova-Style Navigation Header -->
+    <!-- Top Navigation Header -->
     <header class="top-nav-bar">
       <div class="brand-group">
         <div class="brand-logo">
@@ -41,14 +41,33 @@
 
       <!-- Center Pill Navigation -->
       <nav class="pill-nav">
-        <button class="nav-pill active" data-tab="studio">Studio Canvas</button>
-        <button class="nav-pill" data-tab="lighting">Dynamic Lighting</button>
-        <button class="nav-pill" data-tab="spine">Spine 2D</button>
-        <button class="nav-pill" data-tab="engines">Engine Exports</button>
+        <button class="nav-pill active" data-tab="studio">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+          Studio Canvas
+        </button>
+        <button class="nav-pill" data-tab="lighting">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/></svg>
+          Dynamic Lighting
+        </button>
+        <button class="nav-pill" data-tab="spine">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><circle cx="12" cy="5" r="3"/><circle cx="5" cy="19" r="3"/><circle cx="19" cy="19" r="3"/><line x1="12" y1="8" x2="5" y2="16"/><line x1="12" y1="8" x2="19" y2="16"/></svg>
+          Spine 2D
+        </button>
+        <button class="nav-pill" data-tab="engines">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>
+          Engine Exports
+        </button>
       </nav>
 
       <!-- Right Utility Actions -->
       <div class="nav-actions">
+        <!-- Dual Theme Toggle (Light & Dark) -->
+        <button class="theme-toggle-btn" id="btnThemeToggle" title="Toggle Light / Dark theme">
+          <svg class="theme-sun-icon" viewBox="0 0 24 24" fill="none" stroke-width="2"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/></svg>
+          <svg class="theme-moon-icon" viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+          <span id="themeLabel">Theme</span>
+        </button>
+
         <a href="https://github.com/MrFaraidun/img2game2d" target="_blank" class="action-circle-btn" title="GitHub Repository">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
         </a>
@@ -64,319 +83,551 @@
       <!-- Card 1: Frames & Actions -->
       <div class="kpi-card">
         <div class="kpi-header">
-          <span class="kpi-title">Extracted Animations</span>
-          <span class="kpi-badge badge-green">✓ Ready</span>
+          <div class="kpi-title-wrap">
+            <svg class="kpi-icon" viewBox="0 0 24 24" fill="none" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+            <span class="kpi-title">Extracted Animations</span>
+          </div>
+          <span class="kpi-badge badge-green">Ready</span>
         </div>
         <div class="kpi-value" id="kpiFrameCount">24 <span class="kpi-unit">Frames</span></div>
         <div class="kpi-trend">
-          <span class="trend-indicator up">↑ 5 Actions</span>
+          <span class="trend-indicator up">5 Actions</span>
           <span class="trend-desc">Idle, Run, Jump, Attack, Defend</span>
-        </div>
-        <div class="mini-bar-chart">
-          <div class="bar" style="height: 45%;" title="Idle (4f)"></div>
-          <div class="bar" style="height: 90%;" title="Run (8f)"></div>
-          <div class="bar" style="height: 35%;" title="Jump (3f)"></div>
-          <div class="bar" style="height: 65%;" title="Attack (5f)"></div>
-          <div class="bar" style="height: 50%;" title="Defend (4f)"></div>
         </div>
       </div>
 
       <!-- Card 2: Atlas Resolution -->
       <div class="kpi-card">
         <div class="kpi-header">
-          <span class="kpi-title">Atlas Power-of-Two</span>
+          <div class="kpi-title-wrap">
+            <svg class="kpi-icon" viewBox="0 0 24 24" fill="none" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="21" x2="9" y2="9"/></svg>
+            <span class="kpi-title">Atlas Power-of-Two</span>
+          </div>
           <span class="kpi-badge badge-purple">POT 2048²</span>
         </div>
         <div class="kpi-value">2048 <span class="kpi-unit">× 2048</span></div>
         <div class="kpi-trend">
-          <span class="trend-indicator up">RGBA8888</span>
+          <span class="trend-indicator">RGBA8888</span>
           <span class="trend-desc">Zero-Halo Alpha Defringed</span>
-        </div>
-        <div class="kpi-meta-row">
-          <span class="tag-pill">Padded 2px</span>
-          <span class="tag-pill">Bin-Packed</span>
-          <span class="tag-pill">Uncompressed</span>
         </div>
       </div>
 
       <!-- Card 3: Dynamic 2D Lighting -->
       <div class="kpi-card">
         <div class="kpi-header">
-          <span class="kpi-title">Dynamic 2D Lighting</span>
+          <div class="kpi-title-wrap">
+            <svg class="kpi-icon" viewBox="0 0 24 24" fill="none" stroke-width="2"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/></svg>
+            <span class="kpi-title">Dynamic 2D Lighting</span>
+          </div>
           <span class="kpi-badge badge-cyan">Tangent Space</span>
         </div>
         <div class="kpi-value">Normal <span class="kpi-unit">+ Bloom</span></div>
         <div class="kpi-trend">
-          <span class="trend-indicator up">_normal.png</span>
-          <span class="trend-desc">OpenGL +Y Tangent Bevels</span>
-        </div>
-        <div class="kpi-meta-row">
-          <span class="tag-pill active-cyan">Normal Map</span>
-          <span class="tag-pill active-pink">Bloom Emission</span>
-          <span class="tag-pill">Point Lights</span>
+          <span class="trend-indicator">OpenGL +Y</span>
+          <span class="trend-desc">Interactive Torchlight</span>
         </div>
       </div>
 
       <!-- Card 4: Multi-Engine Targets -->
       <div class="kpi-card">
         <div class="kpi-header">
-          <span class="kpi-title">Engine Packages</span>
+          <div class="kpi-title-wrap">
+            <svg class="kpi-icon" viewBox="0 0 24 24" fill="none" stroke-width="2"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>
+            <span class="kpi-title">Engine Packages</span>
+          </div>
           <span class="kpi-badge badge-indigo">5 Runtimes</span>
         </div>
         <div class="kpi-value">Spine <span class="kpi-unit">+ 4 Engines</span></div>
-        <div class="kpi-trend">
-          <span class="trend-indicator up">Native Files</span>
-          <span class="trend-desc">Godot, Unity, Spine 2D, Phaser, Pixi</span>
-        </div>
-        <div class="kpi-meta-row">
-          <span class="tag-pill">.tscn</span>
-          <span class="tag-pill">.atlas</span>
-          <span class="tag-pill">skeleton.json</span>
+        <div class="kpi-tags">
+          <span class="tag-pill">Godot</span>
+          <span class="tag-pill">Unity</span>
+          <span class="tag-pill">Spine</span>
+          <span class="tag-pill">Phaser</span>
+          <span class="tag-pill">Pixi</span>
         </div>
       </div>
     </section>
 
-    <!-- Deep Indigo Studio Workbench (Matching Finnova Dark Container) -->
+    <!-- Main Workbench Area -->
     <main class="workbench-card">
 
-      <!-- Workbench Header & Quick View Controls -->
+      <!-- Workbench Global Header -->
       <div class="workbench-header">
         <div class="wb-title-group">
-          <h2 class="wb-heading">Character Studio & Diagnostics</h2>
-          <p class="wb-sub">Real-time animation inspector, dynamic normal map torchlight, and skeletal previewer</p>
+          <h2 class="wb-heading" id="viewHeading">Character Studio & Diagnostics</h2>
+          <p class="wb-sub" id="viewSubheading">Real-time animation inspector, dynamic normal map torchlight, and skeletal previewer</p>
         </div>
 
-        <div class="wb-channel-pills">
-          <span class="pills-label">View Channel:</span>
-          <button class="channel-pill active" id="btnChannelDiffuse" data-mode="diffuse">Diffuse Color</button>
-          <button class="channel-pill" id="btnChannelNormal" data-mode="normal">Normal Map</button>
-          <button class="channel-pill" id="btnChannelEmission" data-mode="emission">Bloom Glow</button>
+        <div class="wb-channel-pills" id="channelPillsGroup">
+          <span class="pills-label">Channel:</span>
+          <button class="channel-pill active" id="btnChannelDiffuse" data-mode="diffuse">Diffuse</button>
+          <button class="channel-pill" id="btnChannelNormal" data-mode="normal">Normal</button>
+          <button class="channel-pill" id="btnChannelEmission" data-mode="emission">Bloom</button>
           <button class="channel-pill highlight" id="btnChannelTorch" data-mode="torch">
-            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
-            Interactive Torch
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
+            Torchlight
           </button>
         </div>
       </div>
 
-      <!-- Workbench Two-Column Layout -->
-      <div class="workbench-grid">
+      <!-- ====================================================================
+           TAB VIEW 1: STUDIO CANVAS
+           ==================================================================== -->
+      <section id="view-studio" class="tab-view active">
+        <div class="workbench-grid">
 
-        <!-- Left Controls Sidebar -->
-        <aside class="wb-sidebar">
-
-          <!-- Character Switcher Card -->
-          <div class="wb-panel-card">
-            <div class="panel-head">
-              <span class="panel-label">ACTIVE CHARACTER</span>
-            </div>
-            <div class="char-picker">
-              <button class="char-pill-btn active" id="btnCharArchitect" data-char="the_architect">
-                <div class="char-avatar avatar-arch"></div>
-                <div class="char-pill-text">
-                  <div class="char-title">The Architect</div>
-                  <div class="char-spec">Cyberblade • 24 frames</div>
-                </div>
-                <div class="char-check">✓</div>
-              </button>
-
-              <button class="char-pill-btn" id="btnCharGuardian" data-char="the_guardian">
-                <div class="char-avatar avatar-guard"></div>
-                <div class="char-pill-text">
-                  <div class="char-title">The Guardian</div>
-                  <div class="char-spec">Armored Enforcer • 24 frames</div>
-                </div>
-                <div class="char-check">✓</div>
-              </button>
-            </div>
-          </div>
-
-          <!-- Animation Actions Card -->
-          <div class="wb-panel-card">
-            <div class="panel-head">
-              <span class="panel-label">ACTION SEQUENCES</span>
-              <span class="speed-pill" id="animFpsBadge">12 FPS</span>
-            </div>
-            <div class="action-pill-grid" id="animationButtons">
-              <!-- Dynamically populated by viewer.js -->
-            </div>
-          </div>
-
-          <!-- Inspector Overlays Card -->
-          <div class="wb-panel-card">
-            <div class="panel-head">
-              <span class="panel-label">VISUAL GIZMOS</span>
-            </div>
-            <div class="gizmo-toggles">
-              <label class="switch-row">
-                <span>Combat Hurtbox</span>
-                <input type="checkbox" id="chkHitbox" checked>
-                <span class="slider"></span>
-              </label>
-              <label class="switch-row">
-                <span>Ground Pivot (0.5, 0.90)</span>
-                <input type="checkbox" id="chkPivot" checked>
-                <span class="slider"></span>
-              </label>
-              <label class="switch-row">
-                <span>Ground Baseline (Y=460)</span>
-                <input type="checkbox" id="chkGroundLine" checked>
-                <span class="slider"></span>
-              </label>
-              <label class="switch-row">
-                <span>Canvas Box (576×512)</span>
-                <input type="checkbox" id="chkFrameBox">
-                <span class="slider"></span>
-              </label>
-            </div>
-          </div>
-
-          <!-- Lighting Torch Controls -->
-          <div class="wb-panel-card" id="torchControlCard">
-            <div class="panel-head">
-              <span class="panel-label">2D TORCHLIGHT CONTROLS</span>
-              <span class="live-dot">● Dynamic</span>
-            </div>
-            <div class="slider-group">
-              <div class="slider-info">
-                <span>Light Intensity</span>
-                <span id="torchIntensityVal">1.8x</span>
+          <!-- Left Controls Sidebar -->
+          <aside class="wb-sidebar">
+            <!-- Character Switcher Card -->
+            <div class="wb-panel-card">
+              <div class="panel-head">
+                <span class="panel-label">ACTIVE CHARACTER</span>
               </div>
-              <input type="range" id="torchIntensity" min="0.5" max="3.0" step="0.1" value="1.8" class="custom-range">
-            </div>
-            <div class="slider-group">
-              <div class="slider-info">
-                <span>Ambient Fill</span>
-                <span id="torchAmbientVal">0.35</span>
-              </div>
-              <input type="range" id="torchAmbient" min="0.0" max="1.0" step="0.05" value="0.35" class="custom-range">
-            </div>
-            <div class="torch-hint">Move mouse over canvas to dynamically cast light on normal maps!</div>
-          </div>
+              <div class="char-picker">
+                <button class="char-pill-btn active" id="btnCharArchitect" data-char="the_architect">
+                  <div class="char-avatar avatar-arch"></div>
+                  <div class="char-pill-text">
+                    <div class="char-title">The Architect</div>
+                    <div class="char-spec">Cyberblade • 24 frames</div>
+                  </div>
+                  <svg class="char-check-icon" viewBox="0 0 24 24" fill="none" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+                </button>
 
-        </aside>
-
-        <!-- Center / Main Viewport Stage -->
-        <section class="wb-viewport-column">
-
-          <!-- Viewport Header Toolbar -->
-          <div class="stage-toolbar">
-            <div class="stage-toolbar-group">
-              <span class="tb-label">Stage BG:</span>
-              <button class="stage-bg-pill active" data-bg="grid">Cyber Grid</button>
-              <button class="stage-bg-pill" data-bg="navy">Deep Navy</button>
-              <button class="stage-bg-pill" data-bg="black">Zero-Halo Black</button>
-              <button class="stage-bg-pill" data-bg="checker">Checker</button>
-            </div>
-
-            <div class="stage-toolbar-group">
-              <span class="tb-label">Zoom:</span>
-              <button class="zoom-pill active" id="btnZoomFit">Fit</button>
-              <button class="zoom-pill" id="btnZoom1">1.0x</button>
-              <button class="zoom-pill" id="btnZoom15">1.5x</button>
-            </div>
-          </div>
-
-          <!-- Interactive Canvas Frame -->
-          <div class="canvas-stage-wrapper bg-grid" id="canvasWrapper">
-            <canvas id="stageCanvas" width="576" height="512"></canvas>
-
-            <!-- Torch Cursor Indicator -->
-            <div class="torch-cursor" id="torchCursor">
-              <div class="torch-core"></div>
-              <div class="torch-halo"></div>
-            </div>
-
-            <!-- Floating Mode Badge -->
-            <div class="floating-mode-badge" id="floatingModeBadge">Channel: Diffuse</div>
-          </div>
-
-          <!-- Bottom Finnova-Style Playback Controller -->
-          <div class="playback-console">
-            <div class="playback-buttons">
-              <button class="console-btn" id="btnPrevFrame" title="Previous Frame (Left Arrow)">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M6 6h2v12H6zm3.5 6l8.5 6V6z"/></svg>
-              </button>
-              <button class="console-btn primary" id="btnPlayPause" title="Play/Pause (Space)">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" id="playIcon"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
-              </button>
-              <button class="console-btn" id="btnNextFrame" title="Next Frame (Right Arrow)">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M6 18l8.5-6L6 6v12zM16 6v12h2V6h-2z"/></svg>
-              </button>
-              <button class="console-pill-btn" id="btnAudioToggle">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"/></svg>
-                <span>SFX Active</span>
-              </button>
-            </div>
-
-            <!-- Timeline Scrubber with Pill Layout -->
-            <div class="console-timeline">
-              <div class="timeline-labels">
-                <span id="frameCounter">Frame: 0 / 3</span>
-                <span id="timingInfo">0.00s / 0.33s</span>
-              </div>
-              <div class="timeline-bar" id="timelineTrack">
-                <div class="timeline-fill" id="timelineProgress"></div>
-                <div class="timeline-thumb" id="timelineScrubber"></div>
+                <button class="char-pill-btn" id="btnCharGuardian" data-char="the_guardian">
+                  <div class="char-avatar avatar-guard"></div>
+                  <div class="char-pill-text">
+                    <div class="char-title">The Guardian</div>
+                    <div class="char-spec">Armored Enforcer • 24 frames</div>
+                  </div>
+                  <svg class="char-check-icon" viewBox="0 0 24 24" fill="none" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+                </button>
               </div>
             </div>
 
-            <!-- Speed Pills Selector -->
-            <div class="console-speed-pills">
-              <button class="spd-pill" data-spd="0.5">0.5x</button>
-              <button class="spd-pill active" data-spd="1.0">1.0x</button>
-              <button class="spd-pill" data-spd="1.5">1.5x</button>
-              <button class="spd-pill" data-spd="2.0">2.0x</button>
+            <!-- Action Sequences Card -->
+            <div class="wb-panel-card">
+              <div class="panel-head">
+                <span class="panel-label">ACTION SEQUENCES</span>
+                <span class="live-dot" id="actionFpsVal">12 FPS</span>
+              </div>
+              <div class="actions-grid" id="actionButtons">
+                <!-- Dynamically populated from active character meta -->
+              </div>
+            </div>
+
+            <!-- Visual Gizmos Card -->
+            <div class="wb-panel-card">
+              <div class="panel-head">
+                <span class="panel-label">VISUAL GIZMOS</span>
+              </div>
+              <div class="gizmo-toggles">
+                <label class="switch-row">
+                  <span>Combat Hurtbox</span>
+                  <input type="checkbox" id="chkHitbox" checked>
+                </label>
+                <label class="switch-row">
+                  <span>Ground Pivot (0.5, 0.90)</span>
+                  <input type="checkbox" id="chkPivot" checked>
+                </label>
+                <label class="switch-row">
+                  <span>Ground Baseline (Y=460)</span>
+                  <input type="checkbox" id="chkGroundLine" checked>
+                </label>
+                <label class="switch-row">
+                  <span>Canvas Box (576×512)</span>
+                  <input type="checkbox" id="chkFrameBox">
+                </label>
+              </div>
+            </div>
+
+            <!-- Lighting Torch Controls -->
+            <div class="wb-panel-card" id="torchControlCard">
+              <div class="panel-head">
+                <span class="panel-label">2D TORCHLIGHT CONTROLS</span>
+                <span class="live-dot">Dynamic</span>
+              </div>
+              <div class="slider-group">
+                <div class="slider-info">
+                  <span>Light Intensity</span>
+                  <span id="torchIntensityVal">1.8x</span>
+                </div>
+                <input type="range" id="torchIntensity" min="0.5" max="3.0" step="0.1" value="1.8" class="custom-range">
+              </div>
+              <div class="slider-group">
+                <div class="slider-info">
+                  <span>Ambient Fill</span>
+                  <span id="torchAmbientVal">0.35</span>
+                </div>
+                <input type="range" id="torchAmbient" min="0.0" max="1.0" step="0.05" value="0.35" class="custom-range">
+              </div>
+              <div class="torch-hint">Move mouse over canvas to cast dynamic lighting!</div>
+            </div>
+          </aside>
+
+          <!-- Center Stage Column -->
+          <section class="wb-viewport-column">
+            <!-- Viewport Header Toolbar -->
+            <div class="stage-toolbar">
+              <div class="stage-toolbar-group">
+                <span class="tb-label">Stage BG:</span>
+                <button class="stage-bg-pill active" data-bg="grid">Cyber Grid</button>
+                <button class="stage-bg-pill" data-bg="navy">Deep Navy</button>
+                <button class="stage-bg-pill" data-bg="black">Black</button>
+                <button class="stage-bg-pill" data-bg="checker">Checker</button>
+              </div>
+
+              <div class="stage-toolbar-group">
+                <span class="tb-label">Zoom:</span>
+                <button class="zoom-pill active" id="btnZoomFit">Fit</button>
+                <button class="zoom-pill" id="btnZoom1">1.0x</button>
+                <button class="zoom-pill" id="btnZoom15">1.5x</button>
+              </div>
+            </div>
+
+            <!-- Canvas Stage Frame -->
+            <div class="canvas-stage-wrapper bg-grid" id="canvasWrapper">
+              <canvas id="stageCanvas" width="576" height="512"></canvas>
+              <div class="torch-cursor" id="torchCursor">
+                <div class="torch-core"></div>
+                <div class="torch-halo"></div>
+              </div>
+              <div class="floating-mode-badge" id="floatingModeBadge">Channel: Diffuse</div>
+            </div>
+
+            <!-- Playback Console -->
+            <div class="playback-console">
+              <div class="playback-buttons">
+                <button class="console-btn" id="btnPrevFrame" title="Previous Frame">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M6 6h2v12H6zm3.5 6l8.5 6V6z"/></svg>
+                </button>
+                <button class="console-btn primary" id="btnPlayPause" title="Play / Pause">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" id="playIcon"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
+                </button>
+                <button class="console-btn" id="btnNextFrame" title="Next Frame">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M6 18l8.5-6L6 6v12zM16 6v12h2V6h-2z"/></svg>
+                </button>
+                <button class="console-pill-btn active" id="btnAudioToggle">
+                  <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"/></svg>
+                  <span>SFX Active</span>
+                </button>
+              </div>
+
+              <!-- Timeline Scrubber -->
+              <div class="console-timeline">
+                <div class="timeline-labels">
+                  <span id="frameCounter">Frame: 0 / 3</span>
+                  <span id="timingInfo">0.00s / 0.33s</span>
+                </div>
+                <div class="timeline-bar" id="timelineTrack">
+                  <div class="timeline-fill" id="timelineProgress"></div>
+                  <div class="timeline-thumb" id="timelineScrubber"></div>
+                </div>
+              </div>
+
+              <!-- Speed Selector Pills -->
+              <div class="console-speed-pills">
+                <button class="spd-pill" data-spd="0.5">0.5x</button>
+                <button class="spd-pill active" data-spd="1.0">1.0x</button>
+                <button class="spd-pill" data-spd="1.5">1.5x</button>
+                <button class="spd-pill" data-spd="2.0">2.0x</button>
+              </div>
+            </div>
+          </section>
+
+        </div>
+      </section>
+
+      <!-- ====================================================================
+           TAB VIEW 2: DYNAMIC LIGHTING STUDIO
+           ==================================================================== -->
+      <section id="view-lighting" class="tab-view">
+        <div class="lighting-studio-grid">
+
+          <!-- Left Sidebar: Normal Lighting Parameters -->
+          <aside class="wb-sidebar">
+            <div class="wb-panel-card">
+              <div class="panel-head">
+                <span class="panel-label">LIGHT PRESETS</span>
+              </div>
+              <div class="char-picker">
+                <button class="char-pill-btn active" id="presetNeon" data-preset="neon">
+                  <div class="char-pill-text">
+                    <div class="char-title">Cyberpunk Neon</div>
+                    <div class="char-spec">High bloom + vibrant cyan/violet point</div>
+                  </div>
+                </button>
+                <button class="char-pill-btn" id="presetTorch" data-preset="torch">
+                  <div class="char-pill-text">
+                    <div class="char-title">Dungeon Torch</div>
+                    <div class="char-spec">Warm amber + steep normal falloff</div>
+                  </div>
+                </button>
+                <button class="char-pill-btn" id="presetHigh" data-preset="sun">
+                  <div class="char-pill-text">
+                    <div class="char-title">Sunlight High</div>
+                    <div class="char-spec">High Z-depth ambient fill + balanced bevels</div>
+                  </div>
+                </button>
+              </div>
+            </div>
+
+            <div class="wb-panel-card">
+              <div class="panel-head">
+                <span class="panel-label">NORMAL PARAMETERS</span>
+              </div>
+              <div class="slider-group">
+                <div class="slider-info">
+                  <span>Light Radius</span>
+                  <span id="lightRadiusVal">350px</span>
+                </div>
+                <input type="range" id="lightRadius" min="150" max="600" step="10" value="350" class="custom-range">
+              </div>
+
+              <div class="slider-group">
+                <div class="slider-info">
+                  <span>Z-Depth Height</span>
+                  <span id="lightZVal">45px</span>
+                </div>
+                <input type="range" id="lightZ" min="10" max="150" step="5" value="45" class="custom-range">
+              </div>
+
+              <div class="slider-group">
+                <div class="slider-info">
+                  <span>Bloom Emission Boost</span>
+                  <span id="bloomBoostVal">1.4x</span>
+                </div>
+                <input type="range" id="bloomBoost" min="0.0" max="3.0" step="0.1" value="1.4" class="custom-range">
+              </div>
+
+              <div class="torch-hint">Point light position is driven dynamically by your mouse cursor across the stage.</div>
+            </div>
+          </aside>
+
+          <!-- Center Column: Lighting Stage & Map Channels Row -->
+          <section class="wb-viewport-column">
+            <!-- Map Cards Row -->
+            <div class="lighting-maps-row">
+              <div class="map-card">
+                <div class="map-card-head">
+                  <span class="map-card-title">Diffuse Texture Map</span>
+                  <span class="tag-pill">Albedo</span>
+                </div>
+                <div class="map-preview-frame">
+                  <img id="mapPreviewDiffuse" src="assets/the_architect_atlas.png" alt="Diffuse Map">
+                </div>
+                <div class="map-card-meta">
+                  <span>Format: RGBA8888</span>
+                  <span>POT 2048²</span>
+                </div>
+              </div>
+
+              <div class="map-card">
+                <div class="map-card-head">
+                  <span class="map-card-title">Tangent Normal Map</span>
+                  <span class="tag-pill">OpenGL +Y</span>
+                </div>
+                <div class="map-preview-frame">
+                  <img id="mapPreviewNormal" src="assets/the_architect_atlas_normal.png" alt="Normal Map">
+                </div>
+                <div class="map-card-meta">
+                  <span>Format: Tangent Space</span>
+                  <span>Norm: (0.5, 0.5, 1.0)</span>
+                </div>
+              </div>
+
+              <div class="map-card">
+                <div class="map-card-head">
+                  <span class="map-card-title">Bloom Emission Map</span>
+                  <span class="tag-pill">Glow Mask</span>
+                </div>
+                <div class="map-preview-frame">
+                  <img id="mapPreviewEmission" src="assets/the_architect_atlas_emission.png" alt="Emission Map">
+                </div>
+                <div class="map-card-meta">
+                  <span>Format: Additive Mask</span>
+                  <span>HDR: 1.8x</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Lighting Quick Info Card -->
+            <div class="wb-panel-card">
+              <div class="panel-head">
+                <span class="panel-label">LIGHTING PIPELINE SPECIFICATION</span>
+                <span class="live-dot">v2.0 Native Shaders</span>
+              </div>
+              <p class="engine-summary">All normal maps are encoded in Tangent Space using the OpenGL (+Y upward) convention, defringed with zero alpha halos. Shaders in Godot 4.x and Unity 2022+ URP calculate real-time per-pixel Lambertian diffusion and specular highlights without requiring 3D meshes.</p>
+            </div>
+          </section>
+
+        </div>
+      </section>
+
+      <!-- ====================================================================
+           TAB VIEW 3: SPINE 2D SKELETAL INSPECTOR
+           ==================================================================== -->
+      <section id="view-spine" class="tab-view">
+        <div class="spine-inspector-grid">
+
+          <!-- Left: Bone Hierarchy Tree -->
+          <div class="spine-tree-card">
+            <div class="panel-head">
+              <span class="panel-label">SKELETAL BONE TREE</span>
+              <span class="tag-pill" id="spineBoneCount">8 Bones</span>
+            </div>
+            <div id="spineBoneTree" class="tree-container">
+              <!-- Dynamically populated from skeleton.json -->
             </div>
           </div>
 
-          <!-- Bottom Technical Spec Drawer -->
-          <div class="engine-dock">
-            <div class="dock-header">
-              <span class="dock-title">ENGINE EXPORT SHORTCUTS</span>
-              <span class="dock-version">v2.0 Framework Outputs</span>
+          <!-- Right: Bone Properties & Slots Table -->
+          <div class="spine-bone-detail-card">
+            <div class="panel-head">
+              <span class="panel-label">BONE TRANSFORM DIAGNOSTICS</span>
+              <span class="tag-pill" id="selectedBoneName">root</span>
             </div>
-            <div class="dock-cards">
-              <a href="/exports/spine/" target="_blank" class="dock-item">
-                <div class="dock-icon spine">🦴</div>
-                <div class="dock-info">
-                  <div class="dock-name">Spine 2D Runtime</div>
-                  <div class="dock-desc">skeleton.json + .atlas + lighting</div>
-                </div>
-                <span class="dock-arrow">↗</span>
-              </a>
 
-              <a href="/exports/godot/" target="_blank" class="dock-item">
-                <div class="dock-icon godot">🤖</div>
-                <div class="dock-info">
-                  <div class="dock-name">Godot 4.x Engine</div>
-                  <div class="dock-desc">CharacterBody2D .tscn & .tres</div>
-                </div>
-                <span class="dock-arrow">↗</span>
-              </a>
+            <div class="bone-props-grid">
+              <div class="bone-prop-item">
+                <div class="bone-prop-label">Parent Bone</div>
+                <div class="bone-prop-value" id="propBoneParent">none</div>
+              </div>
+              <div class="bone-prop-item">
+                <div class="bone-prop-label">Bone Length</div>
+                <div class="bone-prop-value" id="propBoneLength">0.0 px</div>
+              </div>
+              <div class="bone-prop-item">
+                <div class="bone-prop-label">Position (X, Y)</div>
+                <div class="bone-prop-value" id="propBonePos">0.0, 0.0</div>
+              </div>
+              <div class="bone-prop-item">
+                <div class="bone-prop-label">Rotation Angle</div>
+                <div class="bone-prop-value" id="propBoneRot">0.0°</div>
+              </div>
+            </div>
 
-              <a href="/exports/unity/" target="_blank" class="dock-item">
-                <div class="dock-icon unity">⚡</div>
-                <div class="dock-info">
-                  <div class="dock-name">Unity 2022+ URP</div>
-                  <div class="dock-desc">Multiple Sprite Atlas & Prefab</div>
-                </div>
-                <span class="dock-arrow">↗</span>
-              </a>
+            <div class="panel-head" style="margin-top: 10px;">
+              <span class="panel-label">ATTACHMENT SLOTS & LIBGDX COORDINATES</span>
+            </div>
 
-              <a href="/exports/phaser/" target="_blank" class="dock-item">
-                <div class="dock-icon phaser">🎮</div>
-                <div class="dock-info">
-                  <div class="dock-name">Phaser 3 / PixiJS</div>
-                  <div class="dock-desc">TexturePacker JSON Hash</div>
-                </div>
-                <span class="dock-arrow">↗</span>
-              </a>
+            <div class="slots-table-container">
+              <table class="slots-table">
+                <thead>
+                  <tr>
+                    <th>Slot Name</th>
+                    <th>Bone Parent</th>
+                    <th>Attachment Name</th>
+                    <th>Atlas Region</th>
+                  </tr>
+                </thead>
+                <tbody id="spineSlotsBody">
+                  <!-- Dynamically populated -->
+                </tbody>
+              </table>
+            </div>
+
+            <div class="code-snippet-box">
+              <button class="copy-btn" id="btnCopySpineSnippet">Copy Spec</button>
+              <pre><code id="spineSnippetCode">// Spine 2D TypeScript Runtime Initialization
+import { SpinePlayer } from "@esotericsoftware/spine-player";
+
+new SpinePlayer("spine-container", {
+  jsonUrl: "/exports/spine/the_architect/the_architect_skeleton.json",
+  atlasUrl: "/exports/spine/the_architect/the_architect.atlas",
+  animation: "idle",
+  premultipliedAlpha: false
+});</code></pre>
             </div>
           </div>
 
-        </section>
+        </div>
+      </section>
 
-      </div>
+      <!-- ====================================================================
+           TAB VIEW 4: ENGINE EXPORTS MANAGER
+           ==================================================================== -->
+      <section id="view-engines" class="tab-view">
+        <div class="engine-packages-grid">
+
+          <!-- Spine 2D Card -->
+          <div class="engine-package-card">
+            <div class="pkg-header">
+              <div class="pkg-title-wrap">
+                <svg class="pkg-icon" viewBox="0 0 24 24" fill="none" stroke-width="2"><circle cx="12" cy="5" r="3"/><circle cx="5" cy="19" r="3"/><circle cx="19" cy="19" r="3"/><line x1="12" y1="8" x2="5" y2="16"/><line x1="12" y1="8" x2="19" y2="16"/></svg>
+                <div class="pkg-name">Spine 2D Runtime</div>
+              </div>
+              <a href="/exports/spine/" target="_blank" class="engine-open-link">Browse Folder ↗</a>
+            </div>
+            <p class="pkg-desc">Spine 3.8 / 4.1 JSON specification with libGDX atlas definitions, OpenGL tangent normal maps, and bloom emission textures.</p>
+            <div class="pkg-files-list" id="engineSpineFiles">
+              <!-- Dynamically populated -->
+            </div>
+            <div class="code-snippet-box">
+              <button class="copy-btn" onclick="navigator.clipboard.writeText('img2game2d export --engine spine')">Copy CLI</button>
+              <pre><code>img2game2d export --engine spine</code></pre>
+            </div>
+          </div>
+
+          <!-- Godot 4.x Card -->
+          <div class="engine-package-card">
+            <div class="pkg-header">
+              <div class="pkg-title-wrap">
+                <svg class="pkg-icon" viewBox="0 0 24 24" fill="none" stroke-width="2"><rect x="3" y="11" width="18" height="10" rx="2"/><circle cx="12" cy="5" r="2"/><path d="M12 7v4"/><line x1="8" y1="16" x2="8" y2="16"/><line x1="16" y1="16" x2="16" y2="16"/></svg>
+                <div class="pkg-name">Godot 4.x Engine</div>
+              </div>
+              <a href="/exports/godot/" target="_blank" class="engine-open-link">Browse Folder ↗</a>
+            </div>
+            <p class="pkg-desc">CharacterBody2D .tscn scene tree, SpriteFrames .tres resources, and Normal/Specular 2D CanvasItem materials.</p>
+            <div class="pkg-files-list" id="engineGodotFiles">
+              <!-- Dynamically populated -->
+            </div>
+            <div class="code-snippet-box">
+              <button class="copy-btn" onclick="navigator.clipboard.writeText('img2game2d export --engine godot')">Copy CLI</button>
+              <pre><code>img2game2d export --engine godot</code></pre>
+            </div>
+          </div>
+
+          <!-- Unity 2022+ URP Card -->
+          <div class="engine-package-card">
+            <div class="pkg-header">
+              <div class="pkg-title-wrap">
+                <svg class="pkg-icon" viewBox="0 0 24 24" fill="none" stroke-width="2"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>
+                <div class="pkg-name">Unity 2022+ URP</div>
+              </div>
+              <a href="/exports/unity/" target="_blank" class="engine-open-link">Browse Folder ↗</a>
+            </div>
+            <p class="pkg-desc">Multiple Sprite Atlas metadata with sliced sprite frames, normal maps for Universal Render Pipeline, and JSON prefab specs.</p>
+            <div class="pkg-files-list" id="engineUnityFiles">
+              <!-- Dynamically populated -->
+            </div>
+            <div class="code-snippet-box">
+              <button class="copy-btn" onclick="navigator.clipboard.writeText('img2game2d export --engine unity')">Copy CLI</button>
+              <pre><code>img2game2d export --engine unity</code></pre>
+            </div>
+          </div>
+
+          <!-- Phaser 3 / PixiJS Card -->
+          <div class="engine-package-card">
+            <div class="pkg-header">
+              <div class="pkg-title-wrap">
+                <svg class="pkg-icon" viewBox="0 0 24 24" fill="none" stroke-width="2"><line x1="6" y1="12" x2="10" y2="12"/><line x1="8" y1="10" x2="8" y2="14"/><circle cx="17" cy="11" r="1"/><circle cx="15" cy="13" r="1"/><rect x="2" y="6" width="20" height="12" rx="6"/></svg>
+                <div class="pkg-name">Phaser 3 / PixiJS</div>
+              </div>
+              <a href="/exports/phaser/" target="_blank" class="engine-open-link">Browse Folder ↗</a>
+            </div>
+            <p class="pkg-desc">Standard & Full HD TexturePacker JSON Hash format with precise frame bounding boxes and trimmed animation sequences.</p>
+            <div class="pkg-files-list" id="enginePhaserFiles">
+              <!-- Dynamically populated -->
+            </div>
+            <div class="code-snippet-box">
+              <button class="copy-btn" onclick="navigator.clipboard.writeText('img2game2d export --engine phaser')">Copy CLI</button>
+              <pre><code>img2game2d export --engine phaser</code></pre>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
     </main>
 
   </div>
@@ -398,7 +649,10 @@
           <!-- Spine 2D Card -->
           <div class="engine-export-card">
             <div class="card-top">
-              <span class="engine-badge spine">🦴 Spine 2D</span>
+              <span class="engine-badge spine">
+                <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><circle cx="12" cy="5" r="3"/><circle cx="5" cy="19" r="3"/><circle cx="19" cy="19" r="3"/><line x1="12" y1="8" x2="5" y2="16"/><line x1="12" y1="8" x2="19" y2="16"/></svg>
+                Spine 2D
+              </span>
               <a href="/exports/spine/" target="_blank" class="engine-open-link">Browse Folder ↗</a>
             </div>
             <p class="engine-summary">Native skeleton.json, libGDX .atlas, Tangent Normal & Bloom Emission maps.</p>
@@ -411,7 +665,10 @@
           <!-- Godot 4.x Card -->
           <div class="engine-export-card">
             <div class="card-top">
-              <span class="engine-badge godot">🤖 Godot 4.x</span>
+              <span class="engine-badge godot">
+                <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><rect x="3" y="11" width="18" height="10" rx="2"/><circle cx="12" cy="5" r="2"/><path d="M12 7v4"/></svg>
+                Godot 4.x
+              </span>
               <a href="/exports/godot/" target="_blank" class="engine-open-link">Browse Folder ↗</a>
             </div>
             <p class="engine-summary">CharacterBody2D .tscn scene tree, SpriteFrames .tres, and normal map lighting material.</p>
@@ -424,7 +681,10 @@
           <!-- Unity 2022+ Card -->
           <div class="engine-export-card">
             <div class="card-top">
-              <span class="engine-badge unity">⚡ Unity URP</span>
+              <span class="engine-badge unity">
+                <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>
+                Unity URP
+              </span>
               <a href="/exports/unity/" target="_blank" class="engine-open-link">Browse Folder ↗</a>
             </div>
             <p class="engine-summary">Multi-Sprite Atlas, individual sprite slices, and prefab configurations.</p>
@@ -437,7 +697,10 @@
           <!-- Phaser 3 / PixiJS Card -->
           <div class="engine-export-card">
             <div class="card-top">
-              <span class="engine-badge phaser">🎮 Phaser / Pixi</span>
+              <span class="engine-badge phaser">
+                <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><rect x="2" y="6" width="20" height="12" rx="6"/><circle cx="17" cy="11" r="1"/><circle cx="15" cy="13" r="1"/></svg>
+                Phaser / Pixi
+              </span>
               <a href="/exports/phaser/" target="_blank" class="engine-open-link">Browse Folder ↗</a>
             </div>
             <p class="engine-summary">TexturePacker JSON Hash (Standard & FHD) compatible with Phaser 3 & PixiJS.</p>
@@ -451,6 +714,6 @@
     </div>
   </div>
 
-  <script src="viewer.js?v=2.0.2"></script>
+  <script src="viewer.js?v=2.1.0"></script>
 </body>
 </html>
